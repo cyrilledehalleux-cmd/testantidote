@@ -42,6 +42,7 @@ for (const lang of LANGS) {
   for (const name of PAGES) {
     const p = loadPage(lang, name);
     L.pages[name] = { title: p.meta.title, html: p.html, source_url: p.meta.source_url || '' };
+    if (name === 'centres') L.pages[name].sections = strip(p.sections);
   }
   data[lang] = L;
 }

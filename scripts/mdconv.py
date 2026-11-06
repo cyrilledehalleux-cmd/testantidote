@@ -81,6 +81,9 @@ def normalize_tokens(toks):
         else:
             merged.append(list(t))
     toks = merged
+    for t in toks:
+        if t[0] == "text":
+            t[1] = re.sub(r" {2,}", " ", t[1])  # espaces HTML consécutifs = une seule espace affichée
     changed = True
     while changed:
         changed = False

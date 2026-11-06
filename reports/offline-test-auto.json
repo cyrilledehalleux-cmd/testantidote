@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-06T02:27:40.040Z",
+  "date": "2026-11-06T03:02:34.901Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "370b6277291a",
-  "passed": 28,
+  "version": "ad37d0fde01a",
+  "passed": 34,
   "failed": 0,
   "results": [
     {
@@ -16,7 +16,7 @@
       "detail": ""
     },
     {
-      "name": "Indication « Disponible hors ligne » dans le menu",
+      "name": "Indication « Disponible hors ligne » (onglet Outils)",
       "ok": true,
       "detail": ""
     },
@@ -71,24 +71,54 @@
       "detail": "18/18 sections, titre « Physostigmine »"
     },
     {
-      "name": "Recherche FR « fomepizole » trouve « Fomépizole »",
+      "name": "Barre du bas : Antidotes / Outils / Centres antipoison",
+      "ok": true,
+      "detail": "Antidotes | Outils | Centres antipoison"
+    },
+    {
+      "name": "Accueil FR : « fomepizole » (sans accent) trouve « Fomépizole »",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "Recherche FR sans accents ni casse (« ACIDOSE METABOLIQUE »)",
+      "name": "Accueil FR : majuscules (« DIGOXINE »)",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "Recherche EN par synonyme (« antizol »)",
+      "name": "Accueil : recherche limitée aux noms et synonymes (texte non cherché)",
       "ok": true,
       "detail": ""
     },
     {
-      "name": "Clic sur un résultat : surlignage dans la monographie",
+      "name": "Accueil EN : par synonyme (« antizol » → Fomepizole)",
       "ok": true,
       "detail": ""
+    },
+    {
+      "name": "Recherche dans la page (sans accents) : surlignage, compteur, résultat suivant",
+      "ok": true,
+      "detail": "10 surlignages, 1 / 10 → 2 / 10"
+    },
+    {
+      "name": "Recherche dans la page : effacement",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Bouton « Liste » : retour à la liste des antidotes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Centres antipoison fr hors ligne : 7 centres, 7 numéros",
+      "ok": true,
+      "detail": "Appeler le centre (18004635060)"
+    },
+    {
+      "name": "Centres antipoison en hors ligne : 7 centres, 7 numéros",
+      "ok": true,
+      "detail": "Call centre (18004635060)"
     },
     {
       "name": "Changement FR → EN : même antidote et même section ouverte",
@@ -138,7 +168,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "370b6277291an"
+      "detail": "ad37d0fde01an"
     },
     {
       "name": "Aucune erreur JavaScript",

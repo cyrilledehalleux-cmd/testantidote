@@ -72,6 +72,18 @@
       "identical": true,
       "lines": 94,
       "chars": 8221
+    },
+    {
+      "page": "fr/centres",
+      "identical": true,
+      "lines": 15,
+      "chars": 661
+    },
+    {
+      "page": "en/centres",
+      "identical": true,
+      "lines": 15,
+      "chars": 560
     }
   ],
   "removed_site_chrome": [
@@ -85,6 +97,7 @@
     "ligne de date : Last updated : 2023-02-01",
     "ligne de date : Last updated : 2026-07-22",
     "ligne de date : Last updated : 2026-10-23",
+    "logos des centres antipoison (images externes, 7 par langue)",
     "« + » d'affichage devant un titre"
   ]
 }

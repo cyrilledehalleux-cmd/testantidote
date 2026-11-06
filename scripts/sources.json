@@ -1,9 +1,28 @@
 {
   "base": "https://www.ciusss-capitalenationale.gouv.qc.ca",
-  "index": { "en": "/en/antidotes", "fr": "/antidotes" },
+  "index": {
+    "en": "/en/antidotes",
+    "fr": "/antidotes"
+  },
   "antidotes": [
-    { "id": "fomepizole", "en": "/en/antidotes/fomepizole" },
-    { "id": "digoxin-specific-antibodies", "en": "/en/antidotes/digoxin-specific-antibodies" },
-    { "id": "physostigmine", "en": "/en/antidotes/physostigmine" }
-  ]
+    {
+      "id": "fomepizole",
+      "en": "/en/antidotes/fomepizole"
+    },
+    {
+      "id": "digoxin-specific-antibodies",
+      "en": "/en/antidotes/digoxin-specific-antibodies"
+    },
+    {
+      "id": "physostigmine",
+      "en": "/en/antidotes/physostigmine"
+    }
+  ],
+  "pages": {
+    "centres": {
+      "fr": "/antidotes/centres",
+      "en": "/en/antidotes/centres",
+      "note": "URL de la page « Centres » du menu du guide (fr : lien « Centres » de la page d'accueil française)."
+    }
+  }
 }

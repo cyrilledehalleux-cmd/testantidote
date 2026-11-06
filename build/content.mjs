@@ -7,7 +7,7 @@ import MarkdownIt from 'markdown-it';
 export const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 export const CONTENT = path.join(ROOT, 'content');
 export const LANGS = ['fr', 'en'];
-export const PAGES = ['advice', 'abbreviations', 'about'];
+export const PAGES = ['advice', 'abbreviations', 'about', 'centres'];
 export const FOOTER_MARK = '<!-- pied de page / footer -->';
 
 // Même configuration que scripts/verify.py : CommonMark + tableaux + HTML simple.
@@ -113,5 +113,5 @@ export function loadPage(lang, name) {
   const file = path.join(CONTENT, lang, `${name}.md`);
   const raw = fs.readFileSync(file, 'utf8');
   const { meta, body } = parseFrontmatter(raw, path.relative(ROOT, file));
-  return { file: path.relative(ROOT, file), raw, meta, body, html: md.render(body) };
+  return { file: path.relative(ROOT, file), raw, meta, body, html: md.render(body), sections: parseSections(body).sections };
 }

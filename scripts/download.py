@@ -70,6 +70,11 @@ def main():
         save("fr", fr_slug, fr_url, fr_raw, manifest)
         manifest[f"fr/{fr_slug}"]["antidote_id"] = a["id"]
         manifest[f"en/{a['id']}"]["antidote_id"] = a["id"]
+    for name, urls in cfg.get("pages", {}).items():
+        for lang in ("fr", "en"):
+            url = base + urls[lang]
+            save(lang, name, url, fetch(url), manifest)
+            manifest[f"{lang}/{name}"]["page"] = name
     (SRC / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("OK – source/html/manifest.json")
 

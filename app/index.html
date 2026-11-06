@@ -5,38 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Guide canadien des antidotes – démo</title>
   <meta name="description" content="Démonstration – Guide canadien des antidotes, FR/EN, utilisable hors ligne. Contenu non validé.">
-  <meta name="theme-color" content="#0f4c5c" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0d1b1f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#a3212a" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#4d1216" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Antidotes">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
   <a class="skip" href="#main" id="skip-link">Aller au contenu</a>
-  <div class="demo-banner" role="note"><strong>DÉMO – contenu non validé</strong> <span aria-hidden="true">/</span> <span lang="en">DEMO – content not validated</span></div>
   <header class="topbar">
-    <button type="button" class="icon-btn" id="menu-btn" aria-expanded="false" aria-controls="menu">
-      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <span class="sr-only" id="menu-btn-label">Menu</span>
-    </button>
-    <a class="brand" id="brand" href="#/fr">Guide canadien des antidotes</a>
-    <button type="button" class="lang-btn" id="lang-btn" lang="en">EN</button>
+    <div class="demo-banner" role="note"><strong>DÉMO – contenu non validé</strong> <span aria-hidden="true">/</span> <span lang="en">DEMO – content not validated</span></div>
+    <div class="topbar-row">
+      <a class="top-back" id="top-back" href="#/fr" hidden>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="top-back-label">Retour</span>
+      </a>
+      <p class="top-title" id="top-title">Guide canadien des antidotes</p>
+      <button type="button" class="lang-btn" id="lang-btn" lang="en">EN</button>
+    </div>
   </header>
-  <nav id="menu" class="menu" hidden aria-labelledby="menu-btn-label">
-    <ul id="menu-list"></ul>
-    <p class="menu-foot" id="menu-foot"></p>
-  </nav>
   <div id="status" class="status" aria-live="polite"></div>
   <main id="main" tabindex="-1">
     <p class="loading">Chargement… / Loading…</p>
   </main>
+  <nav class="tabbar" id="tabbar" aria-label="Navigation principale"></nav>
   <dialog id="disclaimer" aria-labelledby="disclaimer-title">
     <div class="dialog-body">
       <h2 id="disclaimer-title"></h2>

@@ -84,9 +84,10 @@ try {
   const cached = await page.evaluate(async v => (await (await caches.open(`antidotes-${v}`)).keys()).map(r => r.url), data.version);
   const missing = assets.map(a => new URL(a, BASE).href).filter(u => !cached.includes(u));
   check(`Pré-cache complet au premier chargement (${assets.length} fichiers, sans avoir ouvert les pages)`, missing.length === 0, missing.join(', '));
-  await page.waitForFunction(() => /Disponible hors ligne|Available offline/.test(document.querySelector('#menu-foot').textContent), null, { timeout: 5000 })
-    .then(() => check('Indication « Disponible hors ligne » dans le menu', true))
-    .catch(() => check('Indication « Disponible hors ligne » dans le menu', false));
+  await page.goto(`${BASE}#/fr/tools`);
+  await page.waitForFunction(() => /Disponible hors ligne/.test(document.querySelector('#app-info')?.textContent || ''), null, { timeout: 5000 })
+    .then(() => check('Indication « Disponible hors ligne » (onglet Outils)', true))
+    .catch(() => check('Indication « Disponible hors ligne » (onglet Outils)', false));
 
   // --- coupure réseau : serveur arrêté + navigateur hors ligne ---
   await new Promise(r => server.close(r));
@@ -97,7 +98,7 @@ try {
   watch(page);
   const before = requests;
   await page.goto(BASE);
-  await page.waitForSelector('.card .t');
+  await page.waitForSelector('#results a.row');
   check('Application rouverte sans réseau (serveur arrêté)', true);
   check('Aucune requête n\'atteint le serveur hors ligne', requests === before);
   check('Avis au lecteur non réaffiché après acceptation', !(await page.isVisible('#disclaimer')));
@@ -121,21 +122,59 @@ try {
     }
   }
 
-  // --- recherche (insensible aux accents) ---
+  // --- barre d'onglets ---
+  await page.goto(`${BASE}#/fr`);
+  await page.waitForFunction(() => document.querySelector('#tabbar a')?.textContent === 'Antidotes' && document.documentElement.lang === 'fr');
+  const tabs = await page.locator('#tabbar a').allTextContents();
+  check('Barre du bas : Antidotes / Outils / Centres antipoison', tabs.join('|') === 'Antidotes|Outils|Centres antipoison', tabs.join(' | '));
+
+  // --- recherche d'accueil : noms et synonymes (insensible aux accents) ---
   await page.goto(`${BASE}#/fr`);
   await page.fill('#q', 'fomepizole');
-  await page.waitForSelector('.result-group');
-  check('Recherche FR « fomepizole » trouve « Fomépizole »', (await page.textContent('#results')).includes('Fomépizole'));
-  await page.fill('#q', 'ACIDOSE METABOLIQUE');
-  await page.waitForSelector('.result-group mark');
-  check('Recherche FR sans accents ni casse (« ACIDOSE METABOLIQUE »)', (await page.locator('.result-group mark').count()) > 0);
+  await page.waitForFunction(() => document.querySelectorAll('#results a.row').length === 1);
+  check('Accueil FR : « fomepizole » (sans accent) trouve « Fomépizole »', (await page.textContent('#results')).includes('Fomépizole'));
+  await page.fill('#q', 'DIGOXINE');
+  await page.waitForFunction(() => /digoxine/.test(document.querySelector('#results')?.textContent || '') && document.querySelectorAll('#results a.row').length === 1, null, { timeout: 5000 }).catch(() => {});
+  check('Accueil FR : majuscules (« DIGOXINE »)', (await page.textContent('#results')).includes('Anticorps spécifique de la digoxine'));
+  await page.fill('#q', 'hémodialyse');
+  await page.waitForSelector('#results .empty');
+  check('Accueil : recherche limitée aux noms et synonymes (texte non cherché)', true);
   await page.goto(`${BASE}#/en`);
   await page.fill('#q', 'antizol');
-  await page.waitForSelector('.result-group');
-  check('Recherche EN par synonyme (« antizol »)', (await page.textContent('#results')).includes('Fomepizole'));
-  await page.click('.result-group a.card');
-  await page.waitForSelector('#sections mark');
-  check('Clic sur un résultat : surlignage dans la monographie', (await page.locator('#sections mark').count()) > 0);
+  await page.waitForFunction(() => document.querySelectorAll('#results a.row').length === 1);
+  check('Accueil EN : par synonyme (« antizol » → Fomepizole)', (await page.textContent('#results')).includes('Fomepizole'));
+  await page.click('#results a.row');
+  await page.waitForFunction(() => document.querySelector('#mono-title')?.textContent === 'Fomepizole');
+
+  // --- recherche dans la monographie ---
+  await page.goto(`${BASE}#/fr/m/fomepizole`);
+  await page.waitForFunction(() => document.querySelector('#mono-title')?.textContent === 'Fomépizole');
+  await page.fill('#find', 'ACIDOSE METABOLIQUE');
+  await page.waitForFunction(() => document.querySelectorAll('#sections mark').length > 0);
+  const n = await page.locator('#sections mark').count();
+  const c1 = await page.textContent('#find-count');
+  await page.click('#find-next');
+  const c2 = await page.textContent('#find-count');
+  const visibleCurrent = await page.locator('#sections mark.current').isVisible();
+  check('Recherche dans la page (sans accents) : surlignage, compteur, résultat suivant', n > 1 && c1.startsWith('1 /') && c2.startsWith('2 /') && visibleCurrent, `${n} surlignages, ${c1} → ${c2}`);
+  await page.fill('#find', '');
+  await page.waitForFunction(() => document.querySelectorAll('#sections mark').length === 0);
+  check('Recherche dans la page : effacement', true);
+
+  // --- bouton retour ---
+  await page.click('.mono-tools .back');
+  await page.waitForSelector('#q');
+  check('Bouton « Liste » : retour à la liste des antidotes', (await page.locator('#results a.row').count()) === 3);
+
+  // --- centres antipoison ---
+  for (const [lang, call] of [['fr', 'Appeler le centre'], ['en', 'Call centre']]) {
+    await page.goto(`${BASE}#/${lang}/centres`);
+    await page.waitForSelector('.centre');
+    const nC = await page.locator('.centre').count();
+    const tels = await page.locator('.centre a[href^="tel:"]').count();
+    const first = await page.textContent('.centre a[href^="tel:"]');
+    check(`Centres antipoison ${lang} hors ligne : ${nC} centres, ${tels} numéros`, nC === data[lang].pages.centres.sections.length && tels === nC && first.includes(call), first.trim());
+  }
 
   // --- changement de langue en gardant l'antidote et la section ---
   await page.goto(`${BASE}#/fr/m/digoxin-specific-antibodies/4.2`);
@@ -183,7 +222,7 @@ try {
   const banner = await page.textContent('#status');
   check('Nouvelle version téléchargée en arrière-plan : bandeau affiché', banner.includes('Nouvelle version disponible – actualiser') && banner.includes('New version available – refresh'), banner.trim());
   await Promise.all([page.waitForNavigation(), page.click('#refresh-btn')]);
-  await page.waitForSelector('.card .t');
+  await page.waitForSelector('#results a.row');
   const nowVersion = await page.evaluate(() => fetch('./data/content.json').then(r => r.json()).then(j => j.version));
   check('Après « Actualiser » : nouvelle version active', nowVersion === newVersion, nowVersion);
 

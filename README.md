@@ -6,6 +6,11 @@ Preuve de concept d'une application web installable (PWA), bilingue, utilisable 
 reprenant 3 monographies du *Guide canadien des antidotes* (CIUSSS de la Capitale-Nationale) :
 anticorps spécifiques de la digoxine (avec un calculateur DigiFab de démonstration), fomépizole, physostigmine.
 
+Navigation par 3 onglets en bas de l'écran : **Antidotes** (liste + recherche par nom ou synonyme),
+**Outils** (calculateur DigiFab, abréviations, avis au lecteur, à propos) et **Centres antipoison**
+(liste officielle des centres canadiens, avec bouton d'appel). Dans chaque monographie : bouton « Liste »,
+« Tout ouvrir / Tout fermer » et une recherche dans la page (surlignage, résultat précédent / suivant).
+
 - **Application en ligne :** https://cyrilledehalleux-cmd.github.io/testantidote/
 - Aucun serveur, aucune base de données, aucun suivi des utilisateurs : uniquement des fichiers statiques.
 
@@ -15,7 +20,7 @@ anticorps spécifiques de la digoxine (avec un calculateur DigiFab de démonstra
 |---|---|
 | `content/fr/`, `content/en/` | **Le contenu** : un fichier Markdown par monographie et par langue. C'est le seul endroit à modifier pour changer un texte. |
 | `content/GUIDE-EDITION.md` | Guide pas-à-pas pour les cliniciens (modifier, publier, annuler). |
-| `source/html/` | Pages officielles téléchargées **sans modification** (+ `manifest.json` : URL, date, empreinte SHA-256). |
+| `source/html/` | Pages officielles téléchargées **sans modification** : monographies, page d'accueil du guide, page « Centres » (+ `manifest.json` : URL, date, empreinte SHA-256). |
 | `source/mdcalc/` | Page MDCalc enregistrée (source de la formule du calculateur). |
 | `scripts/` | Téléchargement, extraction HTML → Markdown, vérification, rapports (Python). |
 | `app/` | L'interface de l'application (HTML/CSS/JavaScript, sans framework). |

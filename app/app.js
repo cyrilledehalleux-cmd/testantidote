@@ -8,33 +8,66 @@ const DIGOXIN_ID = 'digoxin-specific-antibodies';
 
 const UI = {
   fr: {
-    appTitle: 'Guide canadien des antidotes', skip: 'Aller au contenu', menu: 'Menu',
-    switchTo: 'Switch to English', otherLang: 'EN',
-    home: 'Accueil', calc: 'Calculateur DigiFab', abbreviations: 'Abréviations', advice: 'Avis au lecteur', about: 'À propos',
-    searchLabel: 'Rechercher un antidote ou un terme', searchPh: 'Rechercher (nom, synonyme, texte)…',
-    antidotes: 'Antidotes', results: (n, q) => `${n} résultat${n > 1 ? 's' : ''} pour « ${q} »`,
-    noResults: q => `Aucun résultat pour « ${q} ».`, inName: 'Nom de l\'antidote',
+    appTitle: 'Guide canadien des antidotes', skip: 'Aller au contenu',
+    switchTo: 'Switch to English', otherLang: 'EN', back: 'Retour', backList: 'Liste',
+    backListLabel: 'Retour à la liste des antidotes',
+    tabAntidotes: 'Antidotes', tabTools: 'Outils', tabCentres: 'Centres antipoison', nav: 'Navigation principale',
+    tools: 'Calculateurs et outils', calc: 'Calculateur DigiFab', abbreviations: 'Abréviations', advice: 'Avis au lecteur', about: 'À propos',
+    searchLabel: 'Rechercher un antidote', searchPh: 'Rechercher un antidote',
+    noAntidote: q => `Aucun antidote ne correspond à « ${q} ».`,
+    searchHint: 'La recherche porte sur le nom et les synonymes. Pour chercher dans le texte, ouvrez une monographie et utilisez sa barre de recherche.',
+    synonym: 'Synonyme', count: n => `${n} antidote${n > 1 ? 's' : ''}`,
+    findLabel: 'Rechercher dans cette monographie', findPh: 'Rechercher dans cette page',
+    prev: 'Résultat précédent', next: 'Résultat suivant', clear: 'Effacer la recherche',
+    found: (i, n) => n ? `${i} / ${n}` : '0',
+    foundLong: (i, n) => n ? `Résultat ${i} sur ${n}` : 'Aucun résultat dans cette page',
     openAll: 'Tout ouvrir', closeAll: 'Tout fermer', official: 'Page officielle', opensNew: '(nouvel onglet)',
-    calcFor: 'Calculateur de dose (démo)', notFound: 'Page introuvable.', back: 'Retour à l\'accueil',
+    calcFor: 'Calculateur de dose (démo)', notFound: 'Page introuvable.', home: 'Retour à l\'accueil',
     offline: d => `Hors ligne – contenu daté du ${d}`, update: 'Nouvelle version disponible', refresh: 'Actualiser',
     offlineReady: 'Disponible hors ligne', offlineNotReady: 'Préparation hors ligne en cours…',
     contentVersion: d => `Contenu du ${d}`, understood: 'J\'ai lu et je comprends', revision: 'Dernière mise à jour',
-    noSw: 'Mode hors ligne non pris en charge par ce navigateur',
+    noSw: 'Mode hors ligne non pris en charge par ce navigateur', demoTag: 'Démo',
+    calcSub: 'Nombre de fioles – anticorps spécifiques de la digoxine',
+    abbrSub: 'Abréviations et acronymes du guide', adviceSub: 'À lire avant utilisation', aboutSub: 'Les centres antipoison canadiens',
+    appInfo: 'Application', centresSub: 'Source : Guide canadien des antidotes, page « Centres ».',
   },
   en: {
-    appTitle: 'Canadian antidote guide', skip: 'Skip to content', menu: 'Menu',
-    switchTo: 'Passer en français', otherLang: 'FR',
-    home: 'Home', calc: 'DigiFab calculator', abbreviations: 'Abbreviations', advice: 'Advice to the reader', about: 'About',
-    searchLabel: 'Search an antidote or a term', searchPh: 'Search (name, synonym, text)…',
-    antidotes: 'Antidotes', results: (n, q) => `${n} result${n > 1 ? 's' : ''} for “${q}”`,
-    noResults: q => `No results for “${q}”.`, inName: 'Antidote name',
+    appTitle: 'Canadian antidote guide', skip: 'Skip to content',
+    switchTo: 'Passer en français', otherLang: 'FR', back: 'Back', backList: 'List',
+    backListLabel: 'Back to the antidote list',
+    tabAntidotes: 'Antidotes', tabTools: 'Tools', tabCentres: 'Poison centres', nav: 'Main navigation',
+    tools: 'Calculators and tools', calc: 'DigiFab calculator', abbreviations: 'Abbreviations', advice: 'Advice to the reader', about: 'About',
+    searchLabel: 'Search antidotes', searchPh: 'Search antidotes',
+    noAntidote: q => `No antidote matches “${q}”.`,
+    searchHint: 'Search covers names and synonyms. To search the text, open a monograph and use its search bar.',
+    synonym: 'Synonym', count: n => `${n} antidote${n > 1 ? 's' : ''}`,
+    findLabel: 'Search this monograph', findPh: 'Search this page',
+    prev: 'Previous result', next: 'Next result', clear: 'Clear search',
+    found: (i, n) => n ? `${i} / ${n}` : '0',
+    foundLong: (i, n) => n ? `Result ${i} of ${n}` : 'No results on this page',
     openAll: 'Open all', closeAll: 'Close all', official: 'Official page', opensNew: '(new tab)',
-    calcFor: 'Dose calculator (demo)', notFound: 'Page not found.', back: 'Back to home',
+    calcFor: 'Dose calculator (demo)', notFound: 'Page not found.', home: 'Back to home',
     offline: d => `Offline – content dated ${d}`, update: 'New version available', refresh: 'Refresh',
     offlineReady: 'Available offline', offlineNotReady: 'Preparing offline use…',
     contentVersion: d => `Content of ${d}`, understood: 'I have read and understand', revision: 'Last updated',
-    noSw: 'Offline mode not supported by this browser',
+    noSw: 'Offline mode not supported by this browser', demoTag: 'Demo',
+    calcSub: 'Number of vials – digoxin-specific antibodies',
+    abbrSub: 'Guide abbreviations and acronyms', adviceSub: 'Read before use', aboutSub: 'Canadian poison centres',
+    appInfo: 'App', centresSub: 'Source: Canadian antidote guide, “Centres” page.',
   },
+};
+
+const ICONS = {
+  flask: '<svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26"><path d="M9 2.5h6M10 2.5v6.2L4.6 18.3A2.2 2.2 0 0 0 6.5 21.5h11a2.2 2.2 0 0 0 1.9-3.2L14 8.7V2.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/><path d="M7.3 14h9.4l2 3.9a1.2 1.2 0 0 1-1 1.6H6.3a1.2 1.2 0 0 1-1-1.6z" fill="currentColor"/></svg>',
+  tools: '<svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26"><rect x="4.5" y="2.5" width="15" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"/><rect x="7.5" y="5.5" width="9" height="4" rx="1" fill="currentColor"/><g fill="currentColor"><circle cx="8.6" cy="13" r="1.15"/><circle cx="12" cy="13" r="1.15"/><circle cx="15.4" cy="13" r="1.15"/><circle cx="8.6" cy="17" r="1.15"/><circle cx="12" cy="17" r="1.15"/><circle cx="15.4" cy="17" r="1.15"/></g></svg>',
+  phone: '<svg aria-hidden="true" viewBox="0 0 24 24" width="26" height="26"><path d="M6.6 3.2 8.9 3a1.4 1.4 0 0 1 1.4.9l1.2 3.1a1.4 1.4 0 0 1-.4 1.6l-1.6 1.3a12 12 0 0 0 4.6 4.6l1.3-1.6a1.4 1.4 0 0 1 1.6-.4l3.1 1.2a1.4 1.4 0 0 1 .9 1.4l-.2 2.3a2.6 2.6 0 0 1-2.8 2.4C9.8 20.3 3.7 14.2 3.3 6a2.6 2.6 0 0 1 2.4-2.8z" fill="currentColor"/></svg>',
+  chevronR: '<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  chevronL: '<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  search: '<svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m20 20-4.6-4.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+  up: '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="m6 15 6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  down: '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  close: '<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+  web: '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
 };
 
 const CALC_UI = {
@@ -123,7 +156,7 @@ function storage(kind) {
 }
 const local = storage('localStorage');
 
-// ------------------------------------------------------------- recherche ---
+// ------------------------------------------------- recherche (repliage) ---
 // Insensible aux accents et à la casse : « fomepizole » trouve « Fomépizole ».
 function foldChar(ch) {
   return ch.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
@@ -171,51 +204,55 @@ function highlightText(text, tokens) {
   return out + esc(text.slice(last));
 }
 
-function snippet(text, tokens, width = 70) {
-  const ranges = findRanges(text, tokens);
-  if (!ranges.length) return esc(text.slice(0, width * 2)) + (text.length > width * 2 ? '…' : '');
-  const start = Math.max(0, ranges[0][0] - width);
-  const end = Math.min(text.length, ranges[0][1] + width);
-  const piece = text.slice(start, end).replace(/\s+/g, ' ');
-  return (start > 0 ? '…' : '') + highlightText(piece, tokens) + (end < text.length ? '…' : '');
-}
-
-function flatSections(secs, trail = []) {
-  const out = [];
-  for (const s of secs) {
-    const path = [...trail, s.title];
-    out.push({ ...s, path });
-    out.push(...flatSections(s.children, path));
+// --------------------------------------- recherche d'accueil : noms + synonymes ---
+/** Synonymes d'une monographie : lignes de la section dont le titre contient « synonym ». */
+const synCache = new Map();
+function synonymsOf(m) {
+  const key = state.lang + '/' + m.id;
+  if (synCache.has(key)) return synCache.get(key);
+  const sec = m.sections.find(s => foldStr(s.title).includes('synonym'));
+  let list = [];
+  if (sec) {
+    // chaque élément de liste (ou ligne) de la section = un synonyme, avec sa mise en forme (ex. exposant « md »)
+    const div = document.createElement('div');
+    div.innerHTML = sec.html;
+    const items = div.querySelectorAll('li');
+    list = (items.length ? [...items] : [...div.children]).map(el => ({ text: el.textContent.trim(), html: el.innerHTML.trim() }))
+      .filter(x => x.text);
   }
-  return out;
+  synCache.set(key, list);
+  return list;
+}
+function highlightHtml(html, tokens) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  markInDom(div, tokens);
+  return div.innerHTML;
 }
 
-function search(q) {
+function searchAntidotes(q) {
   const tokens = tokensOf(q);
-  if (!tokens.length) return { tokens, groups: [] };
   const L = state.data[state.lang];
-  const groups = [];
+  const out = [];
   for (const id of L.order) {
     const m = L.monographs[id];
-    const titleF = foldStr(m.title);
-    const titleHit = tokens.every(tk => titleF.includes(tk));
-    const hits = [];
-    for (const s of flatSections(m.sections)) {
-      const hay = foldStr(s.title + '\n' + s.text);
-      const all = tokens.every(tk => hay.includes(tk) || titleF.includes(tk));
-      const some = tokens.some(tk => hay.includes(tk));
-      if (all && some) {
-        const count = tokens.reduce((n, tk) => n + (hay.split(tk).length - 1), 0);
-        hits.push({ s, count });
-      }
-    }
-    if (titleHit || hits.length) groups.push({ m, titleHit, hits });
+    if (!tokens.length) { out.push({ m }); continue; }
+    const tf = foldStr(m.title);
+    if (tokens.every(tk => tf.includes(tk))) { out.push({ m, rank: 0 }); continue; }
+    const syn = synonymsOf(m).find(s => { const f = foldStr(s.text); return tokens.every(tk => f.includes(tk) || tf.includes(tk)); });
+    if (syn) out.push({ m, syn, rank: 1 });
   }
-  groups.sort((a, b) => (b.titleHit - a.titleHit) || (b.hits.length - a.hits.length));
-  return { tokens, groups };
+  if (tokens.length) out.sort((a, b) => a.rank - b.rank);
+  return { tokens, items: out };
 }
 
 // -------------------------------------------------------------- routage ---
+// #/fr                    accueil (liste + recherche)      ?q=
+// #/fr/m/<id>[/<section>] monographie                      ?q= (recherche dans la page)
+// #/fr/tools              calculateurs et outils
+// #/fr/calc               calculateur DigiFab
+// #/fr/p/<page>           avis, abréviations, à propos
+// #/fr/centres            centres antipoison
 function parseHash() {
   const h = decodeURI(location.hash.replace(/^#\/?/, ''));
   const [pathPart, query = ''] = h.split('?');
@@ -248,29 +285,33 @@ function setLang(lang) {
   local?.setItem('lang', lang);
 }
 
+const TAB_OF = { home: 'antidotes', m: 'antidotes', tools: 'tools', calc: 'tools', p: 'tools', centres: 'centres' };
+
 // --------------------------------------------------------------- rendu ---
-function renderChrome() {
+function renderChrome(r, title, backHref) {
   const T = t();
-  document.title = `${T.appTitle} – ${state.lang === 'fr' ? 'démo' : 'demo'}`;
+  document.title = `${title ? title + ' – ' : ''}${T.appTitle} (${state.lang === 'fr' ? 'démo' : 'demo'})`;
   $('#skip-link').textContent = T.skip;
-  $('#menu-btn-label').textContent = T.menu;
-  $('#brand').textContent = T.appTitle;
-  $('#brand').href = `#/${state.lang}`;
+  $('#top-title').textContent = title || T.appTitle;
+  const back = $('#top-back');
+  if (backHref) { back.hidden = false; back.href = backHref; $('#top-back-label').textContent = T.back; }
+  else back.hidden = true;
   const lb = $('#lang-btn');
   lb.textContent = T.otherLang;
   lb.lang = state.lang === 'fr' ? 'en' : 'fr';
   lb.setAttribute('aria-label', T.switchTo);
-  const r = parseHash();
-  const items = [
-    ['home', `#/${state.lang}`, T.home],
-    ['calc', `#/${state.lang}/calc`, T.calc],
-    ['abbreviations', `#/${state.lang}/p/abbreviations`, T.abbreviations],
-    ['advice', `#/${state.lang}/p/advice`, T.advice],
-    ['about', `#/${state.lang}/p/about`, T.about],
+  // barre d'onglets du bas
+  const tab = TAB_OF[r.view] || '';
+  const tabs = [
+    ['antidotes', `#/${state.lang}`, ICONS.flask, T.tabAntidotes],
+    ['tools', `#/${state.lang}/tools`, ICONS.tools, T.tabTools],
+    ['centres', `#/${state.lang}/centres`, ICONS.phone, T.tabCentres],
   ];
-  const cur = r.view === 'p' ? r.arg : r.view;
-  $('#menu-list').innerHTML = items.map(([k, href, label]) =>
-    `<li><a href="${href}"${k === cur ? ' aria-current="page"' : ''}>${esc(label)}</a></li>`).join('');
+  const nav = $('#tabbar');
+  nav.setAttribute('aria-label', T.nav);
+  nav.innerHTML = `<ul>${tabs.map(([k, href, icon, label]) =>
+    `<li><a href="${href}"${k === tab ? ' aria-current="page"' : ''}>${icon}<span>${esc(label)}</span></a></li>`).join('')}</ul>`;
+  document.body.dataset.view = r.view;
   renderStatus();
 }
 
@@ -285,170 +326,195 @@ function renderStatus() {
   }
   $('#status').innerHTML = html;
   $('#refresh-btn')?.addEventListener('click', applyUpdate);
-  const foot = [T.contentVersion(d)];
-  if (!('serviceWorker' in navigator)) foot.push(T.noSw);
-  else foot.push(state.offlineReady ? `✓ ${T.offlineReady}` : T.offlineNotReady);
-  $('#menu-foot').textContent = foot.join(' · ');
+  const info = $('#app-info');
+  if (info) info.textContent = appInfoText();
+}
+
+function appInfoText() {
+  const T = t();
+  const parts = [T.contentVersion(state.data?.contentDate || '')];
+  if (!('serviceWorker' in navigator)) parts.push(T.noSw);
+  else parts.push(state.offlineReady ? `✓ ${T.offlineReady}` : T.offlineNotReady);
+  return parts.join(' · ');
 }
 
 function render() {
   const r = parseHash();
   if (!r.lang) { go({ lang: state.lang, view: 'home' }, { replace: true }); return; }
   if (r.lang !== state.lang) setLang(r.lang);
-  renderChrome();
-  closeMenu();
   const main = $('#main');
-  if (r.view === 'home') renderHome(main, r);
-  else if (r.view === 'm') renderMonograph(main, r);
-  else if (r.view === 'calc') renderCalc(main);
-  else if (r.view === 'p') renderPage(main, r);
-  else renderNotFound(main);
+  const T = t();
+  const L = state.data[state.lang];
+  if (r.view === 'home') { renderChrome(r, ''); renderHome(main, r); }
+  else if (r.view === 'm' && L.monographs[r.arg]) { renderChrome(r, L.monographs[r.arg].title); renderMonograph(main, r); }
+  else if (r.view === 'tools') { renderChrome(r, T.tools); renderTools(main); }
+  else if (r.view === 'calc') { renderChrome(r, T.calc, `#/${state.lang}/tools`); renderCalc(main); }
+  else if (r.view === 'p' && L.pages[r.arg] && r.arg !== 'centres') { renderChrome(r, L.pages[r.arg].title, `#/${state.lang}/tools`); renderPage(main, r); }
+  else if (r.view === 'centres') { renderChrome(r, L.pages.centres?.title || T.tabCentres); renderCentres(main); }
+  else { renderChrome(r, ''); renderNotFound(main); }
 }
 
 function renderNotFound(main) {
-  main.innerHTML = `<h1>${esc(t().notFound)}</h1><p><a href="#/${state.lang}">${esc(t().back)}</a></p>`;
+  main.innerHTML = `<h1>${esc(t().notFound)}</h1><p><a href="#/${state.lang}">${esc(t().home)}</a></p>`;
 }
 
-const SEARCH_ICON = '<svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-
+// --------------------------------------------------------------- accueil ---
 function renderHome(main, r) {
   const T = t();
   main.innerHTML = `
-    <h1 class="sr-only">${esc(T.appTitle)}</h1>
-    <form class="search" role="search" id="search-form">
-      <label for="q" class="sr-only">${esc(T.searchLabel)}</label>
-      ${SEARCH_ICON}
-      <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"
-        placeholder="${esc(T.searchPh)}" value="${esc(r.q)}">
-    </form>
-    <div id="results" aria-live="polite"></div>`;
+    <div class="hero">
+      <h1 class="sr-only">${esc(T.appTitle)}</h1>
+      <form class="search" role="search" id="search-form">
+        <label for="q" class="sr-only">${esc(T.searchLabel)}</label>
+        ${ICONS.search}
+        <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"
+          placeholder="${esc(T.searchPh)}" value="${esc(r.q)}" aria-describedby="search-hint">
+      </form>
+    </div>
+    <div id="results" aria-live="polite"></div>
+    <p class="hint center" id="search-hint">${esc(T.searchHint)}</p>`;
   const input = $('#q');
-  const draw = () => {
-    const q = input.value;
-    $('#results').innerHTML = q.trim() ? resultsHtml(q) : listHtml();
-  };
+  const draw = () => { $('#results').innerHTML = antidoteListHtml(input.value); };
   let timer;
   input.addEventListener('input', () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       history.replaceState(null, '', hashFor({ lang: state.lang, view: 'home', q: input.value.trim() ? input.value : '' }));
       draw();
-    }, 120);
+    }, 100);
   });
-  $('#search-form').addEventListener('submit', e => { e.preventDefault(); input.blur(); });
+  $('#search-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const first = $('#results a.row');
+    if (first && input.value.trim()) first.click(); else input.blur();
+  });
   draw();
   if (r.q) input.focus();
+  window.scrollTo(0, 0);
 }
 
-function listHtml() {
+function antidoteListHtml(q) {
   const T = t();
-  const L = state.data[state.lang];
-  const items = L.order.map(id => {
-    const m = L.monographs[id];
-    return `<li><a class="card" href="#/${state.lang}/m/${id}"><div class="t">${esc(m.title)}</div>` +
-      `<div class="s">${esc(m.last_revision_label || T.revision)} : ${esc(m.last_revision)}</div></a></li>`;
-  }).join('');
-  return `<h2>${esc(T.antidotes)}</h2><ul class="list">${items}</ul>
-    <div class="home-links">
-      <a class="card" href="#/${state.lang}/calc"><div class="t">${esc(T.calc)}</div><div class="s">${esc(CALC_UI[state.lang].banner)}</div></a>
-      <a class="card" href="#/${state.lang}/p/abbreviations"><div class="t">${esc(T.abbreviations)}</div></a>
-      <a class="card" href="#/${state.lang}/p/advice"><div class="t">${esc(T.advice)}</div></a>
-    </div>`;
+  const { tokens, items } = searchAntidotes(q);
+  if (!items.length) return `<p class="empty">${esc(T.noAntidote(q.trim()))}</p>`;
+  const rows = items.map(({ m, syn }) => `
+    <li><a class="row" href="#/${state.lang}/m/${m.id}">
+      <span class="row-text"><span class="row-title">${tokens.length ? highlightText(m.title, tokens) : esc(m.title)}</span>
+      ${syn ? `<span class="row-sub">${esc(T.synonym)} : ${highlightHtml(syn.html, tokens)}</span>` : ''}</span>
+      ${ICONS.chevronR}</a></li>`).join('');
+  return `<h2 class="sr-only">${esc(T.count(items.length))}</h2><ul class="rows">${rows}</ul>`;
 }
 
-function resultsHtml(q) {
-  const T = t();
-  const { tokens, groups } = search(q);
-  const n = groups.reduce((k, g) => k + Math.max(g.hits.length, g.titleHit ? 1 : 0), 0);
-  if (!groups.length) return `<p class="results-head">${esc(T.noResults(q.trim()))}</p>`;
-  const qp = encodeURIComponent(q.trim());
-  const body = groups.map(g => {
-    const base = `#/${state.lang}/m/${g.m.id}`;
-    const hits = g.hits.slice(0, 8).map(({ s }) =>
-      `<li><a class="card" href="${base}/${s.id}?q=${qp}"><div class="t">${highlightText(s.path.join(' › '), tokens)}</div>` +
-      `<div class="snippet">${snippet(s.text, tokens)}</div></a></li>`).join('');
-    const more = g.hits.length > 8 ? `<li class="s">+ ${g.hits.length - 8}</li>` : '';
-    return `<section class="result-group"><h2><a href="${base}?q=${qp}">${highlightText(g.m.title, tokens)}</a></h2>` +
-      (g.titleHit && !g.hits.length ? `<ul><li><a class="card" href="${base}"><div class="s">${esc(T.inName)}</div></a></li></ul>` : '') +
-      `<ul>${hits}${more}</ul></section>`;
-  }).join('');
-  return `<p class="results-head">${esc(T.results(n, q.trim()))}</p>${body}`;
-}
-
+// ---------------------------------------------------------- monographie ---
 function sectionHtml(s, openSet) {
   const lvl = Math.min(s.level, 6);
   const open = openSet.has(s.id) ? ' open' : '';
   return `<details class="sec lvl${lvl}" id="s-${s.id}" data-sec="${s.id}"${open}>` +
-    `<summary><h${lvl}>${s.titleHtml}</h${lvl}></summary>` +
+    `<summary><h${lvl}>${s.titleHtml}</h${lvl}><span class="chev">${ICONS.down}</span></summary>` +
     `<div class="sec-body prose">${s.html}${s.children.map(c => sectionHtml(c, openSet)).join('')}</div></details>`;
 }
 
 function renderMonograph(main, r) {
   const T = t();
-  const L = state.data[state.lang];
-  const m = L.monographs[r.arg];
-  if (!m) { renderNotFound(main); return; }
+  const m = state.data[state.lang].monographs[r.arg];
   const openSet = new Set(state.pendingOpen || []);
   if (!state.pendingOpen) {
     openSet.add('1'); // « Points clés » ouvert par défaut, comme sur le site
     if (r.sec) { const p = r.sec.split('.'); for (let i = 1; i <= p.length; i++) openSet.add(p.slice(0, i).join('.')); }
   }
   state.pendingOpen = null;
+  const findInit = r.q;
   main.innerHTML = `
-    <div class="mono-head">
-      <h1 id="mono-title">${esc(m.title)}</h1>
-      <div class="tools">
-        <button type="button" class="btn small wide-only" id="open-all">${esc(T.openAll)}</button>
-        <button type="button" class="btn small wide-only" id="close-all">${esc(T.closeAll)}</button>
-        <button type="button" class="btn small narrow-only" id="toggle-all"></button>
+    <div class="mono-bar">
+      <div class="mono-tools">
+        <a class="btn small back" href="#/${state.lang}" aria-label="${esc(T.backListLabel)}">${ICONS.chevronL}<span>${esc(T.backList)}</span></a>
+        <button type="button" class="btn small" id="open-all">${esc(T.openAll)}</button>
+        <button type="button" class="btn small" id="close-all">${esc(T.closeAll)}</button>
       </div>
+      <form class="find" role="search" id="find-form">
+        <label for="find" class="sr-only">${esc(T.findLabel)}</label>
+        ${ICONS.search}
+        <input id="find" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"
+          placeholder="${esc(T.findPh)}" value="${esc(findInit)}">
+        <span class="find-count" id="find-count" aria-hidden="true"></span>
+        <button type="button" class="icon-btn" id="find-prev" aria-label="${esc(T.prev)}">${ICONS.up}</button>
+        <button type="button" class="icon-btn" id="find-next" aria-label="${esc(T.next)}">${ICONS.down}</button>
+        <span class="sr-only" id="find-status" aria-live="polite"></span>
+      </form>
     </div>
+    <h1 id="mono-title" class="mono-title">${esc(m.title)}</h1>
     <p class="meta"><span>${esc(m.last_revision_label || T.revision)} : <strong>${esc(m.last_revision)}</strong></span>
       <a href="${esc(m.source_url)}" target="_blank" rel="noopener">${esc(T.official)} ↗<span class="sr-only"> ${esc(T.opensNew)}</span></a></p>
-    ${m.id === DIGOXIN_ID ? `<p class="calc-link"><a href="#/${state.lang}/calc">→ ${esc(T.calcFor)}</a></p>` : ''}
-    <div id="sections">${m.sections.map(s => sectionHtml(s, openSet)).join('')}</div>
+    ${m.id === DIGOXIN_ID ? `<p class="calc-link"><a class="row" href="#/${state.lang}/calc"><span class="row-text"><span class="row-title">${esc(T.calcFor)}</span></span>${ICONS.chevronR}</a></p>` : ''}
+    <div id="sections"></div>
     ${m.footerHtml ? `<footer class="mono-foot prose">${m.footerHtml}</footer>` : ''}`;
 
-  const all = () => [...main.querySelectorAll('details.sec')];
-  const toggleBtn = $('#toggle-all');
-  const syncToggle = () => { toggleBtn.textContent = all().every(d => d.open) ? T.closeAll : T.openAll; };
   let bulk = false;
-  const setAll = o => { bulk = true; all().forEach(d => { d.open = o; }); syncToggle(); setTimeout(() => { bulk = false; }, 50); };
+  const all = () => [...main.querySelectorAll('details.sec')];
+  const setAll = o => { bulk = true; all().forEach(d => { d.open = o; }); setTimeout(() => { bulk = false; }, 50); };
   $('#open-all').addEventListener('click', () => setAll(true));
   $('#close-all').addEventListener('click', () => setAll(false));
-  toggleBtn.addEventListener('click', () => setAll(!all().every(d => d.open)));
-  syncToggle();
-  main.querySelectorAll('details.sec').forEach(d => d.addEventListener('toggle', () => {
-    // ignorer les événements d'une page déjà quittée, ou d'un « tout ouvrir / tout fermer »
-    if (!d.isConnected || parseHash().view !== 'm' || parseHash().arg !== m.id) return;
-    syncToggle();
-    if (bulk) return;
-    if (d.open) history.replaceState(null, '', hashFor({ lang: state.lang, view: 'm', arg: m.id, sec: d.dataset.sec, q: parseHash().q }));
-  }));
 
-  if (r.q) {
-    const tokens = tokensOf(r.q);
-    const first = markInDom($('#sections'), tokens);
-    // ouvrir les sections contenant un résultat
-    main.querySelectorAll('mark').forEach(mk => {
-      let p = mk.parentElement;
-      while (p && p !== main) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
-    });
-    const target = r.sec ? document.getElementById(`s-${r.sec}`) : null;
-    const scrollTo = (target && target.querySelector('mark')) || first || target;
-    if (scrollTo) requestAnimationFrame(() => scrollTo.scrollIntoView({ block: 'center' }));
-  } else if (r.sec) {
+  const drawSections = open => {
+    $('#sections').innerHTML = m.sections.map(s => sectionHtml(s, open)).join('');
+    all().forEach(d => d.addEventListener('toggle', () => {
+      // ignorer les événements d'une page déjà quittée, ou d'un « tout ouvrir / tout fermer »
+      if (bulk || !d.isConnected || parseHash().view !== 'm' || parseHash().arg !== m.id) return;
+      if (d.open) history.replaceState(null, '', hashFor({ lang: state.lang, view: 'm', arg: m.id, sec: d.dataset.sec }));
+    }));
+  };
+  drawSections(openSet);
+
+  // --- recherche dans la page ---
+  const input = $('#find');
+  let marks = [], cur = -1;
+  const setCurrent = i => {
+    marks.forEach(mk => mk.classList.remove('current'));
+    cur = marks.length ? (i + marks.length) % marks.length : -1;
+    $('#find-count').textContent = input.value.trim() ? T.found(cur + 1, marks.length) : '';
+    $('#find-status').textContent = input.value.trim() ? T.foundLong(cur + 1, marks.length) : '';
+    $('#find-form').classList.toggle('active', !!input.value.trim());
+    $('#find-form').classList.toggle('none', !!input.value.trim() && !marks.length);
+    if (cur < 0) return;
+    const mk = marks[cur];
+    mk.classList.add('current');
+    let p = mk.parentElement;
+    while (p && p !== main) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; }
+    scrollWithHeader(mk, true);
+  };
+  const runFind = () => {
+    const q = input.value;
+    const open = new Set(all().filter(d => d.open).map(d => d.dataset.sec));
+    bulk = true;
+    drawSections(open);
+    marks = [];
+    if (q.trim()) {
+      markInDom($('#sections'), tokensOf(q));
+      marks = [...$('#sections').querySelectorAll('mark')];
+      marks.forEach(mk => { let p = mk.parentElement; while (p && p !== main) { if (p.tagName === 'DETAILS') p.open = true; p = p.parentElement; } });
+    }
+    setTimeout(() => { bulk = false; }, 50);
+    setCurrent(0);
+  };
+  let timer;
+  input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(runFind, 150); });
+  $('#find-form').addEventListener('submit', e => { e.preventDefault(); setCurrent(cur + 1); });
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && e.shiftKey) { e.preventDefault(); setCurrent(cur - 1); } });
+  $('#find-next').addEventListener('click', () => setCurrent(cur + 1));
+  $('#find-prev').addEventListener('click', () => setCurrent(cur - 1));
+
+  if (findInit) runFind();
+  else if (r.sec) {
     const target = document.getElementById(`s-${r.sec}`);
     if (target) requestAnimationFrame(() => scrollWithHeader(target));
-  } else {
-    window.scrollTo(0, 0);
-  }
+  } else window.scrollTo(0, 0);
 }
 
-function scrollWithHeader(el) {
-  const head = $('.mono-head');
-  const offset = 56 + (head ? head.offsetHeight : 0) + 8;
-  const y = el.getBoundingClientRect().top + window.scrollY - offset;
+function scrollWithHeader(el, center = false) {
+  const top = ($('.topbar')?.offsetHeight || 0) + ($('.mono-bar')?.offsetHeight || 0);
+  const rect = el.getBoundingClientRect();
+  const avail = window.innerHeight - top - ($('#tabbar')?.offsetHeight || 0);
+  const y = rect.top + window.scrollY - top - (center ? Math.max(8, avail / 2 - rect.height / 2) : 8);
   window.scrollTo(0, Math.max(0, y));
 }
 
@@ -478,11 +544,56 @@ function markInDom(root, tokens) {
   return first;
 }
 
+// -------------------------------------------------------- outils, pages ---
+function renderTools(main) {
+  const T = t();
+  const C = CALC_UI[state.lang];
+  const P = state.data[state.lang].pages;
+  const row = (href, title, sub, tag = '') => `<li><a class="row" href="${href}"><span class="row-text">` +
+    `<span class="row-title">${esc(title)}${tag ? ` <span class="tag">${esc(tag)}</span>` : ''}</span>` +
+    (sub ? `<span class="row-sub">${esc(sub)}</span>` : '') + `</span>${ICONS.chevronR}</a></li>`;
+  main.innerHTML = `
+    <h1 class="page-title">${esc(T.tools)}</h1>
+    <h2 class="group-title">${esc(state.lang === 'fr' ? 'Calculateurs' : 'Calculators')}</h2>
+    <ul class="rows">${row(`#/${state.lang}/calc`, T.calc, T.calcSub, T.demoTag)}</ul>
+    <p class="hint">${esc(C.banner)}</p>
+    <h2 class="group-title">${esc(state.lang === 'fr' ? 'Références' : 'References')}</h2>
+    <ul class="rows">
+      ${row(`#/${state.lang}/p/abbreviations`, P.abbreviations.title, T.abbrSub)}
+      ${row(`#/${state.lang}/p/advice`, P.advice.title, T.adviceSub)}
+      ${row(`#/${state.lang}/p/about`, P.about.title, T.aboutSub)}
+    </ul>
+    <h2 class="group-title">${esc(T.appInfo)}</h2>
+    <p class="card info" id="app-info">${esc(appInfoText())}</p>`;
+  window.scrollTo(0, 0);
+}
+
 function renderPage(main, r) {
   const p = state.data[state.lang].pages[r.arg];
-  if (!p) { renderNotFound(main); return; }
-  main.innerHTML = `<h1>${esc(p.title)}</h1><div class="prose">${p.html}</div>
+  main.innerHTML = `<h1 class="page-title">${esc(p.title)}</h1><div class="card prose page-body">${p.html}</div>
     <p class="src"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(t().official)} ↗<span class="sr-only"> ${esc(t().opensNew)}</span></a></p>`;
+  window.scrollTo(0, 0);
+}
+
+function renderCentres(main) {
+  const T = t();
+  const p = state.data[state.lang].pages.centres;
+  if (!p) { renderNotFound(main); return; }
+  // Une carte par centre (section « ## »), la note éventuelle (« ### ») sous le nom.
+  // Les liens du contenu sont affichés en boutons : tel: = appeler, autres = site Web.
+  const cards = p.sections.map(s => {
+    const notes = s.children.map(c => `<p class="centre-note">${c.titleHtml}</p>`).join('');
+    const body = s.html + s.children.map(c => c.html).join('');
+    return `<li class="card centre"><h2>${s.titleHtml}</h2>${notes}<div class="centre-links">${body}</div></li>`;
+  }).join('');
+  main.innerHTML = `<h1 class="page-title">${esc(p.title)}</h1><ul class="centres">${cards}</ul>
+    <p class="src">${esc(T.centresSub)} <a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(T.official)} ↗<span class="sr-only"> ${esc(T.opensNew)}</span></a></p>`;
+  main.querySelectorAll('.centre-links a').forEach(a => {
+    const tel = a.getAttribute('href')?.startsWith('tel:');
+    a.classList.add('btn', tel ? 'primary' : 'outline', 'centre-btn');
+    a.insertAdjacentHTML('afterbegin', tel ? ICONS.phone : ICONS.web);
+    if (!tel) { a.target = '_blank'; a.rel = 'noopener'; }
+  });
   window.scrollTo(0, 0);
 }
 
@@ -623,10 +734,6 @@ function drawCalc() {
     </div>`;
 }
 
-// ---------------------------------------------------------------- menu ---
-function openMenu() { $('#menu').hidden = false; $('#menu-btn').setAttribute('aria-expanded', 'true'); $('#menu a')?.focus(); }
-function closeMenu() { $('#menu').hidden = true; $('#menu-btn').setAttribute('aria-expanded', 'false'); }
-
 // -------------------------------------------------------- avis au lecteur ---
 const DISCLAIMER_KEY = 'disclaimer-accepted-v1';
 let disclaimerSeen = false;
@@ -646,7 +753,7 @@ async function registerSW() {
   let userAskedRefresh = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => { if (userAskedRefresh) location.reload(); });
   navigator.serviceWorker.addEventListener('message', e => {
-    if (e.data?.type === 'precached') { state.offlineReady = true; renderStatus(); }
+    if (e.data?.type === 'precached') checkOfflineReady();
   });
   window.applyUpdate = () => {
     userAskedRefresh = true;
@@ -697,8 +804,11 @@ async function init() {
     $('#main').innerHTML = '<p class="loading">Contenu indisponible. Reconnectez-vous une première fois pour installer le guide. / Content unavailable. Connect once to install the guide.</p>';
     return;
   }
-  $('#menu-btn').addEventListener('click', () => ($('#menu').hidden ? openMenu() : closeMenu()));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#menu').hidden) { closeMenu(); $('#menu-btn').focus(); } });
+  // hauteur réelle de l'en-tête → barre d'outils de la monographie collée juste dessous
+  const setTopH = () => document.documentElement.style.setProperty('--top-h', `${$('.topbar').offsetHeight}px`);
+  setTopH();
+  if ('ResizeObserver' in window) new ResizeObserver(setTopH).observe($('.topbar'));
+  else window.addEventListener('resize', setTopH);
   $('#lang-btn').addEventListener('click', switchLang);
   $('#disclaimer-ok').addEventListener('click', () => {
     disclaimerSeen = true;
@@ -709,7 +819,6 @@ async function init() {
   $('#disclaimer').addEventListener('cancel', e => { if (!local?.getItem(DISCLAIMER_KEY) && !disclaimerSeen) e.preventDefault(); });
   window.addEventListener('hashchange', () => {
     render();
-    if (parseHash().view === 'p' && parseHash().arg === 'advice') { /* page affichée */ }
     $('#main').focus({ preventScroll: true });
   });
   window.addEventListener('online', renderStatus);
@@ -729,13 +838,11 @@ function switchLang() {
   if (r.view === 'm') {
     const opened = [...document.querySelectorAll('details.sec[open]')].map(d => d.dataset.sec);
     // section visible en haut de l'écran
-    const head = $('.mono-head');
-    const top = 56 + (head ? head.offsetHeight : 0) + 4;
+    const top = ($('.topbar')?.offsetHeight || 0) + ($('.mono-bar')?.offsetHeight || 0) + 4;
     let visible = null;
     for (const d of document.querySelectorAll('details.sec')) {
       const rect = d.getBoundingClientRect();
       if (rect.bottom > top) {
-        // descendre dans la sous-section ouverte visible la plus précise
         visible = d.dataset.sec;
         if (rect.top >= top || !d.open) break;
       }
@@ -744,6 +851,7 @@ function switchLang() {
     next.sec = visible || r.sec;
     next.q = '';
   }
+  if (r.view === 'home') next.q = '';
   const dlgOpen = $('#disclaimer').open;
   setLang(other);
   go(next);

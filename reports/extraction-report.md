@@ -6,7 +6,7 @@ Source : pages officielles du *Guide canadien des antidotes* (CIUSSS de la Capit
 
 ## Vérification automatique / Automatic verification
 
-- Pages comparées : **12**, identiques : **12**.
+- Pages comparées : **14**, identiques : **14**.
 - Application construite (`dist/`) également vérifiée : **oui**.
 - `reports/verify-diff.txt` : **vide (aucune différence)**.
 - Éléments d'interface du site retirés (et seulement ceux-ci) :
@@ -20,6 +20,7 @@ Source : pages officielles du *Guide canadien des antidotes* (CIUSSS de la Capit
   - ligne de date : Last updated : 2023-02-01
   - ligne de date : Last updated : 2026-07-22
   - ligne de date : Last updated : 2026-10-23
+  - logos des centres antipoison (images externes, 7 par langue)
   - « + » d'affichage devant un titre
 - La date « Last updated / Dernière mise à jour » est retirée du texte et comparée séparément avec `last_revision` dans l'en-tête du fichier.
 - Méthode : texte du site (bloc principal) et texte du Markdown rendu (moteur CommonMark) comparés ligne par ligne avec le type de ligne (titre et niveau, paragraphe, liste et niveau d'imbrication), puis comparaison de la mise en forme (gras, italique, souligné, exposant, liens). Les espaces de mise en page HTML (espaces multiples, tabulations, retours de ligne dans le code source) sont fusionnés des deux côtés comme le fait un navigateur ; les espaces insécables sont conservés.
@@ -148,6 +149,8 @@ Source : pages officielles du *Guide canadien des antidotes* (CIUSSS de la Capit
 | `content/fr/advice.md` | Avis au lecteur | 1063 | oui | aucune |
 | `content/fr/about.md` | À propos de nous | 514 | oui | aucune |
 | `content/fr/abbreviations.md` | Abréviations et acronymes | 1048 | oui | aucune |
+| `content/fr/centres.md` | Centres | 661 | oui | aucune |
+| `content/en/centres.md` | Centres | 560 | oui | aucune |
 
 ## Calculateur / Calculator
 

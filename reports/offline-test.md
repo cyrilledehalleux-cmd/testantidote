@@ -2,9 +2,9 @@
 
 ## 1. Test automatique – navigateur de bureau (Chromium) ✅
 
-- **Date :** 2026-11-06 · **Navigateur :** Chromium 153 (Playwright), fenêtre 1280 × 900
+- **Date :** 2026-11-06 · **Navigateur :** Chromium 153.0.8010.12 (Playwright), bureau, fenêtre 1280 × 900
 - **Script :** `tests/offline.e2e.mjs` (`npm run build && npm run test:offline`)
-- **Résultat :** **28 / 28 vérifications réussies** (détail : `reports/offline-test-auto.json`)
+- **Résultat :** **34 / 34 vérifications réussies** (détail : `reports/offline-test-auto.json`)
 
 Méthode : première visite en ligne, puis **arrêt complet du serveur** et navigateur mis hors ligne
 (équivalent de « réseau désactivé » dans les outils de développement). La page est fermée puis rouverte.
@@ -12,28 +12,39 @@ Méthode : première visite en ligne, puis **arrêt complet du serveur** et navi
 | Vérification | Résultat |
 |---|---|
 | Avis au lecteur affiché au premier lancement | ✅ |
-| Pré-cache **complet** dès la première visite (12 fichiers : pages, contenu FR + EN, icônes, calculateur) sans avoir ouvert les monographies | ✅ |
-| Indication « Disponible hors ligne » dans le menu | ✅ |
-| Application rouverte sans réseau, serveur arrêté ; aucune requête réseau | ✅ |
+| Pré-cache complet au premier chargement (12 fichiers, sans avoir ouvert les pages) | ✅ |
+| Indication « Disponible hors ligne » (onglet Outils) | ✅ |
+| Application rouverte sans réseau (serveur arrêté) | ✅ |
+| Aucune requête n'atteint le serveur hors ligne | ✅ |
 | Avis au lecteur non réaffiché après acceptation | ✅ |
-| Indicateur « Hors ligne – contenu daté du AAAA-MM-JJ » | ✅ |
-| Les 3 monographies en français, toutes les sections (18 chacune) | ✅ |
-| Les 3 monographies en anglais, toutes les sections (18 chacune) | ✅ |
-| Recherche FR « fomepizole » → « Fomépizole » (sans accent) | ✅ |
-| Recherche FR « ACIDOSE METABOLIQUE » (sans accents, majuscules) | ✅ |
-| Recherche EN par synonyme « antizol » | ✅ |
-| Résultat de recherche → surlignage dans la monographie | ✅ |
-| Changement FR → EN : même antidote, même section ouverte | ✅ |
-| Calculateur hors ligne (exemple MDCalc 2,8 ng/mL, 65 kg → 2 fioles) | ✅ |
+| Indicateur « Hors ligne – contenu daté du … » – ⚠ Hors ligne – contenu daté du 2026-11-06 | ✅ |
+| [fr] Anticorps spécifique de la digoxine : ouverte hors ligne, 18 sections | ✅ |
+| [fr] Fomépizole : ouverte hors ligne, 18 sections – 18/18 sections, titre « Fomépizole » | ✅ |
+| [fr] Physostigmine : ouverte hors ligne, 18 sections – 18/18 sections, titre « Physostigmine » | ✅ |
+| [en] Digoxin-Specific Antibodies : ouverte hors ligne, 18 sections – 18/18 sections, titre « Digoxin-Specific Antibodies » | ✅ |
+| [en] Fomepizole : ouverte hors ligne, 18 sections – 18/18 sections, titre « Fomepizole » | ✅ |
+| [en] Physostigmine : ouverte hors ligne, 18 sections – 18/18 sections, titre « Physostigmine » | ✅ |
+| Barre du bas : Antidotes / Outils / Centres antipoison – Antidotes | Outils | Centres antipoison | ✅ |
+| Accueil FR : « fomepizole » (sans accent) trouve « Fomépizole » | ✅ |
+| Accueil FR : majuscules (« DIGOXINE ») | ✅ |
+| Accueil : recherche limitée aux noms et synonymes (texte non cherché) | ✅ |
+| Accueil EN : par synonyme (« antizol » → Fomepizole) | ✅ |
+| Recherche dans la page (sans accents) : surlignage, compteur, résultat suivant – 10 surlignages, 1 / 10 → 2 / 10 | ✅ |
+| Recherche dans la page : effacement | ✅ |
+| Bouton « Liste » : retour à la liste des antidotes | ✅ |
+| Centres antipoison fr hors ligne : 7 centres, 7 numéros – Appeler le centre (18004635060) | ✅ |
+| Centres antipoison en hors ligne : 7 centres, 7 numéros – Call centre (18004635060) | ✅ |
+| Changement FR → EN : même antidote et même section ouverte – #/en/m/digoxin-specific-antibodies/4.2 | ✅ |
+| Calculateur hors ligne (exemple MDCalc : 2,8 ng/mL, 65 kg → 2 fioles) – 2 fioles | ✅ |
 | Calculateur : saisie hors bornes → aucun résultat | ✅ |
 | Calculateur : valeurs conservées au changement de langue | ✅ |
-| Pages Abréviations et Avis au lecteur, FR et EN | ✅ |
-| Retour en ligne : nouvelle version téléchargée en arrière-plan, bandeau « Nouvelle version disponible – actualiser / New version available – refresh » | ✅ |
-| Bouton « Actualiser » → nouvelle version active | ✅ |
+| Page fr/abbreviations hors ligne – Abréviations et acronymes | ✅ |
+| Page en/abbreviations hors ligne – Abbreviations and acronyms | ✅ |
+| Page fr/advice hors ligne – Avis au lecteur | ✅ |
+| Page en/advice hors ligne – Advice to the reader | ✅ |
+| Nouvelle version téléchargée en arrière-plan : bandeau affiché | ✅ |
+| Après « Actualiser » : nouvelle version active – ad37d0fde01an | ✅ |
 | Aucune erreur JavaScript | ✅ |
-
-Un défaut trouvé par ce test a été corrigé : après « Tout ouvrir », une navigation rapide vers une autre
-monographie pouvait ramener l'affichage sur la monographie précédente.
 
 ## 2. Test sur le site publié (GitHub Pages) ✅
 
@@ -74,21 +85,21 @@ de développement. Lien de l'application : **https://cyrilledehalleux-cmd.github
 - **iPhone (Safari)** : ouvrir le lien dans **Safari** → bouton Partager → **Sur l'écran d'accueil** → Ajouter.
 - **Android (Chrome)** : ouvrir le lien dans **Chrome** → menu ⋮ → **Installer l'application**
   (ou « Ajouter à l'écran d'accueil »).
-- Après l'ouverture, attendre que le menu (☰) indique **« ✓ Disponible hors ligne »**.
+- Après l'ouverture, attendre que l'onglet **Outils** indique **« ✓ Disponible hors ligne »**.
 
 ### Liste de contrôle (cocher pour chaque appareil)
 
 | # | Étape | iPhone (modèle / iOS : ____ ) | Android (modèle / version : ____ ) |
 |---|---|---|---|
 | 1 | Installer depuis l'écran d'accueil ; l'icône apparaît | ☐ | ☐ |
-| 2 | Ouvrir l'application ; accepter l'avis au lecteur ; le menu indique « Disponible hors ligne » | ☐ | ☐ |
+| 2 | Ouvrir l'application ; accepter l'avis au lecteur ; l'onglet Outils indique « Disponible hors ligne » | ☐ | ☐ |
 | 3 | Activer le **mode avion** ; **fermer complètement** l'application (balayer) ; la rouvrir | ☐ | ☐ |
 | 4 | Le bandeau « Hors ligne – contenu daté du … » s'affiche | ☐ | ☐ |
 | 5 | Ouvrir les 3 monographies en **français**, « Tout ouvrir » sur chacune | ☐ | ☐ |
 | 6 | Passer en **anglais** (bouton EN) : même antidote, même section ; ouvrir les 3 monographies | ☐ | ☐ |
-| 7 | Recherche : « fomepizole », « antizol », « digoxinemie » | ☐ | ☐ |
+| 7 | Accueil : rechercher « fomepizole », « antizol » ; dans une monographie : rechercher « dialyse », flèches ▲▼ | ☐ | ☐ |
 | 8 | Calculateur : 65 kg, 3,6 nmol/L → résultat et étapes affichés | ☐ | ☐ |
-| 9 | Pages Abréviations et Avis au lecteur (menu ☰) | ☐ | ☐ |
+| 9 | Onglet Outils : Abréviations, Avis au lecteur ; onglet Centres antipoison : la liste s'affiche, le bouton « Appeler » ouvre le téléphone | ☐ | ☐ |
 | 10 | Désactiver le mode avion ; après une nouvelle publication, le bandeau « Nouvelle version disponible – actualiser » apparaît ; « Actualiser » charge la nouvelle version | ☐ | ☐ |
 
 Remarques connues :

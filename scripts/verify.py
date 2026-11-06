@@ -83,6 +83,28 @@ def compose(sections):
     return "".join(f"<h{s['level']}>{s['titleHtml']}</h{s['level']}>{s['html']}{compose(s['children'])}" for s in sections)
 
 
+def source_centres(path):
+    """Page « Centres » : liste des centres ; logos retirés ; h3 (nom) → niveau 2, h4 (note) → niveau 3."""
+    soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+    h1 = list(soup.find("h1").stripped_strings)
+    detail = BeautifulSoup("<div></div>", "html.parser").div
+    for d in soup.select("div.centreDetail"):
+        detail.append(copy.copy(d))
+    # chaque centre est une « carte » (section ## dans le Markdown) : la liste qui les enveloppe
+    # sur le site (ul/li) est traitée comme un simple conteneur
+    for t in detail.find_all(["ul", "li"]):
+        t.name = "div"
+    n = 0
+    for img in detail.find_all("img"):
+        img.decompose()
+        n += 1
+    for h in detail.find_all("h3"):
+        h.name = "h2"
+    for h in detail.find_all("h4"):
+        h.name = "h3"
+    return detail, HTML_WS.sub(" ", " ".join(h1[1:])).strip(), n
+
+
 def rendered(html):
     return BeautifulSoup("<div>" + html + "</div>", "html.parser").div
 
@@ -109,6 +131,19 @@ def main():
     for key, meta in manifest.items():
         lang, slug = key.split("/")
         src = ROOT / meta["file"]
+        if meta.get("page") == "centres":
+            root, title, nimg = source_centres(src)
+            chrome.add(f"logos des centres antipoison (images externes, {nimg} par langue)")
+            fm, body = parse_frontmatter((ROOT / "content" / lang / "centres.md").read_text(encoding="utf-8"))
+            ok, nl, nc = compare(f"{lang}/centres", root, rendered(MD.render(body)), out)
+            if fm.get("title") != title:
+                out.append(f"{lang}/centres: titre différent : site « {title} » / fichier « {fm.get('title')} »")
+                ok = False
+            if app is not None and "centres" in app[lang]["pages"]:
+                ok2, _, _ = compare(f"{lang}/centres (application)", root, rendered(app[lang]["pages"]["centres"]["html"]), out)
+                ok = ok and ok2
+            summary.append((f"{lang}/centres", ok, nl, nc))
+            continue
         if slug == "index":
             for n, name in enumerate(INDEX_FILES):
                 title, root = source_index_part(src, n)

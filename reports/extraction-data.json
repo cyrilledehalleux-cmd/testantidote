@@ -775,6 +775,20 @@
       "title": "Abréviations et acronymes",
       "chars": 1184,
       "anomalies": []
+    },
+    {
+      "lang": "fr",
+      "file": "content/fr/centres.md",
+      "title": "Centres",
+      "chars": 1145,
+      "anomalies": []
+    },
+    {
+      "lang": "en",
+      "file": "content/en/centres.md",
+      "title": "Centres",
+      "chars": 1044,
+      "anomalies": []
     }
   ]
 }

@@ -17,6 +17,16 @@ Chaque monographie existe en **deux fichiers**, un par langue :
 
 Pages générales (dans chaque langue) : `advice.md` (Avis au lecteur), `abbreviations.md` (Abréviations), `about.md` (À propos).
 
+Centres antipoison (onglet du bas « Centres antipoison ») : `content/fr/centres.md` et `content/en/centres.md`.
+Chaque centre est une section `##`. La ligne du téléphone ressemble à ceci :
+
+```
+[Appeler le centre (18004635060)](tel:18004635060)
+```
+
+Le texte entre crochets `[ ]` est ce qui s'affiche sur le bouton ; le numéro après `tel:` est celui
+qui est réellement composé. **Si un numéro change, modifiez les deux**, dans les deux langues.
+
 > **Règle d'or :** si vous modifiez une phrase en français, faites la même modification dans le fichier anglais (et inversement). L'application ne traduit jamais rien.
 
 ## 2. Ouvrir et modifier un fichier

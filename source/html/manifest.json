@@ -2,21 +2,21 @@
   "en/index": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes",
     "file": "source/html/en/index.html",
-    "downloaded": "2026-11-06T01:51:30+00:00",
+    "downloaded": "2026-11-06T02:51:26+00:00",
     "sha256": "5fca1634fb56024e9143f9b74e4bec0f822285141539de4ee0bde90a6626df8c",
     "bytes": 91127
   },
   "fr/index": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes",
     "file": "source/html/fr/index.html",
-    "downloaded": "2026-11-06T01:51:31+00:00",
+    "downloaded": "2026-11-06T02:51:26+00:00",
     "sha256": "87f6a04e6d238f03cdfbecb4e687bf1e264bf33b6a077d03e8f73ea55933e0f1",
     "bytes": 96561
   },
   "en/fomepizole": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/fomepizole",
     "file": "source/html/en/fomepizole.html",
-    "downloaded": "2026-11-06T01:51:31+00:00",
+    "downloaded": "2026-11-06T02:51:26+00:00",
     "sha256": "d5593b1870f4042c2e80939fe8ec154e6347a86e48032d27e5bab82c8df27e0b",
     "bytes": 100008,
     "antidote_id": "fomepizole"
@@ -24,7 +24,7 @@
   "fr/fomepizole": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/fomepizole",
     "file": "source/html/fr/fomepizole.html",
-    "downloaded": "2026-11-06T01:51:31+00:00",
+    "downloaded": "2026-11-06T02:51:27+00:00",
     "sha256": "a553b7d1bc689e8d1a16b553907c265a948b960c2eb55b70c235761ffececab0",
     "bytes": 105955,
     "antidote_id": "fomepizole"
@@ -32,7 +32,7 @@
   "en/digoxin-specific-antibodies": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/digoxin-specific-antibodies",
     "file": "source/html/en/digoxin-specific-antibodies.html",
-    "downloaded": "2026-11-06T01:51:32+00:00",
+    "downloaded": "2026-11-06T02:51:27+00:00",
     "sha256": "81a6f5c30ec1f1c6e43c93ffa24ee856671126f85924bfdbadb435b8ae31ab76",
     "bytes": 102603,
     "antidote_id": "digoxin-specific-antibodies"
@@ -40,7 +40,7 @@
   "fr/anticorps-specifique-de-la-digoxine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/anticorps-specifique-de-la-digoxine",
     "file": "source/html/fr/anticorps-specifique-de-la-digoxine.html",
-    "downloaded": "2026-11-06T01:51:32+00:00",
+    "downloaded": "2026-11-06T02:51:27+00:00",
     "sha256": "37e8277724cf35b8d8eb9a98d5da6cf2659e7566e8e19259629e4698a47c3138",
     "bytes": 109682,
     "antidote_id": "digoxin-specific-antibodies"
@@ -48,7 +48,7 @@
   "en/physostigmine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/physostigmine",
     "file": "source/html/en/physostigmine.html",
-    "downloaded": "2026-11-06T01:51:32+00:00",
+    "downloaded": "2026-11-06T02:51:28+00:00",
     "sha256": "fe9eb783a1be63e9ee76bf060d574aab3e8c2f9abc8ceb49260bddba4c88e278",
     "bytes": 98378,
     "antidote_id": "physostigmine"
@@ -56,9 +56,25 @@
   "fr/physostigmine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/physostigmine",
     "file": "source/html/fr/physostigmine.html",
-    "downloaded": "2026-11-06T01:51:33+00:00",
+    "downloaded": "2026-11-06T02:51:28+00:00",
     "sha256": "d66540b84faf3c815ffdcea34089b466917a2f5f8f23e681501ae069cc605db0",
     "bytes": 103995,
     "antidote_id": "physostigmine"
+  },
+  "fr/centres": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/centres",
+    "file": "source/html/fr/centres.html",
+    "downloaded": "2026-11-06T02:51:28+00:00",
+    "sha256": "9ad11bc5c38e8888124f9a0c667a9129cf1c284b585bf9cbb476eb9467e48209",
+    "bytes": 76853,
+    "page": "centres"
+  },
+  "en/centres": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/centres",
+    "file": "source/html/en/centres.html",
+    "downloaded": "2026-11-06T02:51:28+00:00",
+    "sha256": "2f79b6150e45b396dac2c3456b528a9b0eece0267042a257f251f993f5b9cb68",
+    "bytes": 72021,
+    "page": "centres"
   }
 }

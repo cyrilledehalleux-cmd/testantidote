@@ -211,6 +211,34 @@ def parse_index(path, meta):
     return parts
 
 
+def parse_centres(path, meta):
+    """Page « Centres » : un « ## » par centre antipoison (nom), puis la note
+    éventuelle (« ### », comme sur le site), le lien téléphone et le site Web.
+    Les logos (images externes) ne sont pas repris."""
+    import copy
+    soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+    h1 = list(soup.find("h1").stripped_strings)
+    conv = Converter()
+    parts = []
+    for li in soup.select("div.centreDetail li.un-centre"):
+        li = copy.copy(li)
+        for img in li.find_all("img"):
+            img.decompose()
+        h3 = li.find("h3")
+        lines = ["## " + heading_inner_md(h3)]
+        h3.decompose()
+        for h4 in li.find_all("h4"):
+            lines.append("### " + heading_inner_md(h4))
+            h4.decompose()
+        md = conv.to_markdown(list(li.children))
+        if md:
+            lines.append(md)
+        parts.append("\n\n".join(lines))
+    fm = {"title": HTML_WS.sub(" ", " ".join(h1[1:])).strip(), "source_url": meta["url"],
+          "retrieved": meta["downloaded"][:10]}
+    return fm, "\n\n".join(parts), conv
+
+
 INDEX_FILES = ["advice", "about", "abbreviations"]  # dans l'ordre de la page
 
 
@@ -221,6 +249,14 @@ def main():
         lang, slug = key.split("/")
         path = ROOT / meta["file"]
         (OUT / lang).mkdir(parents=True, exist_ok=True)
+        if meta.get("page") == "centres":
+            fm, md, conv = parse_centres(path, meta)
+            out = OUT / lang / "centres.md"
+            out.write_text(dump_frontmatter(fm) + "\n" + md + "\n", encoding="utf-8")
+            report["pages"].append({"lang": lang, "file": str(out.relative_to(ROOT)), "title": fm["title"],
+                                    "chars": len(md), "anomalies": conv.anomalies})
+            print(f"  {out.relative_to(ROOT)}")
+            continue
         if slug == "index":
             parts = parse_index(path, meta)
             if len(parts) != len(INDEX_FILES):
