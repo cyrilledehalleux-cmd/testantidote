@@ -35,7 +35,36 @@ Méthode : première visite en ligne, puis **arrêt complet du serveur** et navi
 Un défaut trouvé par ce test a été corrigé : après « Tout ouvrir », une navigation rapide vers une autre
 monographie pouvait ramener l'affichage sur la monographie précédente.
 
-## 2. Test sur téléphones – à faire par l'équipe ⏳
+## 2. Test sur le site publié (GitHub Pages) ✅
+
+- **Date :** 2026-11-06 · **Adresse :** https://cyrilledehalleux-cmd.github.io/testantidote/
+- **Navigateur :** Chromium (Playwright), émulation téléphone Pixel 7, **profil persistant**
+  (le navigateur est entièrement fermé puis rouvert entre les étapes, comme une application installée).
+
+| Vérification | Résultat |
+|---|---|
+| Première visite : 12 fichiers en cache, menu « ✓ Disponible hors ligne » | ✅ |
+| Navigateur fermé, hors ligne, rouvert : bandeau « Hors ligne – contenu daté du 2026-11-06 » | ✅ |
+| Les 3 monographies FR + EN hors ligne (18 sections chacune) | ✅ |
+| Recherche et calculateur hors ligne | ✅ |
+| Aucune erreur JavaScript | ✅ |
+
+**Test du guide d'édition (étape 6 du plan)** – modification d'une phrase, publication, annulation :
+
+| Étape | Résultat |
+|---|---|
+| Ajout de « [TEST D’ÉDITION – à annuler] » dans `content/fr/fomepizole.md` (Dose pédiatrique, dose de charge) ; `npm run check` OK | ✅ |
+| Publication automatique (GitHub Actions) réussie en ~1 min | ✅ |
+| Copie « installée » : bandeau « Nouvelle version disponible – actualiser / New version available – refresh » ; « Actualiser » charge la nouvelle version | ✅ |
+| La phrase modifiée s'affiche, **y compris hors ligne** | ✅ |
+| Annulation (retour au texte d'origine), republication, mise à jour reçue par la copie installée | ✅ |
+| Après annulation, `scripts/verify.py` : contenu de nouveau identique au site (diff vide) | ✅ |
+
+Un défaut du **script de test** (et non de l'application) a été trouvé sur le site publié : il passait hors
+ligne avant la fin de la mise en cache. Le test attend maintenant que le cache soit complet, et l'indicateur
+« Disponible hors ligne » de l'application exige un service worker actif.
+
+## 3. Test sur téléphones – à faire par l'équipe ⏳
 
 Ce test nécessite de vrais appareils : il ne peut pas être fait automatiquement depuis l'environnement
 de développement. Lien de l'application : **https://cyrilledehalleux-cmd.github.io/testantidote/**
