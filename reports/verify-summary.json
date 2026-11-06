@@ -1,0 +1,90 @@
+{
+  "app_checked": true,
+  "pages": [
+    {
+      "page": "en/advice",
+      "identical": true,
+      "lines": 4,
+      "chars": 1253
+    },
+    {
+      "page": "en/about",
+      "identical": true,
+      "lines": 1,
+      "chars": 454
+    },
+    {
+      "page": "en/abbreviations",
+      "identical": true,
+      "lines": 21,
+      "chars": 946
+    },
+    {
+      "page": "fr/advice",
+      "identical": true,
+      "lines": 4,
+      "chars": 1063
+    },
+    {
+      "page": "fr/about",
+      "identical": true,
+      "lines": 1,
+      "chars": 514
+    },
+    {
+      "page": "fr/abbreviations",
+      "identical": true,
+      "lines": 23,
+      "chars": 1048
+    },
+    {
+      "page": "en/fomepizole",
+      "identical": true,
+      "lines": 123,
+      "chars": 8986
+    },
+    {
+      "page": "fr/fomepizole",
+      "identical": true,
+      "lines": 126,
+      "chars": 9779
+    },
+    {
+      "page": "en/digoxin-specific-antibodies",
+      "identical": true,
+      "lines": 149,
+      "chars": 11115
+    },
+    {
+      "page": "fr/digoxin-specific-antibodies",
+      "identical": true,
+      "lines": 153,
+      "chars": 12792
+    },
+    {
+      "page": "en/physostigmine",
+      "identical": true,
+      "lines": 90,
+      "chars": 7234
+    },
+    {
+      "page": "fr/physostigmine",
+      "identical": true,
+      "lines": 94,
+      "chars": 8221
+    }
+  ],
+  "removed_site_chrome": [
+    "bouton : Imprimer",
+    "bouton : Open all",
+    "bouton : Ouvrir tout",
+    "bouton : Print",
+    "ligne de date : Dernière mise à jour : 2025-03-05",
+    "ligne de date : Dernière mise à jour : 2026-07-22",
+    "ligne de date : Dernière mise à jour : 2026-10-23",
+    "ligne de date : Last updated : 2023-02-01",
+    "ligne de date : Last updated : 2026-07-22",
+    "ligne de date : Last updated : 2026-10-23",
+    "« + » d'affichage devant un titre"
+  ]
+}

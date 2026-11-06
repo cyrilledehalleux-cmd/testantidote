@@ -1,0 +1,780 @@
+{
+  "monographs": [
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Key points",
+          "level": 2,
+          "subsections": [],
+          "chars": 395
+        },
+        {
+          "title": "Synonyms and other terms",
+          "level": 2,
+          "subsections": [],
+          "chars": 36
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 635
+        },
+        {
+          "title": "Dosage",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Pediatric Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 520
+            },
+            {
+              "title": "Adult Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 520
+            },
+            {
+              "title": "Renal Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 69
+            },
+            {
+              "title": "Hepatic Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 69
+            },
+            {
+              "title": "Hemodialysis Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 400
+            },
+            {
+              "title": "Pregnancy",
+              "level": 3,
+              "subsections": [],
+              "chars": 415
+            },
+            {
+              "title": "Obese or Overweight Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 163
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Adverse effects",
+          "level": 2,
+          "subsections": [],
+          "chars": 110
+        },
+        {
+          "title": "Monitoring",
+          "level": 2,
+          "subsections": [],
+          "chars": 306
+        },
+        {
+          "title": "End of treatment",
+          "level": 2,
+          "subsections": [],
+          "chars": 595
+        },
+        {
+          "title": "Special Notes on Administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 2206
+        },
+        {
+          "title": "Available products",
+          "level": 2,
+          "subsections": [],
+          "chars": 167
+        },
+        {
+          "title": "Amount required to treat a person weighing 70kg during 24 hours",
+          "level": 2,
+          "subsections": [],
+          "chars": 15
+        },
+        {
+          "title": "References",
+          "level": 2,
+          "subsections": [],
+          "chars": 2407
+        }
+      ],
+      "lang": "en",
+      "id": "fomepizole",
+      "title": "Fomepizole",
+      "last_revision": "2026-10-23",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/fomepizole",
+      "chars": 9995,
+      "file": "content/en/fomepizole.md",
+      "source_file": "source/html/en/fomepizole.html"
+    },
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Points clés",
+          "level": 2,
+          "subsections": [],
+          "chars": 558
+        },
+        {
+          "title": "Synonymes et autres appellations",
+          "level": 2,
+          "subsections": [],
+          "chars": 48
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 700
+        },
+        {
+          "title": "Posologie",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Dose pédiatrique",
+              "level": 3,
+              "subsections": [],
+              "chars": 548
+            },
+            {
+              "title": "Dose adulte",
+              "level": 3,
+              "subsections": [],
+              "chars": 536
+            },
+            {
+              "title": "Insuffisance rénale",
+              "level": 3,
+              "subsections": [],
+              "chars": 78
+            },
+            {
+              "title": "Insuffisance hépatique",
+              "level": 3,
+              "subsections": [],
+              "chars": 78
+            },
+            {
+              "title": "Patient hémodialysé",
+              "level": 3,
+              "subsections": [],
+              "chars": 375
+            },
+            {
+              "title": "Grossesse",
+              "level": 3,
+              "subsections": [],
+              "chars": 455
+            },
+            {
+              "title": "Patient obèse ou avec un surplus de poids",
+              "level": 3,
+              "subsections": [],
+              "chars": 189
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Effets indésirables",
+          "level": 2,
+          "subsections": [],
+          "chars": 123
+        },
+        {
+          "title": "Surveillance clinique",
+          "level": 2,
+          "subsections": [],
+          "chars": 334
+        },
+        {
+          "title": "Fin du traitement",
+          "level": 2,
+          "subsections": [],
+          "chars": 584
+        },
+        {
+          "title": "Particularités reliées à l’administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 2326
+        },
+        {
+          "title": "Produits disponibles",
+          "level": 2,
+          "subsections": [],
+          "chars": 168
+        },
+        {
+          "title": "Quantité requise pour traiter un patient de 70 kg pendant 24 heures",
+          "level": 2,
+          "subsections": [],
+          "chars": 15
+        },
+        {
+          "title": "Références",
+          "level": 2,
+          "subsections": [],
+          "chars": 2407
+        }
+      ],
+      "lang": "fr",
+      "id": "fomepizole",
+      "title": "Fomépizole",
+      "last_revision": "2026-10-23",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/fomepizole",
+      "chars": 10812,
+      "file": "content/fr/fomepizole.md",
+      "source_file": "source/html/fr/fomepizole.html"
+    },
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Key points",
+          "level": 2,
+          "subsections": [],
+          "chars": 947
+        },
+        {
+          "title": "Synonyms and other terms",
+          "level": 2,
+          "subsections": [],
+          "chars": 107
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 864
+        },
+        {
+          "title": "Dosage",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Pediatric Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 1790
+            },
+            {
+              "title": "Adult Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 1774
+            },
+            {
+              "title": "Renal Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 387
+            },
+            {
+              "title": "Hepatic Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 69
+            },
+            {
+              "title": "Hemodialysis Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 182
+            },
+            {
+              "title": "Pregnancy",
+              "level": 3,
+              "subsections": [],
+              "chars": 269
+            },
+            {
+              "title": "Obese or Overweight Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 163
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Adverse effects",
+          "level": 2,
+          "subsections": [],
+          "chars": 186
+        },
+        {
+          "title": "Monitoring",
+          "level": 2,
+          "subsections": [],
+          "chars": 486
+        },
+        {
+          "title": "End of treatment",
+          "level": 2,
+          "subsections": [],
+          "chars": 479
+        },
+        {
+          "title": "Special Notes on Administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 1841
+        },
+        {
+          "title": "Available products",
+          "level": 2,
+          "subsections": [],
+          "chars": 330
+        },
+        {
+          "title": "Amount required to treat a person weighing 70kg during 24 hours",
+          "level": 2,
+          "subsections": [],
+          "chars": 20
+        },
+        {
+          "title": "References",
+          "level": 2,
+          "subsections": [],
+          "chars": 1785
+        }
+      ],
+      "lang": "en",
+      "id": "digoxin-specific-antibodies",
+      "title": "Digoxin-Specific Antibodies",
+      "last_revision": "2023-02-01",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/digoxin-specific-antibodies",
+      "chars": 12433,
+      "file": "content/en/digoxin-specific-antibodies.md",
+      "source_file": "source/html/en/digoxin-specific-antibodies.html"
+    },
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Points clés",
+          "level": 2,
+          "subsections": [],
+          "chars": 1163
+        },
+        {
+          "title": "Synonymes et autres appellations",
+          "level": 2,
+          "subsections": [],
+          "chars": 151
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 936
+        },
+        {
+          "title": "Posologie",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Dose pédiatrique",
+              "level": 3,
+              "subsections": [],
+              "chars": 1891
+            },
+            {
+              "title": "Dose adulte",
+              "level": 3,
+              "subsections": [],
+              "chars": 1890
+            },
+            {
+              "title": "Insuffisance rénale",
+              "level": 3,
+              "subsections": [],
+              "chars": 439
+            },
+            {
+              "title": "Insuffisance hépatique",
+              "level": 3,
+              "subsections": [],
+              "chars": 78
+            },
+            {
+              "title": "Patient hémodialysé",
+              "level": 3,
+              "subsections": [],
+              "chars": 211
+            },
+            {
+              "title": "Grossesse",
+              "level": 3,
+              "subsections": [],
+              "chars": 310
+            },
+            {
+              "title": "Patient obèse ou avec un surplus de poids",
+              "level": 3,
+              "subsections": [],
+              "chars": 204
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Effets indésirables",
+          "level": 2,
+          "subsections": [],
+          "chars": 217
+        },
+        {
+          "title": "Surveillance clinique",
+          "level": 2,
+          "subsections": [],
+          "chars": 556
+        },
+        {
+          "title": "Fin du traitement",
+          "level": 2,
+          "subsections": [],
+          "chars": 543
+        },
+        {
+          "title": "Particularités reliées à l’administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 2172
+        },
+        {
+          "title": "Produits disponibles",
+          "level": 2,
+          "subsections": [],
+          "chars": 320
+        },
+        {
+          "title": "Quantité requise pour traiter un patient de 70 kg pendant 24 heures",
+          "level": 2,
+          "subsections": [],
+          "chars": 21
+        },
+        {
+          "title": "Références",
+          "level": 2,
+          "subsections": [],
+          "chars": 1724
+        }
+      ],
+      "lang": "fr",
+      "id": "digoxin-specific-antibodies",
+      "title": "Anticorps spécifique de la digoxine",
+      "last_revision": "2025-03-05",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/anticorps-specifique-de-la-digoxine",
+      "chars": 14183,
+      "file": "content/fr/digoxin-specific-antibodies.md",
+      "source_file": "source/html/fr/anticorps-specifique-de-la-digoxine.html"
+    },
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Key points",
+          "level": 2,
+          "subsections": [],
+          "chars": 925
+        },
+        {
+          "title": "Synonyms and other terms",
+          "level": 2,
+          "subsections": [],
+          "chars": 77
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 82
+        },
+        {
+          "title": "Dosage",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Pediatric Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 336
+            },
+            {
+              "title": "Adult Dose",
+              "level": 3,
+              "subsections": [],
+              "chars": 282
+            },
+            {
+              "title": "Renal Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 71
+            },
+            {
+              "title": "Hepatic Impairment",
+              "level": 3,
+              "subsections": [],
+              "chars": 71
+            },
+            {
+              "title": "Hemodialysis Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 71
+            },
+            {
+              "title": "Pregnancy",
+              "level": 3,
+              "subsections": [],
+              "chars": 211
+            },
+            {
+              "title": "Obese or Overweight Patient",
+              "level": 3,
+              "subsections": [],
+              "chars": 71
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Adverse effects",
+          "level": 2,
+          "subsections": [],
+          "chars": 286
+        },
+        {
+          "title": "Monitoring",
+          "level": 2,
+          "subsections": [],
+          "chars": 239
+        },
+        {
+          "title": "End of treatment",
+          "level": 2,
+          "subsections": [],
+          "chars": 51
+        },
+        {
+          "title": "Special Notes on Administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 1188
+        },
+        {
+          "title": "Available products",
+          "level": 2,
+          "subsections": [],
+          "chars": 462
+        },
+        {
+          "title": "Amount required to treat a person weighing 70kg during 24 hours",
+          "level": 2,
+          "subsections": [],
+          "chars": 17
+        },
+        {
+          "title": "References",
+          "level": 2,
+          "subsections": [],
+          "chars": 3080
+        }
+      ],
+      "lang": "en",
+      "id": "physostigmine",
+      "title": "Physostigmine",
+      "last_revision": "2026-07-22",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/physostigmine",
+      "chars": 8232,
+      "file": "content/en/physostigmine.md",
+      "source_file": "source/html/en/physostigmine.html"
+    },
+    {
+      "anomalies": [],
+      "sections": [
+        {
+          "title": "Points clés",
+          "level": 2,
+          "subsections": [],
+          "chars": 962
+        },
+        {
+          "title": "Synonymes et autres appellations",
+          "level": 2,
+          "subsections": [],
+          "chars": 82
+        },
+        {
+          "title": "Indications",
+          "level": 2,
+          "subsections": [],
+          "chars": 89
+        },
+        {
+          "title": "Posologie",
+          "level": 2,
+          "subsections": [
+            {
+              "title": "Dose pédiatrique",
+              "level": 3,
+              "subsections": [],
+              "chars": 399
+            },
+            {
+              "title": "Dose adulte",
+              "level": 3,
+              "subsections": [],
+              "chars": 345
+            },
+            {
+              "title": "Insuffisance rénale",
+              "level": 3,
+              "subsections": [],
+              "chars": 80
+            },
+            {
+              "title": "Insuffisance hépatique",
+              "level": 3,
+              "subsections": [],
+              "chars": 80
+            },
+            {
+              "title": "Patient hémodialysé",
+              "level": 3,
+              "subsections": [],
+              "chars": 80
+            },
+            {
+              "title": "Grossesse",
+              "level": 3,
+              "subsections": [],
+              "chars": 244
+            },
+            {
+              "title": "Patient obèse ou avec un surplus de poids",
+              "level": 3,
+              "subsections": [],
+              "chars": 80
+            }
+          ],
+          "chars": 0
+        },
+        {
+          "title": "Effets indésirables",
+          "level": 2,
+          "subsections": [],
+          "chars": 324
+        },
+        {
+          "title": "Surveillance clinique",
+          "level": 2,
+          "subsections": [],
+          "chars": 262
+        },
+        {
+          "title": "Fin du traitement",
+          "level": 2,
+          "subsections": [],
+          "chars": 62
+        },
+        {
+          "title": "Particularités reliées à l’administration",
+          "level": 2,
+          "subsections": [],
+          "chars": 1301
+        },
+        {
+          "title": "Produits disponibles",
+          "level": 2,
+          "subsections": [],
+          "chars": 487
+        },
+        {
+          "title": "Quantité requise pour traiter un patient de 70 kg pendant 24 heures",
+          "level": 2,
+          "subsections": [],
+          "chars": 17
+        },
+        {
+          "title": "Références",
+          "level": 2,
+          "subsections": [],
+          "chars": 3080
+        }
+      ],
+      "lang": "fr",
+      "id": "physostigmine",
+      "title": "Physostigmine",
+      "last_revision": "2026-07-22",
+      "source_url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/physostigmine",
+      "chars": 9273,
+      "file": "content/fr/physostigmine.md",
+      "source_file": "source/html/fr/physostigmine.html"
+    }
+  ],
+  "pages": [
+    {
+      "lang": "en",
+      "file": "content/en/advice.md",
+      "title": "Advice to the reader",
+      "chars": 1264,
+      "anomalies": []
+    },
+    {
+      "lang": "en",
+      "file": "content/en/about.md",
+      "title": "About us",
+      "chars": 454,
+      "anomalies": []
+    },
+    {
+      "lang": "en",
+      "file": "content/en/abbreviations.md",
+      "title": "Abbreviations and acronyms",
+      "chars": 1070,
+      "anomalies": []
+    },
+    {
+      "lang": "fr",
+      "file": "content/fr/advice.md",
+      "title": "Avis au lecteur",
+      "chars": 1069,
+      "anomalies": []
+    },
+    {
+      "lang": "fr",
+      "file": "content/fr/about.md",
+      "title": "À propos de nous",
+      "chars": 514,
+      "anomalies": []
+    },
+    {
+      "lang": "fr",
+      "file": "content/fr/abbreviations.md",
+      "title": "Abréviations et acronymes",
+      "chars": 1184,
+      "anomalies": []
+    }
+  ]
+}

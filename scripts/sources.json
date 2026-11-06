@@ -1,0 +1,9 @@
+{
+  "base": "https://www.ciusss-capitalenationale.gouv.qc.ca",
+  "index": { "en": "/en/antidotes", "fr": "/antidotes" },
+  "antidotes": [
+    { "id": "fomepizole", "en": "/en/antidotes/fomepizole" },
+    { "id": "digoxin-specific-antibodies", "en": "/en/antidotes/digoxin-specific-antibodies" },
+    { "id": "physostigmine", "en": "/en/antidotes/physostigmine" }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "date": "2026-11-06T02:08:29.912Z",
+  "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
+  "version": "6f79eafcf40b",
+  "passed": 28,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Avis au lecteur affiché au premier lancement",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Pré-cache complet au premier chargement (12 fichiers, sans avoir ouvert les pages)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Indication « Disponible hors ligne » dans le menu",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Application rouverte sans réseau (serveur arrêté)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Aucune requête n'atteint le serveur hors ligne",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Avis au lecteur non réaffiché après acceptation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Indicateur « Hors ligne – contenu daté du … »",
+      "ok": true,
+      "detail": "⚠ Hors ligne – contenu daté du 2026-11-06"
+    },
+    {
+      "name": "[fr] Anticorps spécifique de la digoxine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Anticorps spécifique de la digoxine »"
+    },
+    {
+      "name": "[fr] Fomépizole : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Fomépizole »"
+    },
+    {
+      "name": "[fr] Physostigmine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Physostigmine »"
+    },
+    {
+      "name": "[en] Digoxin-Specific Antibodies : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Digoxin-Specific Antibodies »"
+    },
+    {
+      "name": "[en] Fomepizole : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Fomepizole »"
+    },
+    {
+      "name": "[en] Physostigmine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Physostigmine »"
+    },
+    {
+      "name": "Recherche FR « fomepizole » trouve « Fomépizole »",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Recherche FR sans accents ni casse (« ACIDOSE METABOLIQUE »)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Recherche EN par synonyme (« antizol »)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Clic sur un résultat : surlignage dans la monographie",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Changement FR → EN : même antidote et même section ouverte",
+      "ok": true,
+      "detail": "#/en/m/digoxin-specific-antibodies/4.2"
+    },
+    {
+      "name": "Calculateur hors ligne (exemple MDCalc : 2,8 ng/mL, 65 kg → 2 fioles)",
+      "ok": true,
+      "detail": "2 fioles"
+    },
+    {
+      "name": "Calculateur : saisie hors bornes → aucun résultat",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Calculateur : valeurs conservées au changement de langue",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Page fr/abbreviations hors ligne",
+      "ok": true,
+      "detail": "Abréviations et acronymes"
+    },
+    {
+      "name": "Page en/abbreviations hors ligne",
+      "ok": true,
+      "detail": "Abbreviations and acronyms"
+    },
+    {
+      "name": "Page fr/advice hors ligne",
+      "ok": true,
+      "detail": "Avis au lecteur"
+    },
+    {
+      "name": "Page en/advice hors ligne",
+      "ok": true,
+      "detail": "Advice to the reader"
+    },
+    {
+      "name": "Nouvelle version téléchargée en arrière-plan : bandeau affiché",
+      "ok": true,
+      "detail": "Nouvelle version disponible – actualiser / New version available – refreshActualiser"
+    },
+    {
+      "name": "Après « Actualiser » : nouvelle version active",
+      "ok": true,
+      "detail": "6f79eafcf40bn"
+    },
+    {
+      "name": "Aucune erreur JavaScript",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
