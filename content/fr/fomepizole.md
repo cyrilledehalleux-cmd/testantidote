@@ -35,7 +35,7 @@ last_revision_label: Dernière mise à jour
 
 ### Dose pédiatrique
 
-- **Dose de charge :** 15 mg/kg en perfusion IV sur 30 min. [TEST D’ÉDITION – à annuler]
+- **Dose de charge :** 15 mg/kg en perfusion IV sur 30 min.
 - **Dose d’entretien :** 12 h plus tard, poursuivre avec une dose d’entretien de 10 mg/kg en perfusion IV sur 30 min, à répéter aux 12 h au besoin pour un total de 4 doses d’entretien.
 - Par la suite, si d’autres doses d’entretien sont nécessaires, augmenter la dose à 15 mg/kg en perfusion IV sur 30 min, à répéter aux 12 h au besoin jusqu’à la fin du traitement.
 - La dose est augmentée après 48 h, car le fomépizole auto-induit son métabolisme.
