@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-06T02:08:29.912Z",
+  "date": "2026-11-06T02:27:40.040Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "6f79eafcf40b",
+  "version": "370b6277291a",
   "passed": 28,
   "failed": 0,
   "results": [
@@ -138,7 +138,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "6f79eafcf40bn"
+      "detail": "370b6277291an"
     },
     {
       "name": "Aucune erreur JavaScript",

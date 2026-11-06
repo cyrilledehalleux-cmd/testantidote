@@ -67,7 +67,18 @@ try {
   await page.waitForSelector('#disclaimer[open]');
   check('Avis au lecteur affiché au premier lancement', await page.isVisible('#disclaimer'));
   await page.click('#disclaimer-ok');
-  await page.waitForFunction(async v => (await caches.keys()).includes(`antidotes-${v}`) && navigator.serviceWorker.controller != null, data.version, { timeout: 20000 });
+  // attendre (par interrogations successives) que le service worker soit actif et le cache complet
+  const nAssets = JSON.parse((fs.readFileSync(path.join(TMP, 'sw.js'), 'utf8').match(/const ASSETS = (\[[\s\S]*?\]);/) || [])[1]).length;
+  for (let i = 0; i < 100; i++) {
+    const ready = await page.evaluate(async ([v, n]) => {
+      const reg = await navigator.serviceWorker.getRegistration();
+      if (!reg?.active || !navigator.serviceWorker.controller) return false;
+      if (!(await caches.keys()).includes(`antidotes-${v}`)) return false;
+      return (await (await caches.open(`antidotes-${v}`)).keys()).length >= n;
+    }, [data.version, nAssets]);
+    if (ready) break;
+    await page.waitForTimeout(200);
+  }
   const swAssets = (fs.readFileSync(path.join(TMP, 'sw.js'), 'utf8').match(/const ASSETS = (\[[\s\S]*?\]);/) || [])[1];
   const assets = JSON.parse(swAssets);
   const cached = await page.evaluate(async v => (await (await caches.open(`antidotes-${v}`)).keys()).map(r => r.url), data.version);

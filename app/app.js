@@ -677,7 +677,9 @@ async function checkOfflineReady() {
   try {
     const keys = await caches.keys();
     const v = state.data?.version;
-    state.offlineReady = keys.includes(`antidotes-${v}`) &&
+    // service worker actif = pré-cache terminé (l'activation suit la mise en cache complète)
+    const reg = await navigator.serviceWorker.getRegistration();
+    state.offlineReady = !!reg?.active && keys.includes(`antidotes-${v}`) &&
       (await (await caches.open(`antidotes-${v}`)).match('./data/content.json')) != null;
   } catch { state.offlineReady = false; }
   renderStatus();
