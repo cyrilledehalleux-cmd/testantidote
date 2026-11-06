@@ -17,11 +17,28 @@ from bs4 import NavigableString, Tag, Comment
 
 HTML_WS = re.compile(r"[ \t\n\r\f]+")
 
-INLINE_TAGS = {"strong", "b", "em", "i", "u", "sup", "sub", "a", "br", "span", "small", "font", "mark"}
+INLINE_TAGS = {"strong", "b", "em", "i", "u", "sup", "sub", "a", "br", "span", "small", "font", "mark", "o:p", "img", "style"}
 BLOCK_TAGS = {"p", "ul", "ol", "li", "div", "table", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6", "hr"}
 KIND = {"strong": "bold", "b": "bold", "em": "italic", "i": "italic", "u": "u", "sup": "sup", "sub": "sub"}
 MD_DELIM = {"bold": "**", "italic": "*"}
-HTML_TAG = {"bold": "strong", "italic": "em", "u": "u", "sup": "sup", "sub": "sub"}
+HTML_TAG = {"bold": "strong", "italic": "em", "u": "u", "sup": "sup", "sub": "sub", "red": "span"}
+HTML_OPEN = {"red": '<span class="rouge">'}  # texte rouge du site (mise en garde)
+RED_COLORS = {"#ff0000", "red", "#f00", "#e00", "#cc0000", "#c00000", "#ff0000;"}
+
+
+def is_red(node):
+    """<font color="#ff0000"> ou style="color:#ff0000" : texte rouge (mise en garde) à conserver."""
+    c = (node.get("color") or "").strip().lower()
+    st = (node.get("style") or "").lower().replace(" ", "")
+    m = re.search(r"(?:^|;)color:([^;]+)", st)
+    return c in RED_COLORS or (m is not None and m.group(1) in RED_COLORS)
+
+
+def image_filename(src):
+    """Nom de fichier local d'une image du site (identique pour l'extraction et la vérification)."""
+    import urllib.parse
+    name = urllib.parse.unquote(src.split("?")[0].rsplit("/", 1)[-1])
+    return re.sub(r"[^A-Za-z0-9._-]+", "_", name)
 
 
 class ConversionError(Exception):
@@ -62,9 +79,20 @@ def inline_tokens(node, out):
             inline_tokens(c, out)
         out.append(["aclose"])
         return
-    if name in ("span", "font", "mark", "small"):
+    if name in ("span", "font") and is_red(node):
+        out.append(["open", "red"])
         for c in node.children:
             inline_tokens(c, out)
+        out.append(["close", "red"])
+        return
+    if name in ("span", "font", "mark", "small", "o:p"):
+        for c in node.children:
+            inline_tokens(c, out)
+        return
+    if name == "style":
+        return  # mise en forme CSS du site : sans contenu
+    if name == "img":
+        out.append(["img", image_filename(node.get("src", "")), node.get("alt", "")])
         return
     raise ConversionError(f"Balise inline inconnue : <{name}>")
 
@@ -103,7 +131,7 @@ def normalize_tokens(toks):
                 trail = len(s) - len(s.rstrip(" \u00a0"))
                 if trail:
                     toks[i - 1][1] = s[: len(s) - trail]
-                    toks.insert(i + 1, ["text", s[len(s) - trail:]])
+                    toks.insert(i + 1, ["text", s[len(s) - trail:], "moved-out"])
                     changed = True
                     break
             # textes vides
@@ -114,6 +142,14 @@ def normalize_tokens(toks):
             # mise en forme vide : <strong></strong>
             if t[0] == "open" and i + 1 < len(toks) and toks[i + 1][0] == "close" and toks[i + 1][1] == t[1]:
                 del toks[i:i + 2]
+                changed = True
+                break
+            # **a** **b** (espace seule entre deux gras du même type) → **a b** : l'espace reste en gras, comme sur le site
+            if (t[0] == "close" and i + 2 < len(toks) and toks[i + 1][0] == "text" and toks[i + 2][0] == "open"
+                    and toks[i + 2][1] == t[1] and toks[i + 1][1] and not toks[i + 1][1].strip(" \u00a0\u200b")
+                    and len(toks[i + 1]) > 2):  # espace qui était à l'intérieur du gras sur le site
+                del toks[i + 2]
+                del toks[i]
                 changed = True
                 break
             # **a****b** → **ab** (deux gras collés = un seul gras)
@@ -161,7 +197,7 @@ def render_inline(toks):
                 return toks[k][1][-1]
             if toks[k][0] in ("br",):
                 return "\n"
-            if toks[k][0] in ("aopen", "aclose"):
+            if toks[k][0] in ("aopen", "aclose", "img"):
                 return "["  # ponctuation
             k -= 1
         return "\n"
@@ -173,7 +209,7 @@ def render_inline(toks):
                 return toks[k][1][0]
             if toks[k][0] == "br":
                 return "\n"
-            if toks[k][0] in ("aopen", "aclose"):
+            if toks[k][0] in ("aopen", "aclose", "img"):
                 return "["
             k += 1
         return "\n"
@@ -212,8 +248,11 @@ def render_inline(toks):
             out.append(escape_text(t[1]))
         elif typ == "br":
             out.append("<br>\n")
+        elif typ == "img":
+            alt = t[2].replace("]", "\\]").replace("[", "\\[")
+            out.append(f"![{alt}](../images/{t[1]})")
         elif typ == "open":
-            out.append(MD_DELIM[t[1]] if use_md[i] else f"<{HTML_TAG[t[1]]}>")
+            out.append(MD_DELIM[t[1]] if use_md[i] else HTML_OPEN.get(t[1], f"<{HTML_TAG[t[1]]}>"))
         elif typ == "close":
             out.append(MD_DELIM[t[1]] if use_md[i] else f"</{HTML_TAG[t[1]]}>")
         elif typ == "aopen":
@@ -239,6 +278,9 @@ def render_inline(toks):
     # <br> en fin de bloc : sans effet à l'affichage
     s = re.sub(r"(<br>\n)+$", "", s.rstrip(" "))
     s = s.strip(" ")
+    # <br> en début de bloc : le garder sur la même ligne que le texte, sinon une ligne « <br> »
+    # seule ouvrirait un bloc HTML brut (et désactiverait la mise en forme de la ligne suivante).
+    s = re.sub(r"^((?:<br>\n)+)", lambda m: m.group(1).replace("\n", ""), s)
     # Espace insécable au bord d'un bloc ou d'une ligne : le moteur Markdown
     # l'enlèverait. On l'écrit « &nbsp; » pour le conserver.
     s = re.sub(r"^[  ]+", lambda m: m.group(0).replace(" ", "&nbsp;"), s)
@@ -327,6 +369,18 @@ class Converter:
                 if name == "blockquote":
                     raise ConversionError("<blockquote> non géré")
                 out.extend(self.blocks(list(c.children)))
+            elif name in ("h1", "h2", "h3", "h4", "h5", "h6"):
+                import html as _html
+                txt = HTML_WS.sub(" ", c.get_text())
+                if not txt.strip(" \u00a0"):
+                    self.anomalies.append(f"Titre <{name}> vide ignoré")
+                elif c.find(True):
+                    raise ConversionError(f"Titre <{name}> avec mise en forme interne : à traiter")
+                else:
+                    # titre non repliable à l'intérieur d'une section : gardé tel quel en HTML
+                    out.append(("html", f"<{name}>{_html.escape(txt.strip(' '), quote=False)}</{name}>"))
+            elif name == "style":
+                self.anomalies.append("Bloc <style> (mise en forme CSS du site) ignoré")
             elif name == "hr":
                 out.append(("hr", "* * *"))
             elif name == "table":

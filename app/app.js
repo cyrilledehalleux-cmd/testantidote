@@ -464,6 +464,11 @@ function renderMonograph(main, r) {
     }));
   };
   drawSections(openSet);
+  // images (ex. tableaux de doses) : un toucher les ouvre en grand (fonctionne aussi hors ligne)
+  $('#sections').addEventListener('click', e => {
+    const img = e.target.closest('.sec-body img');
+    if (img) window.open(img.getAttribute('src'), '_blank', 'noopener');
+  });
 
   // --- recherche dans la page ---
   const input = $('#find');
@@ -847,8 +852,11 @@ function switchLang() {
         if (rect.top >= top || !d.open) break;
       }
     }
-    state.pendingOpen = opened;
-    next.sec = visible || r.sec;
+    // sections identiques dans les deux langues ? sinon (section absente d'une langue sur le site officiel),
+    // on ouvre la monographie au début plutôt que dans une section qui ne correspondrait pas
+    const same = state.data.fr.monographs[r.arg]?.shape === state.data.en.monographs[r.arg]?.shape;
+    state.pendingOpen = same ? opened : null;
+    next.sec = same ? (visible || r.sec) : null;
     next.q = '';
   }
   if (r.view === 'home') next.q = '';

@@ -278,6 +278,14 @@ def main():
         info["source_file"] = meta["file"]
         report["monographs"].append(info)
         print(f"  {out.relative_to(ROOT)}  ({len(info['sections'])} sections)")
+    # images du contenu : copiées telles quelles de source/images/ vers content/images/
+    import shutil
+    src_img = ROOT / "source" / "images"
+    if src_img.exists():
+        (OUT / "images").mkdir(parents=True, exist_ok=True)
+        for f in src_img.iterdir():
+            if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"):
+                shutil.copyfile(f, OUT / "images" / f.name)
     (ROOT / "reports").mkdir(exist_ok=True)
     (ROOT / "reports" / "extraction-data.json").write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

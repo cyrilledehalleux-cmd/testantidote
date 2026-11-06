@@ -22,9 +22,20 @@ for (const entry of fs.readdirSync(APP, { recursive: true, withFileTypes: true }
   fs.copyFileSync(path.join(APP, rel), dest);
 }
 
+// 1b. images du contenu (content/images → dist/images)
+const IMG_SRC = path.join(ROOT, 'content', 'images');
+if (fs.existsSync(IMG_SRC)) {
+  fs.mkdirSync(path.join(DIST, 'images'), { recursive: true });
+  for (const f of fs.readdirSync(IMG_SRC)) fs.copyFileSync(path.join(IMG_SRC, f), path.join(DIST, 'images', f));
+}
+// dans les fichiers Markdown, les images sont écrites « ../images/x.png » (aperçu correct sur GitHub) ;
+// dans l'application, elles sont servies depuis « images/x.png »
+const fixImg = html => html.replace(/(<img[^>]*\ssrc=")\.\.\/images\//g, '$1images/').replace(/<img /g, '<img loading="lazy" ');
+
 // 2. contenu
+const shapeOf = secs => secs.map(s => `${s.level}(${shapeOf(s.children)})`).join(',');
 const strip = secs => secs.map(s => ({ id: s.id, level: s.level, title: s.title, titleHtml: s.titleHtml,
-  html: s.html, text: s.text, children: strip(s.children) }));
+  html: fixImg(s.html), text: s.text, children: strip(s.children) }));
 const data = { generated: new Date().toISOString() };
 let contentDate = '';
 for (const lang of LANGS) {
@@ -33,7 +44,7 @@ for (const lang of LANGS) {
     const m = loadMonograph(lang, id);
     L.monographs[id] = {
       id, title: m.meta.title, last_revision: m.meta.last_revision, last_revision_label: m.meta.last_revision_label || '',
-      source_url: m.meta.source_url, retrieved: m.meta.retrieved || '', sections: strip(m.sections), footerHtml: m.footerHtml,
+      source_url: m.meta.source_url, retrieved: m.meta.retrieved || '', sections: strip(m.sections), footerHtml: fixImg(m.footerHtml), shape: shapeOf(m.sections),
     };
     if ((m.meta.retrieved || '') > contentDate) contentDate = m.meta.retrieved;
   }

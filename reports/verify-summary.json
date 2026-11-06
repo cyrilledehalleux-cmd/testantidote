@@ -38,16 +38,172 @@
       "chars": 1048
     },
     {
-      "page": "en/fomepizole",
+      "page": "en/acetylcysteine",
       "identical": true,
-      "lines": 123,
-      "chars": 8986
+      "lines": 165,
+      "chars": 16126
     },
     {
-      "page": "fr/fomepizole",
+      "page": "fr/acetylcysteine",
       "identical": true,
-      "lines": 126,
-      "chars": 9779
+      "lines": 167,
+      "chars": 17631
+    },
+    {
+      "page": "en/sodium-acetate",
+      "identical": true,
+      "lines": 105,
+      "chars": 7495
+    },
+    {
+      "page": "fr/sodium-acetate",
+      "identical": true,
+      "lines": 109,
+      "chars": 8518
+    },
+    {
+      "page": "en/activated-charcoal",
+      "identical": true,
+      "lines": 96,
+      "chars": 7836
+    },
+    {
+      "page": "fr/activated-charcoal",
+      "identical": true,
+      "lines": 97,
+      "chars": 8698
+    },
+    {
+      "page": "en/atropine",
+      "identical": true,
+      "lines": 124,
+      "chars": 11923
+    },
+    {
+      "page": "fr/atropine",
+      "identical": true,
+      "lines": 127,
+      "chars": 13037
+    },
+    {
+      "page": "en/barbiturates",
+      "identical": true,
+      "lines": 98,
+      "chars": 9528
+    },
+    {
+      "page": "fr/barbiturates",
+      "identical": true,
+      "lines": 98,
+      "chars": 10186
+    },
+    {
+      "page": "en/benzodiazepines",
+      "identical": true,
+      "lines": 93,
+      "chars": 6917
+    },
+    {
+      "page": "fr/benzodiazepines",
+      "identical": true,
+      "lines": 96,
+      "chars": 7911
+    },
+    {
+      "page": "en/bromocriptine",
+      "identical": true,
+      "lines": 69,
+      "chars": 4674
+    },
+    {
+      "page": "fr/bromocriptine",
+      "identical": true,
+      "lines": 73,
+      "chars": 5521
+    },
+    {
+      "page": "en/calcium-chloride",
+      "identical": true,
+      "lines": 83,
+      "chars": 6087
+    },
+    {
+      "page": "fr/calcium-chloride",
+      "identical": true,
+      "lines": 87,
+      "chars": 7046
+    },
+    {
+      "page": "en/calcium-gluconate",
+      "identical": true,
+      "lines": 133,
+      "chars": 11703
+    },
+    {
+      "page": "fr/calcium-gluconate",
+      "identical": true,
+      "lines": 138,
+      "chars": 13526
+    },
+    {
+      "page": "en/chelating-agents-excluding-deferoxamine",
+      "identical": true,
+      "lines": 79,
+      "chars": 3378
+    },
+    {
+      "page": "fr/chelating-agents-excluding-deferoxamine",
+      "identical": true,
+      "lines": 81,
+      "chars": 3696
+    },
+    {
+      "page": "en/cyproheptadine",
+      "identical": true,
+      "lines": 66,
+      "chars": 3880
+    },
+    {
+      "page": "fr/cyproheptadine",
+      "identical": true,
+      "lines": 69,
+      "chars": 4619
+    },
+    {
+      "page": "en/dantrolene",
+      "identical": true,
+      "lines": 73,
+      "chars": 4409
+    },
+    {
+      "page": "fr/dantrolene",
+      "identical": true,
+      "lines": 80,
+      "chars": 5546
+    },
+    {
+      "page": "en/deferoxamine",
+      "identical": true,
+      "lines": 115,
+      "chars": 6778
+    },
+    {
+      "page": "fr/deferoxamine",
+      "identical": true,
+      "lines": 118,
+      "chars": 7879
+    },
+    {
+      "page": "en/dextrose",
+      "identical": true,
+      "lines": 100,
+      "chars": 7417
+    },
+    {
+      "page": "fr/dextrose",
+      "identical": true,
+      "lines": 104,
+      "chars": 8470
     },
     {
       "page": "en/digoxin-specific-antibodies",
@@ -62,6 +218,210 @@
       "chars": 12792
     },
     {
+      "page": "en/diphenhydramine",
+      "identical": true,
+      "lines": 83,
+      "chars": 4806
+    },
+    {
+      "page": "fr/diphenhydramine",
+      "identical": true,
+      "lines": 85,
+      "chars": 5371
+    },
+    {
+      "page": "en/ethanol",
+      "identical": true,
+      "lines": 129,
+      "chars": 8367
+    },
+    {
+      "page": "fr/ethanol",
+      "identical": true,
+      "lines": 133,
+      "chars": 9465
+    },
+    {
+      "page": "en/flumazenil",
+      "identical": true,
+      "lines": 78,
+      "chars": 4904
+    },
+    {
+      "page": "fr/flumazenil",
+      "identical": true,
+      "lines": 81,
+      "chars": 5721
+    },
+    {
+      "page": "en/folic-acid",
+      "identical": true,
+      "lines": 82,
+      "chars": 4721
+    },
+    {
+      "page": "fr/folic-acid",
+      "identical": true,
+      "lines": 82,
+      "chars": 5171
+    },
+    {
+      "page": "en/fomepizole",
+      "identical": true,
+      "lines": 123,
+      "chars": 8986
+    },
+    {
+      "page": "fr/fomepizole",
+      "identical": true,
+      "lines": 126,
+      "chars": 9779
+    },
+    {
+      "page": "en/glucagon",
+      "identical": true,
+      "lines": 95,
+      "chars": 5606
+    },
+    {
+      "page": "fr/glucagon",
+      "identical": true,
+      "lines": 94,
+      "chars": 6319
+    },
+    {
+      "page": "en/hydroxocobalamin",
+      "identical": true,
+      "lines": 99,
+      "chars": 8248
+    },
+    {
+      "page": "fr/hydroxocobalamin",
+      "identical": true,
+      "lines": 102,
+      "chars": 9205
+    },
+    {
+      "page": "en/insulin-regular",
+      "identical": true,
+      "lines": 125,
+      "chars": 10064
+    },
+    {
+      "page": "fr/insulin-regular",
+      "identical": true,
+      "lines": 126,
+      "chars": 11223
+    },
+    {
+      "page": "en/leucovorin-calcium",
+      "identical": true,
+      "lines": 126,
+      "chars": 9946
+    },
+    {
+      "page": "fr/leucovorin-calcium",
+      "identical": true,
+      "lines": 131,
+      "chars": 11828
+    },
+    {
+      "page": "en/levocarnitine",
+      "identical": true,
+      "lines": 81,
+      "chars": 5379
+    },
+    {
+      "page": "fr/levocarnitine",
+      "identical": true,
+      "lines": 85,
+      "chars": 6270
+    },
+    {
+      "page": "en/lipid-emulsion",
+      "identical": true,
+      "lines": 106,
+      "chars": 8656
+    },
+    {
+      "page": "fr/lipid-emulsion",
+      "identical": true,
+      "lines": 109,
+      "chars": 9414
+    },
+    {
+      "page": "en/methylene-blue",
+      "identical": true,
+      "lines": 97,
+      "chars": 7795
+    },
+    {
+      "page": "fr/methylene-blue",
+      "identical": true,
+      "lines": 101,
+      "chars": 8546
+    },
+    {
+      "page": "en/naloxone-extrahospital-administration",
+      "identical": true,
+      "lines": 133,
+      "chars": 12459
+    },
+    {
+      "page": "fr/naloxone-extrahospital-administration",
+      "identical": true,
+      "lines": 134,
+      "chars": 14151
+    },
+    {
+      "page": "en/naloxone-hospital-administration",
+      "identical": true,
+      "lines": 144,
+      "chars": 12038
+    },
+    {
+      "page": "fr/naloxone-hospital-administration",
+      "identical": true,
+      "lines": 147,
+      "chars": 13927
+    },
+    {
+      "page": "en/octreotide",
+      "identical": true,
+      "lines": 88,
+      "chars": 6994
+    },
+    {
+      "page": "fr/octreotide",
+      "identical": true,
+      "lines": 93,
+      "chars": 8048
+    },
+    {
+      "page": "en/oxygen",
+      "identical": true,
+      "lines": 43,
+      "chars": 3125
+    },
+    {
+      "page": "fr/oxygen",
+      "identical": true,
+      "lines": 47,
+      "chars": 3845
+    },
+    {
+      "page": "en/phentolamine",
+      "identical": true,
+      "lines": 64,
+      "chars": 3938
+    },
+    {
+      "page": "fr/phentolamine",
+      "identical": true,
+      "lines": 68,
+      "chars": 4843
+    },
+    {
       "page": "en/physostigmine",
       "identical": true,
       "lines": 90,
@@ -72,6 +432,138 @@
       "identical": true,
       "lines": 94,
       "chars": 8221
+    },
+    {
+      "page": "en/polyethylene-glycol",
+      "identical": true,
+      "lines": 87,
+      "chars": 4717
+    },
+    {
+      "page": "fr/polyethylene-glycol",
+      "identical": true,
+      "lines": 87,
+      "chars": 5476
+    },
+    {
+      "page": "en/pralidoxime",
+      "identical": true,
+      "lines": 98,
+      "chars": 5294
+    },
+    {
+      "page": "fr/pralidoxime",
+      "identical": true,
+      "lines": 102,
+      "chars": 6440
+    },
+    {
+      "page": "en/protamine",
+      "identical": true,
+      "lines": 164,
+      "chars": 10245
+    },
+    {
+      "page": "fr/protamine",
+      "identical": true,
+      "lines": 168,
+      "chars": 11705
+    },
+    {
+      "page": "en/pyridoxine",
+      "identical": true,
+      "lines": 85,
+      "chars": 6043
+    },
+    {
+      "page": "fr/pyridoxine",
+      "identical": true,
+      "lines": 88,
+      "chars": 7051
+    },
+    {
+      "page": "en/rivastigmine",
+      "identical": true,
+      "lines": 81,
+      "chars": 7103
+    },
+    {
+      "page": "fr/rivastigmine",
+      "identical": true,
+      "lines": 89,
+      "chars": 8289
+    },
+    {
+      "page": "en/sodium-bicarbonate",
+      "identical": true,
+      "lines": 147,
+      "chars": 10726
+    },
+    {
+      "page": "fr/sodium-bicarbonate",
+      "identical": true,
+      "lines": 151,
+      "chars": 11822
+    },
+    {
+      "page": "en/sodium-chloride-3",
+      "identical": true,
+      "lines": 70,
+      "chars": 3489
+    },
+    {
+      "page": "fr/sodium-chloride-3",
+      "identical": true,
+      "lines": 73,
+      "chars": 4247
+    },
+    {
+      "page": "en/sodium-thiosulfate",
+      "identical": true,
+      "lines": 81,
+      "chars": 4759
+    },
+    {
+      "page": "fr/sodium-thiosulfate",
+      "identical": true,
+      "lines": 85,
+      "chars": 5742
+    },
+    {
+      "page": "en/syrup-ipecac",
+      "identical": true,
+      "lines": 9,
+      "chars": 567
+    },
+    {
+      "page": "fr/syrup-ipecac",
+      "identical": true,
+      "lines": 13,
+      "chars": 1056
+    },
+    {
+      "page": "en/thiamine",
+      "identical": true,
+      "lines": 64,
+      "chars": 4123
+    },
+    {
+      "page": "fr/thiamine",
+      "identical": true,
+      "lines": 68,
+      "chars": 4968
+    },
+    {
+      "page": "en/vitamin-k1",
+      "identical": true,
+      "lines": 95,
+      "chars": 5723
+    },
+    {
+      "page": "fr/vitamin-k1",
+      "identical": true,
+      "lines": 98,
+      "chars": 6654
     },
     {
       "page": "fr/centres",
@@ -87,15 +579,62 @@
     }
   ],
   "removed_site_chrome": [
+    "bloc <style> (mise en forme CSS)",
     "bouton : Imprimer",
     "bouton : Open all",
     "bouton : Ouvrir tout",
     "bouton : Print",
+    "ligne de date : Dernière mise à jour : 2021-09-28",
+    "ligne de date : Dernière mise à jour : 2022-04-25",
+    "ligne de date : Dernière mise à jour : 2022-09-12",
+    "ligne de date : Dernière mise à jour : 2022-11-15",
+    "ligne de date : Dernière mise à jour : 2022-12-13",
+    "ligne de date : Dernière mise à jour : 2022-12-14",
+    "ligne de date : Dernière mise à jour : 2023-01-16",
+    "ligne de date : Dernière mise à jour : 2023-02-01",
+    "ligne de date : Dernière mise à jour : 2024-02-27",
+    "ligne de date : Dernière mise à jour : 2024-06-10",
+    "ligne de date : Dernière mise à jour : 2024-07-29",
+    "ligne de date : Dernière mise à jour : 2024-09-05",
+    "ligne de date : Dernière mise à jour : 2024-10-17",
+    "ligne de date : Dernière mise à jour : 2024-11-18",
     "ligne de date : Dernière mise à jour : 2025-03-05",
+    "ligne de date : Dernière mise à jour : 2025-09-10",
+    "ligne de date : Dernière mise à jour : 2025-10-17",
+    "ligne de date : Dernière mise à jour : 2026-02-10",
+    "ligne de date : Dernière mise à jour : 2026-02-23",
+    "ligne de date : Dernière mise à jour : 2026-04-16",
+    "ligne de date : Dernière mise à jour : 2026-05-27",
     "ligne de date : Dernière mise à jour : 2026-07-22",
+    "ligne de date : Dernière mise à jour : 2026-08-13",
+    "ligne de date : Dernière mise à jour : 2026-08-25",
+    "ligne de date : Dernière mise à jour : 2026-10-22",
     "ligne de date : Dernière mise à jour : 2026-10-23",
+    "ligne de date : Last updated : 2021-08-30",
+    "ligne de date : Last updated : 2021-08-31",
+    "ligne de date : Last updated : 2022-06-23",
+    "ligne de date : Last updated : 2022-11-25",
+    "ligne de date : Last updated : 2022-11-28",
+    "ligne de date : Last updated : 2022-12-13",
+    "ligne de date : Last updated : 2022-12-14",
+    "ligne de date : Last updated : 2023-01-16",
     "ligne de date : Last updated : 2023-02-01",
+    "ligne de date : Last updated : 2023-08-16",
+    "ligne de date : Last updated : 2024-02-26",
+    "ligne de date : Last updated : 2024-02-27",
+    "ligne de date : Last updated : 2024-06-10",
+    "ligne de date : Last updated : 2024-09-05",
+    "ligne de date : Last updated : 2024-09-16",
+    "ligne de date : Last updated : 2024-10-17",
+    "ligne de date : Last updated : 2025-09-10",
+    "ligne de date : Last updated : 2025-10-17",
+    "ligne de date : Last updated : 2026-02-10",
+    "ligne de date : Last updated : 2026-02-23",
+    "ligne de date : Last updated : 2026-04-16",
+    "ligne de date : Last updated : 2026-05-27",
     "ligne de date : Last updated : 2026-07-22",
+    "ligne de date : Last updated : 2026-08-13",
+    "ligne de date : Last updated : 2026-08-25",
     "ligne de date : Last updated : 2026-10-23",
     "logos des centres antipoison (images externes, 7 par langue)",
     "« + » d'affichage devant un titre"

@@ -2,78 +2,734 @@
   "en/index": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes",
     "file": "source/html/en/index.html",
-    "downloaded": "2026-11-06T02:51:26+00:00",
-    "sha256": "5fca1634fb56024e9143f9b74e4bec0f822285141539de4ee0bde90a6626df8c",
+    "downloaded": "2026-11-06T15:56:44+00:00",
+    "sha256": "655083d2a32b9f08f349ad26558a17495bdf15587215b6b40c947ab886d4ade2",
     "bytes": 91127
   },
   "fr/index": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes",
     "file": "source/html/fr/index.html",
-    "downloaded": "2026-11-06T02:51:26+00:00",
-    "sha256": "87f6a04e6d238f03cdfbecb4e687bf1e264bf33b6a077d03e8f73ea55933e0f1",
-    "bytes": 96561
+    "downloaded": "2026-11-06T15:56:44+00:00",
+    "sha256": "b33557f508067c1e490d8e68391b2d2cbd5d575fa2b9ca7d1ee41c6a41858692",
+    "bytes": 96560
   },
-  "en/fomepizole": {
-    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/fomepizole",
-    "file": "source/html/en/fomepizole.html",
-    "downloaded": "2026-11-06T02:51:26+00:00",
-    "sha256": "d5593b1870f4042c2e80939fe8ec154e6347a86e48032d27e5bab82c8df27e0b",
-    "bytes": 100008,
-    "antidote_id": "fomepizole"
+  "en/acetylcysteine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/acetylcysteine",
+    "file": "source/html/en/acetylcysteine.html",
+    "downloaded": "2026-11-06T15:56:44+00:00",
+    "sha256": "8a73c88fa218c1ac8a81b15b13de3ff012fec8701bf5206422339ee99e316bed",
+    "bytes": 109773,
+    "antidote_id": "acetylcysteine"
   },
-  "fr/fomepizole": {
-    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/fomepizole",
-    "file": "source/html/fr/fomepizole.html",
-    "downloaded": "2026-11-06T02:51:27+00:00",
-    "sha256": "a553b7d1bc689e8d1a16b553907c265a948b960c2eb55b70c235761ffececab0",
-    "bytes": 105955,
-    "antidote_id": "fomepizole"
+  "fr/acetylcysteine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/acetylcysteine",
+    "file": "source/html/fr/acetylcysteine.html",
+    "downloaded": "2026-11-06T15:56:45+00:00",
+    "sha256": "cef3e34426d146981c4980ed96fa5fe7b25e9b73bfea0b58a779ba0db19f88ed",
+    "bytes": 122206,
+    "antidote_id": "acetylcysteine"
+  },
+  "en/sodium-acetate": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/sodium-acetate",
+    "file": "source/html/en/sodium-acetate.html",
+    "downloaded": "2026-11-06T15:56:45+00:00",
+    "sha256": "79e78d96961c7e6df9b4c0083d2edb87af4286717cb3119833ac4c316817daf6",
+    "bytes": 98084,
+    "antidote_id": "sodium-acetate"
+  },
+  "fr/acetate-de-sodium": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/acetate-de-sodium",
+    "file": "source/html/fr/acetate-de-sodium.html",
+    "downloaded": "2026-11-06T15:56:45+00:00",
+    "sha256": "24fbc0a7041d8741f6ab5cc4bed86f1ee5ee0db33716524c4fa424de60a17dda",
+    "bytes": 108062,
+    "antidote_id": "sodium-acetate"
+  },
+  "en/activated-charcoal": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/activated-charcoal",
+    "file": "source/html/en/activated-charcoal.html",
+    "downloaded": "2026-11-06T15:56:45+00:00",
+    "sha256": "be2156e8a3fc96350199cc438fcf8bd1ff409615077140957ccd2e09f8870cfc",
+    "bytes": 99427,
+    "antidote_id": "activated-charcoal"
+  },
+  "fr/charbon-de-bois-active": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/charbon-de-bois-active",
+    "file": "source/html/fr/charbon-de-bois-active.html",
+    "downloaded": "2026-11-06T15:56:46+00:00",
+    "sha256": "62183f90466cd7edd2823f1292e3f6a445b01657d62448d496f35389533190a6",
+    "bytes": 105489,
+    "antidote_id": "activated-charcoal"
+  },
+  "en/atropine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/atropine",
+    "file": "source/html/en/atropine.html",
+    "downloaded": "2026-11-06T15:56:46+00:00",
+    "sha256": "6aa9eb069eeec32d98bd08355856a21ddfdd01e6c6f239a5fcb166413c390557",
+    "bytes": 102689,
+    "antidote_id": "atropine"
+  },
+  "fr/atropine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/atropine",
+    "file": "source/html/fr/atropine.html",
+    "downloaded": "2026-11-06T15:56:47+00:00",
+    "sha256": "a0b7552a84c19c780654befbe47f771cd8b6e44f2076586820cf22f8ebfe3b34",
+    "bytes": 109512,
+    "antidote_id": "atropine"
+  },
+  "en/barbiturates": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/barbiturates",
+    "file": "source/html/en/barbiturates.html",
+    "downloaded": "2026-11-06T15:56:47+00:00",
+    "sha256": "96adbae7a268b8a82cdae7be41b8ccb2535039b78f6dbf95aefeabe3c801db66",
+    "bytes": 99852,
+    "antidote_id": "barbiturates"
+  },
+  "fr/barbituriques": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/barbituriques",
+    "file": "source/html/fr/barbituriques.html",
+    "downloaded": "2026-11-06T15:56:47+00:00",
+    "sha256": "6fb23370b179ccfa81854247348721a84af6bdac2beecfeba4adc3dfb379bd75",
+    "bytes": 105459,
+    "antidote_id": "barbiturates"
+  },
+  "en/benzodiazepines": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/benzodiazepines",
+    "file": "source/html/en/benzodiazepines.html",
+    "downloaded": "2026-11-06T15:56:48+00:00",
+    "sha256": "ed71195a4184d6652a343dd46b21bce811e3ff6f403bfca5bfc76227799a130b",
+    "bytes": 98981,
+    "antidote_id": "benzodiazepines"
+  },
+  "fr/benzodiazepines": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/benzodiazepines",
+    "file": "source/html/fr/benzodiazepines.html",
+    "downloaded": "2026-11-06T15:56:49+00:00",
+    "sha256": "0ac5b223e2b9e923d506cf6d6b8ac2f707442ac3be6443b1cdfa4cbf763e38ec",
+    "bytes": 104549,
+    "antidote_id": "benzodiazepines"
+  },
+  "en/bromocriptine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/bromocriptine",
+    "file": "source/html/en/bromocriptine.html",
+    "downloaded": "2026-11-06T15:56:50+00:00",
+    "sha256": "fe7f1a7615e223c55eda20a631cb57d4884893803d70b3c74755a69df2fc79be",
+    "bytes": 94775,
+    "antidote_id": "bromocriptine"
+  },
+  "fr/bromocriptine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/bromocriptine",
+    "file": "source/html/fr/bromocriptine.html",
+    "downloaded": "2026-11-06T15:56:50+00:00",
+    "sha256": "b7bafb5cf058ab46e76e892925a25026b993fe385d5143fc34c4d834036af7c5",
+    "bytes": 100438,
+    "antidote_id": "bromocriptine"
+  },
+  "en/calcium-chloride": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/calcium-chloride",
+    "file": "source/html/en/calcium-chloride.html",
+    "downloaded": "2026-11-06T15:56:50+00:00",
+    "sha256": "30688d11d8182699f7e8deeb87bd07834c6959fa28679e7a2a9659e194912651",
+    "bytes": 97074,
+    "antidote_id": "calcium-chloride"
+  },
+  "fr/calcium-chlorure": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/calcium-chlorure",
+    "file": "source/html/fr/calcium-chlorure.html",
+    "downloaded": "2026-11-06T15:56:50+00:00",
+    "sha256": "4be51a7ec4bee222deb2ab5e5c4a60e7115746a79bd9b7c294105a4a3cbd01e7",
+    "bytes": 102963,
+    "antidote_id": "calcium-chloride"
+  },
+  "en/calcium-gluconate": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/calcium-gluconate",
+    "file": "source/html/en/calcium-gluconate.html",
+    "downloaded": "2026-11-06T15:56:51+00:00",
+    "sha256": "b2eff0370819758d5105c8607e49f09bde2d62da944e8f4d88deac6c6b393a85",
+    "bytes": 103807,
+    "antidote_id": "calcium-gluconate"
+  },
+  "fr/calcium-gluconate": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/calcium-gluconate",
+    "file": "source/html/fr/calcium-gluconate.html",
+    "downloaded": "2026-11-06T15:56:51+00:00",
+    "sha256": "3fa12b8f6d997313f5ec4933ce6203c66c6903b7513932da834017d30715ca7f",
+    "bytes": 110861,
+    "antidote_id": "calcium-gluconate"
+  },
+  "en/chelating-agents-excluding-deferoxamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/chelating-agents-excluding-deferoxamine",
+    "file": "source/html/en/chelating-agents-excluding-deferoxamine.html",
+    "downloaded": "2026-11-06T15:56:51+00:00",
+    "sha256": "d2e624d03185ad657d11a184fb52de1bcbb638bf389c57ee569ad3acb3efaa58",
+    "bytes": 92160,
+    "antidote_id": "chelating-agents-excluding-deferoxamine"
+  },
+  "fr/agents-chelateurs-excluant-la-deferoxamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/agents-chelateurs-excluant-la-deferoxamine",
+    "file": "source/html/fr/agents-chelateurs-excluant-la-deferoxamine.html",
+    "downloaded": "2026-11-06T15:56:52+00:00",
+    "sha256": "fb13c44deb4a7a07422eab4d82350f3a4d3c1aa98c876b87c686b92baa2396ee",
+    "bytes": 97463,
+    "antidote_id": "chelating-agents-excluding-deferoxamine"
+  },
+  "en/cyproheptadine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/cyproheptadine",
+    "file": "source/html/en/cyproheptadine.html",
+    "downloaded": "2026-11-06T15:56:52+00:00",
+    "sha256": "4b9f543d210e0bc5c9e2e2f75bb921d859b6b925698312c0122e50983d25ac50",
+    "bytes": 94300,
+    "antidote_id": "cyproheptadine"
+  },
+  "fr/cyproheptadine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/cyproheptadine",
+    "file": "source/html/fr/cyproheptadine.html",
+    "downloaded": "2026-11-06T15:56:52+00:00",
+    "sha256": "33c99c93d89bdf14e6e6cd34c536ff44b3aac980bf6a24a3fede2f542cea5aa9",
+    "bytes": 99763,
+    "antidote_id": "cyproheptadine"
+  },
+  "en/dantrolene": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/dantrolene",
+    "file": "source/html/en/dantrolene.html",
+    "downloaded": "2026-11-06T15:56:53+00:00",
+    "sha256": "d9f4b9bbf8de34e7eef8bdef55d949b796e64fcff45ea21751a3b5e68f1ef034",
+    "bytes": 93978,
+    "antidote_id": "dantrolene"
+  },
+  "fr/dantrolene": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/dantrolene",
+    "file": "source/html/fr/dantrolene.html",
+    "downloaded": "2026-11-06T15:56:53+00:00",
+    "sha256": "e1025771948c34022484015a2beaad75e671c7105ed10089fc598874a1966745",
+    "bytes": 100262,
+    "antidote_id": "dantrolene"
+  },
+  "en/deferoxamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/deferoxamine",
+    "file": "source/html/en/deferoxamine.html",
+    "downloaded": "2026-11-06T15:56:53+00:00",
+    "sha256": "59f22cbebeee1c3d4a478336cc926aed5fa753d0e7d9863bbab187d666bd4c2f",
+    "bytes": 97208,
+    "antidote_id": "deferoxamine"
+  },
+  "fr/deferoxamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/deferoxamine",
+    "file": "source/html/fr/deferoxamine.html",
+    "downloaded": "2026-11-06T15:56:54+00:00",
+    "sha256": "7d3994dcf1212dd9396ccc7e1d853a9836baa6144783567103f8ee60a0fac549",
+    "bytes": 103434,
+    "antidote_id": "deferoxamine"
+  },
+  "en/dextrose": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/dextrose",
+    "file": "source/html/en/dextrose.html",
+    "downloaded": "2026-11-06T15:56:54+00:00",
+    "sha256": "cb4fea20947e87b3fb39f8467df0db3cb4e6175bb67de4826df1a1f5e9105e2b",
+    "bytes": 97686,
+    "antidote_id": "dextrose"
+  },
+  "fr/dextrose": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/dextrose",
+    "file": "source/html/fr/dextrose.html",
+    "downloaded": "2026-11-06T15:56:54+00:00",
+    "sha256": "69cba73af82be984eaa6b68b1c59871b93a871df9303ebb4fa91467f8afbf003",
+    "bytes": 103843,
+    "antidote_id": "dextrose"
   },
   "en/digoxin-specific-antibodies": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/digoxin-specific-antibodies",
     "file": "source/html/en/digoxin-specific-antibodies.html",
-    "downloaded": "2026-11-06T02:51:27+00:00",
-    "sha256": "81a6f5c30ec1f1c6e43c93ffa24ee856671126f85924bfdbadb435b8ae31ab76",
+    "downloaded": "2026-11-06T15:56:55+00:00",
+    "sha256": "f121dd95d0b9a82a47044c29bf56f1e28297545e4ad7ee54ddcd37866a632c51",
     "bytes": 102603,
     "antidote_id": "digoxin-specific-antibodies"
   },
   "fr/anticorps-specifique-de-la-digoxine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/anticorps-specifique-de-la-digoxine",
     "file": "source/html/fr/anticorps-specifique-de-la-digoxine.html",
-    "downloaded": "2026-11-06T02:51:27+00:00",
-    "sha256": "37e8277724cf35b8d8eb9a98d5da6cf2659e7566e8e19259629e4698a47c3138",
+    "downloaded": "2026-11-06T15:56:55+00:00",
+    "sha256": "5f544ca0af5469937e62d4f0439502b573d1215198f859e313ea2021ea4b52a3",
     "bytes": 109682,
     "antidote_id": "digoxin-specific-antibodies"
+  },
+  "en/diphenhydramine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/diphenhydramine",
+    "file": "source/html/en/diphenhydramine.html",
+    "downloaded": "2026-11-06T15:56:55+00:00",
+    "sha256": "c344572d1b37547087b967738fd0e1a2b0ebadf27d4574f53cfcf0412baeb468",
+    "bytes": 95051,
+    "antidote_id": "diphenhydramine"
+  },
+  "fr/diphenhydramine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/diphenhydramine",
+    "file": "source/html/fr/diphenhydramine.html",
+    "downloaded": "2026-11-06T15:56:56+00:00",
+    "sha256": "49dbd40fdbb95bf305ecc95ccaf6428585757f4f1b2116e8e6cc46c6bbabac3f",
+    "bytes": 100679,
+    "antidote_id": "diphenhydramine"
+  },
+  "en/ethanol": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/ethanol",
+    "file": "source/html/en/ethanol.html",
+    "downloaded": "2026-11-06T15:56:56+00:00",
+    "sha256": "f06873daadb65c3b93dbd5b0f450ecbe74d43648994eda099d54d6a541c5a3f9",
+    "bytes": 99653,
+    "antidote_id": "ethanol"
+  },
+  "fr/ethanol": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/ethanol",
+    "file": "source/html/fr/ethanol.html",
+    "downloaded": "2026-11-06T15:56:56+00:00",
+    "sha256": "991022c23097aab76bdb8cea84c26384b3bf3942dff2e298e57700c9914908f2",
+    "bytes": 106195,
+    "antidote_id": "ethanol"
+  },
+  "en/flumazenil": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/flumazenil",
+    "file": "source/html/en/flumazenil.html",
+    "downloaded": "2026-11-06T15:56:56+00:00",
+    "sha256": "981cffb2039d22988aae8b9cb8b366f5267de32a2a312646c2f1c2c63b0cab69",
+    "bytes": 94997,
+    "antidote_id": "flumazenil"
+  },
+  "fr/flumazenil": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/flumazenil",
+    "file": "source/html/fr/flumazenil.html",
+    "downloaded": "2026-11-06T15:56:57+00:00",
+    "sha256": "a65a354d0a70ee5cb5a131e79203de8183e27215c4af73f5c3000e6cd6385f15",
+    "bytes": 100783,
+    "antidote_id": "flumazenil"
+  },
+  "en/folic-acid": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/folic-acid",
+    "file": "source/html/en/folic-acid.html",
+    "downloaded": "2026-11-06T15:56:57+00:00",
+    "sha256": "cc5834889fab2bd7eadc1ed6ee737e4e06b0ec9a0bfaa70b035c57c361577ca3",
+    "bytes": 94692,
+    "antidote_id": "folic-acid"
+  },
+  "fr/acide-folique": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/acide-folique",
+    "file": "source/html/fr/acide-folique.html",
+    "downloaded": "2026-11-06T15:56:57+00:00",
+    "sha256": "f8afc49ffb0d9c45e1904a81d7203c180650c6b8e7e7b429de07a5badaea148e",
+    "bytes": 99941,
+    "antidote_id": "folic-acid"
+  },
+  "en/fomepizole": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/fomepizole",
+    "file": "source/html/en/fomepizole.html",
+    "downloaded": "2026-11-06T15:56:58+00:00",
+    "sha256": "6a1ee71fce57b2dcf49d18ce0c82db5e5872ce6f1a151ba995404713cfc3b14f",
+    "bytes": 100008,
+    "antidote_id": "fomepizole"
+  },
+  "fr/fomepizole": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/fomepizole",
+    "file": "source/html/fr/fomepizole.html",
+    "downloaded": "2026-11-06T15:56:58+00:00",
+    "sha256": "2acdca0f665b4552d524818fe9bdd908ddf79261aaa0a3a68cfa51cb58a0aca6",
+    "bytes": 105955,
+    "antidote_id": "fomepizole"
+  },
+  "en/glucagon": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/glucagon",
+    "file": "source/html/en/glucagon.html",
+    "downloaded": "2026-11-06T15:56:58+00:00",
+    "sha256": "07038f9b0a4d5b871cdc62c42ea740d500d381ad2b1e94d680e5f2a8b1057328",
+    "bytes": 95880,
+    "antidote_id": "glucagon"
+  },
+  "fr/glucagon": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/glucagon",
+    "file": "source/html/fr/glucagon.html",
+    "downloaded": "2026-11-06T15:56:59+00:00",
+    "sha256": "52ea87d7f95f03e9368711e90ebb11d6b97a358ed2e70738d7feb53230dcfda3",
+    "bytes": 104526,
+    "antidote_id": "glucagon"
+  },
+  "en/hydroxocobalamin": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/hydroxocobalamin",
+    "file": "source/html/en/hydroxocobalamin.html",
+    "downloaded": "2026-11-06T15:56:59+00:00",
+    "sha256": "73ee5032110dbc9b7669dbe73f9dbd3d50352f9d7c85c92d694c610eb5b140e1",
+    "bytes": 99084,
+    "antidote_id": "hydroxocobalamin"
+  },
+  "fr/hydroxocobalamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/hydroxocobalamine",
+    "file": "source/html/fr/hydroxocobalamine.html",
+    "downloaded": "2026-11-06T15:56:59+00:00",
+    "sha256": "ad5b28a066170224c43b2259873f66354c8454078c2c09950bee3e8939b56245",
+    "bytes": 104961,
+    "antidote_id": "hydroxocobalamin"
+  },
+  "en/insulin-regular": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/insulin-regular",
+    "file": "source/html/en/insulin-regular.html",
+    "downloaded": "2026-11-06T15:57:00+00:00",
+    "sha256": "408a6864bdc0a7d11ee3ab2cbde3e983c71ac73d9ff6bddc23790df9f9523a24",
+    "bytes": 102524,
+    "antidote_id": "insulin-regular"
+  },
+  "fr/insuline-reguliere": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/insuline-reguliere",
+    "file": "source/html/fr/insuline-reguliere.html",
+    "downloaded": "2026-11-06T15:57:00+00:00",
+    "sha256": "081cf6d4b1a7776827774ef02ad879c8c4b5b77a709474a7973e33bfcf8443b1",
+    "bytes": 108305,
+    "antidote_id": "insulin-regular"
+  },
+  "en/leucovorin-calcium": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/leucovorin-calcium",
+    "file": "source/html/en/leucovorin-calcium.html",
+    "downloaded": "2026-11-06T15:57:00+00:00",
+    "sha256": "8cfb26e5047ef9bba24e3f48b6dfa41eccd1d2b71a108b9d9b2c338bcb89ec5d",
+    "bytes": 100967,
+    "antidote_id": "leucovorin-calcium"
+  },
+  "fr/leucovorine-calcique": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/leucovorine-calcique",
+    "file": "source/html/fr/leucovorine-calcique.html",
+    "downloaded": "2026-11-06T15:57:01+00:00",
+    "sha256": "944687530710229df47b63e82c476a719ed7eaf8d51a5a8b2e1acb445b05da48",
+    "bytes": 109130,
+    "antidote_id": "leucovorin-calcium"
+  },
+  "en/levocarnitine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/levocarnitine",
+    "file": "source/html/en/levocarnitine.html",
+    "downloaded": "2026-11-06T15:57:01+00:00",
+    "sha256": "6b382501d70774120c63c9b3a24421ec7346fdd0e5e455e25e6ee6ab168091a9",
+    "bytes": 95593,
+    "antidote_id": "levocarnitine"
+  },
+  "fr/levocarnitine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/levocarnitine",
+    "file": "source/html/fr/levocarnitine.html",
+    "downloaded": "2026-11-06T15:57:01+00:00",
+    "sha256": "56d345af558655b3a04c37b47863cd242d505d426b3590d94b24fb40288e9338",
+    "bytes": 101449,
+    "antidote_id": "levocarnitine"
+  },
+  "en/lipid-emulsion": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/lipid-emulsion",
+    "file": "source/html/en/lipid-emulsion.html",
+    "downloaded": "2026-11-06T15:57:01+00:00",
+    "sha256": "6cb392e6e6ee85e3cb6f9b19471122f61fb9f98b939da76d206c7dd71bdc42b2",
+    "bytes": 101151,
+    "antidote_id": "lipid-emulsion"
+  },
+  "fr/emulsion-lipidique": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/emulsion-lipidique",
+    "file": "source/html/fr/emulsion-lipidique.html",
+    "downloaded": "2026-11-06T15:57:02+00:00",
+    "sha256": "5eaa178602dc657df518cabe1b162b9ac4741646f3bac7c364888444e1fab16d",
+    "bytes": 107026,
+    "antidote_id": "lipid-emulsion"
+  },
+  "en/methylene-blue": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/methylene-blue",
+    "file": "source/html/en/methylene-blue.html",
+    "downloaded": "2026-11-06T15:57:02+00:00",
+    "sha256": "cf231a6decfd30974d04a8bbd9c6bd11a9685bb797a2c8dc8b89b9142737c94d",
+    "bytes": 99066,
+    "antidote_id": "methylene-blue"
+  },
+  "fr/bleu-de-methylene": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/bleu-de-methylene",
+    "file": "source/html/fr/bleu-de-methylene.html",
+    "downloaded": "2026-11-06T15:57:02+00:00",
+    "sha256": "51becf7d41a69dbd7b1cc2a854196eca927829acbf2326034c68d223573632f8",
+    "bytes": 104791,
+    "antidote_id": "methylene-blue"
+  },
+  "en/naloxone-extrahospital-administration": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/naloxone-extrahospital-administration",
+    "file": "source/html/en/naloxone-extrahospital-administration.html",
+    "downloaded": "2026-11-06T15:57:03+00:00",
+    "sha256": "58b49e78f5908adbaba1459c96cd831017ed8e927dd09958261218bb9b301027",
+    "bytes": 104455,
+    "antidote_id": "naloxone-extrahospital-administration"
+  },
+  "fr/naloxone-en-extrahospitalier": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/naloxone-en-extrahospitalier",
+    "file": "source/html/fr/naloxone-en-extrahospitalier.html",
+    "downloaded": "2026-11-06T15:57:03+00:00",
+    "sha256": "c8eb7bdd9049906cc5825f09df93de5fac258d9cc8224fe3efd20921664faa90",
+    "bytes": 111663,
+    "antidote_id": "naloxone-extrahospital-administration"
+  },
+  "en/naloxone-hospital-administration": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/naloxone-hospital-administration",
+    "file": "source/html/en/naloxone-hospital-administration.html",
+    "downloaded": "2026-11-06T15:57:03+00:00",
+    "sha256": "bc00eb7ef5d07c891821c8a78e0a1b7959420a57f39c7ed5dbb1cf401d94a846",
+    "bytes": 104007,
+    "antidote_id": "naloxone-hospital-administration"
+  },
+  "fr/naloxone-en-centre-hospitalier": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/naloxone-en-centre-hospitalier",
+    "file": "source/html/fr/naloxone-en-centre-hospitalier.html",
+    "downloaded": "2026-11-06T15:57:03+00:00",
+    "sha256": "751a94e2d6e306b2b9db0209ba8095b63941af3c7debbc1fd2d138446cbd8a84",
+    "bytes": 111518,
+    "antidote_id": "naloxone-hospital-administration"
+  },
+  "en/octreotide": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/octreotide",
+    "file": "source/html/en/octreotide.html",
+    "downloaded": "2026-11-06T15:57:04+00:00",
+    "sha256": "a64b791b9e5001bceefd8deb562484108fdd71da36cb1a0c014de83eaca4167d",
+    "bytes": 98870,
+    "antidote_id": "octreotide"
+  },
+  "fr/octreotide": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/octreotide",
+    "file": "source/html/fr/octreotide.html",
+    "downloaded": "2026-11-06T15:57:04+00:00",
+    "sha256": "d6eb73fa0f2333e9befc672ea6f369d2d0fa27cf3f8a503039a889874b6e0b34",
+    "bytes": 105196,
+    "antidote_id": "octreotide"
+  },
+  "en/oxygen": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/oxygen",
+    "file": "source/html/en/oxygen.html",
+    "downloaded": "2026-11-06T15:57:04+00:00",
+    "sha256": "67d0623a77f9d046e450fc593b66c0ec104e207a70b3f02b593229725d43117e",
+    "bytes": 91859,
+    "antidote_id": "oxygen"
+  },
+  "fr/oxygene": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/oxygene",
+    "file": "source/html/fr/oxygene.html",
+    "downloaded": "2026-11-06T15:57:05+00:00",
+    "sha256": "b72eb6336ed9d5bdd6e4ecd4c5d8aa9efe6082f1be797e8707c3e5b1dddb7ba5",
+    "bytes": 97406,
+    "antidote_id": "oxygen"
+  },
+  "en/phentolamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/phentolamine",
+    "file": "source/html/en/phentolamine.html",
+    "downloaded": "2026-11-06T15:57:05+00:00",
+    "sha256": "cdeda45cd2601aaaf148aa34d8025df0b8dc8ad1da52f86069a136a7efb04620",
+    "bytes": 93539,
+    "antidote_id": "phentolamine"
+  },
+  "fr/phentolamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/phentolamine",
+    "file": "source/html/fr/phentolamine.html",
+    "downloaded": "2026-11-06T15:57:05+00:00",
+    "sha256": "251757fac3b667271cab8cf7193ed7447304546adb58e05b6093540970815310",
+    "bytes": 99357,
+    "antidote_id": "phentolamine"
   },
   "en/physostigmine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/physostigmine",
     "file": "source/html/en/physostigmine.html",
-    "downloaded": "2026-11-06T02:51:28+00:00",
-    "sha256": "fe9eb783a1be63e9ee76bf060d574aab3e8c2f9abc8ceb49260bddba4c88e278",
+    "downloaded": "2026-11-06T15:57:05+00:00",
+    "sha256": "fddb49414b696b12a9c5ac6adcb81e3d78e8688b998dc966b3b32da41d1e2418",
     "bytes": 98378,
     "antidote_id": "physostigmine"
   },
   "fr/physostigmine": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/physostigmine",
     "file": "source/html/fr/physostigmine.html",
-    "downloaded": "2026-11-06T02:51:28+00:00",
-    "sha256": "d66540b84faf3c815ffdcea34089b466917a2f5f8f23e681501ae069cc605db0",
-    "bytes": 103995,
+    "downloaded": "2026-11-06T15:57:06+00:00",
+    "sha256": "334016f6423951b3fa05b0b5c5a1f2ebf9ca028982d110e58829ded91489deac",
+    "bytes": 103994,
     "antidote_id": "physostigmine"
+  },
+  "en/polyethylene-glycol": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/polyethylene-glycol",
+    "file": "source/html/en/polyethylene-glycol.html",
+    "downloaded": "2026-11-06T15:57:06+00:00",
+    "sha256": "eb60b3fe409e96ad26cb8727219cc0066e88e8d4233c6d3c6a0290414e3c4625",
+    "bytes": 95816,
+    "antidote_id": "polyethylene-glycol"
+  },
+  "fr/polyethylene-glycol": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/polyethylene-glycol",
+    "file": "source/html/fr/polyethylene-glycol.html",
+    "downloaded": "2026-11-06T15:57:06+00:00",
+    "sha256": "49bcda6fa915753baedb97b2e7848419799ace75844b8b692a910a645701ba3d",
+    "bytes": 101190,
+    "antidote_id": "polyethylene-glycol"
+  },
+  "en/pralidoxime": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/pralidoxime",
+    "file": "source/html/en/pralidoxime.html",
+    "downloaded": "2026-11-06T15:57:07+00:00",
+    "sha256": "220280929dc0db42eb4e3702f990c21ea35ff97f26a327911548385665893421",
+    "bytes": 95972,
+    "antidote_id": "pralidoxime"
+  },
+  "fr/pralidoxime": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/pralidoxime",
+    "file": "source/html/fr/pralidoxime.html",
+    "downloaded": "2026-11-06T15:57:07+00:00",
+    "sha256": "65e9c2922c5772df8d3d014024b1d8448a8e1db8fecadd516038bd04724fb525",
+    "bytes": 101741,
+    "antidote_id": "pralidoxime"
+  },
+  "en/protamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/protamine",
+    "file": "source/html/en/protamine.html",
+    "downloaded": "2026-11-06T15:57:07+00:00",
+    "sha256": "0bb424d4bba1355c6ed788d81f2c1fdc532d2dbc477f0fbc60d4bdff2d0c7c86",
+    "bytes": 102252,
+    "antidote_id": "protamine"
+  },
+  "fr/protamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/protamine",
+    "file": "source/html/fr/protamine.html",
+    "downloaded": "2026-11-06T15:57:08+00:00",
+    "sha256": "0a50ca11c1c46bbff8e319e9d40f242d39815c7ddf2a74592bf574a0ab8cd344",
+    "bytes": 109052,
+    "antidote_id": "protamine"
+  },
+  "en/pyridoxine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/pyridoxine",
+    "file": "source/html/en/pyridoxine.html",
+    "downloaded": "2026-11-06T15:57:08+00:00",
+    "sha256": "1a83a2ae447e1045c967252540cc1c522d76eff487277b0d2eb5a006d119ce6d",
+    "bytes": 96144,
+    "antidote_id": "pyridoxine"
+  },
+  "fr/pyridoxine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/pyridoxine",
+    "file": "source/html/fr/pyridoxine.html",
+    "downloaded": "2026-11-06T15:57:08+00:00",
+    "sha256": "590238ab011c967a767490c37f0ad8d4f06a42187fc707ac32b7df7a8906557a",
+    "bytes": 102086,
+    "antidote_id": "pyridoxine"
+  },
+  "en/rivastigmine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/rivastigmine",
+    "file": "source/html/en/rivastigmine.html",
+    "downloaded": "2026-11-06T15:57:08+00:00",
+    "sha256": "8b6e89c4090b121bc627b349246af136fb3d1ba91e3dc86d5f801b7a17a84b43",
+    "bytes": 99719,
+    "antidote_id": "rivastigmine"
+  },
+  "fr/rivastigmine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/rivastigmine",
+    "file": "source/html/fr/rivastigmine.html",
+    "downloaded": "2026-11-06T15:57:09+00:00",
+    "sha256": "c3f93669654ccd109398a744f0b8943421df025e129b3962b65c0e7f7892b043",
+    "bytes": 106330,
+    "antidote_id": "rivastigmine"
+  },
+  "en/sodium-bicarbonate": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/sodium-bicarbonate",
+    "file": "source/html/en/sodium-bicarbonate.html",
+    "downloaded": "2026-11-06T15:57:09+00:00",
+    "sha256": "513ccf047c5da31e8eceb67b67527b13ef317f07380024afab519629c859b5a0",
+    "bytes": 102392,
+    "antidote_id": "sodium-bicarbonate"
+  },
+  "fr/bicarbonate-de-sodium": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/bicarbonate-de-sodium",
+    "file": "source/html/fr/bicarbonate-de-sodium.html",
+    "downloaded": "2026-11-06T15:57:09+00:00",
+    "sha256": "34accc92f73ec2864d4e0e94197fa8c161b5acaa401bc80d2515ba6a58595325",
+    "bytes": 109619,
+    "antidote_id": "sodium-bicarbonate"
+  },
+  "en/sodium-chloride-3": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/sodium-chloride-3",
+    "file": "source/html/en/sodium-chloride-3.html",
+    "downloaded": "2026-11-06T15:57:10+00:00",
+    "sha256": "d2bbcc23661037a67ba69a0c0d66ebaf47c7f77b70d1d494793161add85f52d1",
+    "bytes": 93215,
+    "antidote_id": "sodium-chloride-3"
+  },
+  "fr/chlorure-de-sodium-3": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/chlorure-de-sodium-3",
+    "file": "source/html/fr/chlorure-de-sodium-3.html",
+    "downloaded": "2026-11-06T15:57:10+00:00",
+    "sha256": "b6c94b0d1b58847057f2ebd1fcd11b22b6f1a99ee37695742ad4559768257097",
+    "bytes": 99037,
+    "antidote_id": "sodium-chloride-3"
+  },
+  "en/sodium-thiosulfate": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/sodium-thiosulfate",
+    "file": "source/html/en/sodium-thiosulfate.html",
+    "downloaded": "2026-11-06T15:57:10+00:00",
+    "sha256": "c22958fce591b2994d8f5c8d2be81ab36a1de6692756324c6f671d946f70ce0e",
+    "bytes": 95138,
+    "antidote_id": "sodium-thiosulfate"
+  },
+  "fr/thiosulfate-de-sodium": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/thiosulfate-de-sodium",
+    "file": "source/html/fr/thiosulfate-de-sodium.html",
+    "downloaded": "2026-11-06T15:57:10+00:00",
+    "sha256": "6525fc6a1f4664a69d7f3637205c74569209acca76c44ba838f077d26fbf7e48",
+    "bytes": 101100,
+    "antidote_id": "sodium-thiosulfate"
+  },
+  "en/syrup-ipecac": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/syrup-ipecac",
+    "file": "source/html/en/syrup-ipecac.html",
+    "downloaded": "2026-11-06T15:57:11+00:00",
+    "sha256": "0d71ea3002c01ff961d5cba9fdb4497238b37b3aa22d3ab4c3faae1fcda60167",
+    "bytes": 87140,
+    "antidote_id": "syrup-ipecac"
+  },
+  "fr/sirop-dipeca": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/sirop-dipeca",
+    "file": "source/html/fr/sirop-dipeca.html",
+    "downloaded": "2026-11-06T15:57:11+00:00",
+    "sha256": "9625161115378f6a67a4fbae98bc57ed11fa555cfcf09fd823fa2d1caa236279",
+    "bytes": 92516,
+    "antidote_id": "syrup-ipecac"
+  },
+  "en/thiamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/thiamine",
+    "file": "source/html/en/thiamine.html",
+    "downloaded": "2026-11-06T15:57:11+00:00",
+    "sha256": "0633a1fbdcd4aa288c04971146041c58a61600633c34b282bbce7b456315d2d1",
+    "bytes": 93723,
+    "antidote_id": "thiamine"
+  },
+  "fr/thiamine": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/thiamine",
+    "file": "source/html/fr/thiamine.html",
+    "downloaded": "2026-11-06T15:57:12+00:00",
+    "sha256": "4d75a0fcb0ef21102b10b35741eb347030d13ea17479571f9eee4fae2ed9a903",
+    "bytes": 99448,
+    "antidote_id": "thiamine"
+  },
+  "en/vitamin-k1": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/vitamin-k1",
+    "file": "source/html/en/vitamin-k1.html",
+    "downloaded": "2026-11-06T15:57:12+00:00",
+    "sha256": "4ae1bb0a63547f321cadbc681e3fefdabd7e77b60a00765dd4d421303a3667a1",
+    "bytes": 96474,
+    "antidote_id": "vitamin-k1"
+  },
+  "fr/vitamine-k1": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/vitamine-k1",
+    "file": "source/html/fr/vitamine-k1.html",
+    "downloaded": "2026-11-06T15:57:12+00:00",
+    "sha256": "45917da664ab5404ce5e311d340b677a9facc39ac4d12a0e682a8ec3a2b9eedb",
+    "bytes": 103000,
+    "antidote_id": "vitamin-k1"
   },
   "fr/centres": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/antidotes/centres",
     "file": "source/html/fr/centres.html",
-    "downloaded": "2026-11-06T02:51:28+00:00",
-    "sha256": "9ad11bc5c38e8888124f9a0c667a9129cf1c284b585bf9cbb476eb9467e48209",
+    "downloaded": "2026-11-06T15:57:13+00:00",
+    "sha256": "8015b29b90e947cc60292ea15e934a408ab57382515244137530362dacf93c98",
     "bytes": 76853,
     "page": "centres"
   },
   "en/centres": {
     "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/en/antidotes/centres",
     "file": "source/html/en/centres.html",
-    "downloaded": "2026-11-06T02:51:28+00:00",
-    "sha256": "2f79b6150e45b396dac2c3456b528a9b0eece0267042a257f251f993f5b9cb68",
+    "downloaded": "2026-11-06T15:57:13+00:00",
+    "sha256": "04fbccd403c86da921f2ff8b708183ffb2105ff1b2040b6f12e3c8c5ab5f1d6a",
     "bytes": 72021,
     "page": "centres"
   }

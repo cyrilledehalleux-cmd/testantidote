@@ -3,8 +3,8 @@
 **DÉMO – contenu non validé / DEMO – content not validated**
 
 Preuve de concept d'une application web installable (PWA), bilingue, utilisable **hors ligne**,
-reprenant 3 monographies du *Guide canadien des antidotes* (CIUSSS de la Capitale-Nationale) :
-anticorps spécifiques de la digoxine (avec un calculateur DigiFab de démonstration), fomépizole, physostigmine.
+reprenant les **44 monographies** du *Guide canadien des antidotes* (CIUSSS de la Capitale-Nationale), en français et en anglais,
+avec un calculateur DigiFab de démonstration.
 
 Navigation par 3 onglets en bas de l'écran : **Antidotes** (liste + recherche par nom ou synonyme),
 **Outils** (calculateur DigiFab, abréviations, avis au lecteur, à propos) et **Centres antipoison**
@@ -43,6 +43,7 @@ npm ci
 ```
 
 ```bash
+python3 scripts/list_antidotes.py   # (si un antidote est ajouté/retiré sur le site) met à jour la liste depuis l'index officiel
 npm run download   # télécharge les pages officielles dans source/html/ (le lien « Français » est suivi, jamais deviné)
 npm run extract    # source/html/ → content/<lang>/*.md   (ATTENTION : écrase les modifications manuelles)
 npm run build      # vérifie le contenu puis construit dist/

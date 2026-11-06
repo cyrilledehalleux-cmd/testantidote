@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-06T03:02:34.901Z",
+  "date": "2026-11-06T16:02:34.693Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "ad37d0fde01a",
-  "passed": 34,
+  "version": "39797f210881",
+  "passed": 116,
   "failed": 0,
   "results": [
     {
@@ -11,7 +11,7 @@
       "detail": ""
     },
     {
-      "name": "Pré-cache complet au premier chargement (12 fichiers, sans avoir ouvert les pages)",
+      "name": "Pré-cache complet au premier chargement (18 fichiers, sans avoir ouvert les pages)",
       "ok": true,
       "detail": ""
     },
@@ -41,9 +41,119 @@
       "detail": "⚠ Hors ligne – contenu daté du 2026-11-06"
     },
     {
+      "name": "[fr] Acétate de sodium : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Acétate de sodium »"
+    },
+    {
+      "name": "[fr] Acétylcystéine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Acétylcystéine »"
+    },
+    {
+      "name": "[fr] Acide folique : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Acide folique »"
+    },
+    {
+      "name": "[fr] Agents chélateurs (excluant la Déféroxamine) : ouverte hors ligne, 10 sections",
+      "ok": true,
+      "detail": "10/10 sections, titre « Agents chélateurs (excluant la Déféroxamine) »"
+    },
+    {
       "name": "[fr] Anticorps spécifique de la digoxine : ouverte hors ligne, 18 sections",
       "ok": true,
       "detail": "18/18 sections, titre « Anticorps spécifique de la digoxine »"
+    },
+    {
+      "name": "[fr] Atropine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Atropine »"
+    },
+    {
+      "name": "[fr] Barbituriques : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Barbituriques »"
+    },
+    {
+      "name": "[fr] Benzodiazépines : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Benzodiazépines »"
+    },
+    {
+      "name": "[fr] Bicarbonate de sodium : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Bicarbonate de sodium »"
+    },
+    {
+      "name": "[fr] Bleu de méthylène : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Bleu de méthylène »"
+    },
+    {
+      "name": "[fr] Bromocriptine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Bromocriptine »"
+    },
+    {
+      "name": "[fr] Calcium (chlorure) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Calcium (chlorure) »"
+    },
+    {
+      "name": "[fr] Calcium (gluconate) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Calcium (gluconate) »"
+    },
+    {
+      "name": "[fr] Charbon de bois activé : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Charbon de bois activé »"
+    },
+    {
+      "name": "[fr] Chlorure de sodium à 3% : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Chlorure de sodium à 3% »"
+    },
+    {
+      "name": "[fr] Cyproheptadine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Cyproheptadine »"
+    },
+    {
+      "name": "[fr] Dantrolène : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Dantrolène »"
+    },
+    {
+      "name": "[fr] Déféroxamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Déféroxamine »"
+    },
+    {
+      "name": "[fr] Dextrose : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Dextrose »"
+    },
+    {
+      "name": "[fr] Diphenhydramine : ouverte hors ligne, 17 sections",
+      "ok": true,
+      "detail": "17/17 sections, titre « Diphenhydramine »"
+    },
+    {
+      "name": "[fr] Émulsion lipidique : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Émulsion lipidique »"
+    },
+    {
+      "name": "[fr] Éthanol : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Éthanol »"
+    },
+    {
+      "name": "[fr] Flumazénil : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Flumazénil »"
     },
     {
       "name": "[fr] Fomépizole : ouverte hors ligne, 18 sections",
@@ -51,9 +161,169 @@
       "detail": "18/18 sections, titre « Fomépizole »"
     },
     {
+      "name": "[fr] Glucagon : ouverte hors ligne, 17 sections",
+      "ok": true,
+      "detail": "17/17 sections, titre « Glucagon »"
+    },
+    {
+      "name": "[fr] Hydroxocobalamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Hydroxocobalamine »"
+    },
+    {
+      "name": "[fr] Insuline régulière : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Insuline régulière »"
+    },
+    {
+      "name": "[fr] Leucovorine calcique : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Leucovorine calcique »"
+    },
+    {
+      "name": "[fr] Lévocarnitine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Lévocarnitine »"
+    },
+    {
+      "name": "[fr] Naloxone (en centre hospitalier) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Naloxone (en centre hospitalier) »"
+    },
+    {
+      "name": "[fr] Naloxone (en extrahospitalier) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Naloxone (en extrahospitalier) »"
+    },
+    {
+      "name": "[fr] Octréotide : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Octréotide »"
+    },
+    {
+      "name": "[fr] Oxygène : ouverte hors ligne, 15 sections",
+      "ok": true,
+      "detail": "15/15 sections, titre « Oxygène »"
+    },
+    {
+      "name": "[fr] Phentolamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Phentolamine »"
+    },
+    {
       "name": "[fr] Physostigmine : ouverte hors ligne, 18 sections",
       "ok": true,
       "detail": "18/18 sections, titre « Physostigmine »"
+    },
+    {
+      "name": "[fr] Polyéthylène glycol : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Polyéthylène glycol »"
+    },
+    {
+      "name": "[fr] Pralidoxime : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Pralidoxime »"
+    },
+    {
+      "name": "[fr] Protamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Protamine »"
+    },
+    {
+      "name": "[fr] Pyridoxine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Pyridoxine »"
+    },
+    {
+      "name": "[fr] Rivastigmine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Rivastigmine »"
+    },
+    {
+      "name": "[fr] Sirop d'ipéca : ouverte hors ligne, 3 sections",
+      "ok": true,
+      "detail": "3/3 sections, titre « Sirop d'ipéca »"
+    },
+    {
+      "name": "[fr] Thiamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Thiamine »"
+    },
+    {
+      "name": "[fr] Thiosulfate de sodium : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Thiosulfate de sodium »"
+    },
+    {
+      "name": "[fr] Vitamine K1 : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Vitamine K1 »"
+    },
+    {
+      "name": "[en] Acetylcysteine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Acetylcysteine »"
+    },
+    {
+      "name": "[en] Activated Charcoal : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Activated Charcoal »"
+    },
+    {
+      "name": "[en] Atropine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Atropine »"
+    },
+    {
+      "name": "[en] Barbiturates : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Barbiturates »"
+    },
+    {
+      "name": "[en] Benzodiazepines : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Benzodiazepines »"
+    },
+    {
+      "name": "[en] Bromocriptine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Bromocriptine »"
+    },
+    {
+      "name": "[en] Calcium (Chloride) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Calcium (Chloride) »"
+    },
+    {
+      "name": "[en] Calcium (Gluconate) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Calcium (Gluconate) »"
+    },
+    {
+      "name": "[en] Chelating agents (excluding Deferoxamine) : ouverte hors ligne, 9 sections",
+      "ok": true,
+      "detail": "9/9 sections, titre « Chelating agents (excluding Deferoxamine) »"
+    },
+    {
+      "name": "[en] Cyproheptadine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Cyproheptadine »"
+    },
+    {
+      "name": "[en] Dantrolene : ouverte hors ligne, 17 sections",
+      "ok": true,
+      "detail": "17/17 sections, titre « Dantrolene »"
+    },
+    {
+      "name": "[en] Deferoxamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Deferoxamine »"
+    },
+    {
+      "name": "[en] Dextrose : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Dextrose »"
     },
     {
       "name": "[en] Digoxin-Specific Antibodies : ouverte hors ligne, 18 sections",
@@ -61,14 +331,154 @@
       "detail": "18/18 sections, titre « Digoxin-Specific Antibodies »"
     },
     {
+      "name": "[en] Diphenhydramine : ouverte hors ligne, 17 sections",
+      "ok": true,
+      "detail": "17/17 sections, titre « Diphenhydramine »"
+    },
+    {
+      "name": "[en] Ethanol : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Ethanol »"
+    },
+    {
+      "name": "[en] Flumazenil : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Flumazenil »"
+    },
+    {
+      "name": "[en] Folic acid : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Folic acid »"
+    },
+    {
       "name": "[en] Fomepizole : ouverte hors ligne, 18 sections",
       "ok": true,
       "detail": "18/18 sections, titre « Fomepizole »"
     },
     {
+      "name": "[en] Glucagon : ouverte hors ligne, 17 sections",
+      "ok": true,
+      "detail": "17/17 sections, titre « Glucagon »"
+    },
+    {
+      "name": "[en] Hydroxocobalamin : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Hydroxocobalamin »"
+    },
+    {
+      "name": "[en] Insulin Regular : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Insulin Regular »"
+    },
+    {
+      "name": "[en] Leucovorin Calcium : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Leucovorin Calcium »"
+    },
+    {
+      "name": "[en] Levocarnitine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Levocarnitine »"
+    },
+    {
+      "name": "[en] Lipid Emulsion : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Lipid Emulsion »"
+    },
+    {
+      "name": "[en] Methylene Blue : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Methylene Blue »"
+    },
+    {
+      "name": "[en] Naloxone (extrahospital administration) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Naloxone (extrahospital administration) »"
+    },
+    {
+      "name": "[en] Naloxone (in-hospital administration) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Naloxone (in-hospital administration) »"
+    },
+    {
+      "name": "[en] Octreotide : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Octreotide »"
+    },
+    {
+      "name": "[en] Oxygen : ouverte hors ligne, 15 sections",
+      "ok": true,
+      "detail": "15/15 sections, titre « Oxygen »"
+    },
+    {
+      "name": "[en] Phentolamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Phentolamine »"
+    },
+    {
       "name": "[en] Physostigmine : ouverte hors ligne, 18 sections",
       "ok": true,
       "detail": "18/18 sections, titre « Physostigmine »"
+    },
+    {
+      "name": "[en] Polyethylene glycol : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Polyethylene glycol »"
+    },
+    {
+      "name": "[en] Pralidoxime : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Pralidoxime »"
+    },
+    {
+      "name": "[en] Protamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Protamine »"
+    },
+    {
+      "name": "[en] Pyridoxine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Pyridoxine »"
+    },
+    {
+      "name": "[en] Rivastigmine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Rivastigmine »"
+    },
+    {
+      "name": "[en] Sodium Acetate : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Sodium Acetate »"
+    },
+    {
+      "name": "[en] Sodium Bicarbonate : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Sodium Bicarbonate »"
+    },
+    {
+      "name": "[en] Sodium Chloride (3%) : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Sodium Chloride (3%) »"
+    },
+    {
+      "name": "[en] Sodium Thiosulfate : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Sodium Thiosulfate »"
+    },
+    {
+      "name": "[en] Syrup of Ipecac : ouverte hors ligne, 3 sections",
+      "ok": true,
+      "detail": "3/3 sections, titre « Syrup of Ipecac »"
+    },
+    {
+      "name": "[en] Thiamine : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Thiamine »"
+    },
+    {
+      "name": "[en] Vitamin K1 : ouverte hors ligne, 18 sections",
+      "ok": true,
+      "detail": "18/18 sections, titre « Vitamin K1 »"
     },
     {
       "name": "Barre du bas : Antidotes / Outils / Centres antipoison",
@@ -106,7 +516,7 @@
       "detail": ""
     },
     {
-      "name": "Bouton « Liste » : retour à la liste des antidotes",
+      "name": "Bouton « Liste » : retour à la liste des antidotes (44)",
       "ok": true,
       "detail": ""
     },
@@ -168,7 +578,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "ad37d0fde01an"
+      "detail": "39797f210881n"
     },
     {
       "name": "Aucune erreur JavaScript",

@@ -29,7 +29,7 @@ from markdown_it import MarkdownIt
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from frontmatter import parse_frontmatter  # noqa: E402
-from textutil import formatting, lines, HTML_WS  # noqa: E402
+from textutil import formatting, images, lines, HTML_WS  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MD = MarkdownIt("commonmark", {"html": True}).enable("table")
@@ -41,6 +41,9 @@ def source_monograph(path):
     h1 = list(soup.find("h1").stripped_strings)
     detail = copy.copy(soup.find("div", class_="antidoteDetail"))
     removed = []
+    for st in detail.find_all("style"):
+        removed.append("bloc <style> (mise en forme CSS)")
+        st.decompose()
     for b in detail.find_all("button"):
         removed.append("bouton : " + HTML_WS.sub(" ", b.get_text()).strip())
         b.decompose()
@@ -118,6 +121,12 @@ def compare(label, src_root, dst_root, out):
     fmt_b = [f"{k}\t{t}" for k, t in formatting(dst_root)]
     diff_fmt = list(difflib.unified_diff(fmt_a, fmt_b, f"{label} [site, mise en forme]",
                                          f"{label} [markdown, mise en forme]", lineterm="", n=1))
+    ia, ib = images(src_root), images(dst_root)
+    diff_img = [] if ia == ib else [f"--- {label} images : site {ia} / markdown {ib}"]
+    for name in ib:
+        if not (ROOT / "content" / "images" / name).exists():
+            diff_img.append(f"--- {label} : image manquante content/images/{name}")
+    diff_fmt += diff_img
     out.extend(diff + diff_fmt)
     chars = sum(len(t) for _, t in a)
     return len(diff) + len(diff_fmt) == 0, len(a), chars

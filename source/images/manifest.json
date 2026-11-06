@@ -1,0 +1,32 @@
+{
+  "Image_Barbiturate_PG_content_2_EN.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/Image%20Barbiturate%20PG%20content%202%20EN.png",
+    "sha256": "196ba3c6cf5af40d2177ffe534f25237c4a45fc3febfd62ed8ae30d236be73c3",
+    "bytes": 7941
+  },
+  "Image_Barbiturique_PG_teneur_FR.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/Image%20Barbiturique%20PG%20teneur%20FR.png",
+    "sha256": "9232de99641df212178800e9869a79de28fea75d64fadb42ded65404196b24b8",
+    "bytes": 7210
+  },
+  "benzo_equi_dose_en_2020.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/benzo_equi_dose_en_2020.png",
+    "sha256": "42df6ecd2955c8e6c635e9ab659352d46754775f5687cdb20490b5e143cf8d51",
+    "bytes": 155522
+  },
+  "Image_benzo_PG_content_3_EN.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/Image%20benzo%20PG%20content%203%20EN.png",
+    "sha256": "26ceb3db969a65d1d870ccd4c282b572e65fbd22364c2aa5f34b7d58e26dd4a7",
+    "bytes": 18275
+  },
+  "benzo_dosage_equi_2020_0.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/benzo_dosage_equi_2020_0.png",
+    "sha256": "8532efc8e0a3639723d7e74135b2c76076a85472515e93860f114c0e9acfb990",
+    "bytes": 135259
+  },
+  "Image_Benzo_PG_teneur_3_FR.png": {
+    "url": "https://www.ciusss-capitalenationale.gouv.qc.ca/sites/d8/files/docs/ProfSante/Antidotes/Image%20Benzo%20PG%20teneur%203%20FR.png",
+    "sha256": "fe6660292ebaf14c1accad531fc275b7095e54ed091ca9dbf44112e9e145227a",
+    "bytes": 16392
+  }
+}

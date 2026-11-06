@@ -34,9 +34,18 @@ function lineChecks(file, raw) {
   });
 }
 
+function imageChecks(file, raw) {
+  raw.replace(/\r\n/g, '\n').split('\n').forEach((ln, i) => {
+    for (const m of ln.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)) {
+      const target = path.resolve(ROOT, path.dirname(file), m[1]);
+      if (!fs.existsSync(target)) err(file, i + 1, `image introuvable : ${m[1]} (le fichier doit être dans content/images/)`);
+    }
+  });
+}
+
 function inlineChecks(file, sec) {
   const plain = sec.text;
-  if (/(^|[^\\])\*\*/.test(plain)) err(file, sec.line, `« ** » non fermé dans la section « ${sec.title} » : vérifiez que chaque gras a ses deux paires d'étoiles`);
+
   for (const tag of ['sup', 'sub', 'u', 'strong', 'em']) {
     const open = (sec.html.match(new RegExp(`<${tag}>`, 'g')) || []).length;
     const close = (sec.html.match(new RegExp(`</${tag}>`, 'g')) || []).length;
@@ -71,6 +80,14 @@ for (const id of all) {
     if (!m.sections.length) err(f, 0, 'aucune section « ## » trouvée');
     if (m.beforeHtml.trim()) err(f, 0, 'du texte se trouve avant la première section « ## » : il ne sera pas affiché correctement');
     lineChecks(f, m.raw);
+    imageChecks(f, m.raw);
+    // « ** » visible dans le texte affiché alors que le fichier ne contient pas de « \*\* » (étoiles voulues)
+    {
+      const shown = []; walk(m.sections, x => shown.push(x.text));
+      const literal = (shown.join('\n').match(/\*\*/g) || []).length;
+      const escaped = (m.raw.match(/\\\*\\\*/g) || []).length;
+      if (literal > escaped) err(f, 0, `« ** » affiché tel quel ${literal - escaped} fois : un gras n'est pas fermé (vérifiez que chaque gras a ses deux paires d'étoiles, sans espace à l'intérieur)`);
+    }
     if ((m.raw.match(new RegExp(FOOTER_MARK.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length > 1)
       err(f, 0, 'la ligne du pied de page apparaît plusieurs fois');
     walk(m.sections, s => {
@@ -86,7 +103,7 @@ for (const id of all) {
     if (shape(fr.sections) !== shape(en.sections)) {
       const lf = []; walk(fr.sections, s => lf.push(`${s.id} ${s.title}`));
       const le = []; walk(en.sections, s => le.push(`${s.id} ${s.title}`));
-      err(`content/*/${id}.md`, 0, `les sections ne correspondent pas entre FR et EN (une section manque dans une langue ?)\n    FR : ${lf.join(' | ')}\n    EN : ${le.join(' | ')}`);
+      warn(`content/*/${id}.md`, 0, `les sections ne correspondent pas entre FR et EN (une section manque dans une langue ?) – le changement de langue ouvrira la monographie au début\n    FR : ${lf.join(' | ')}\n    EN : ${le.join(' | ')}`);
     }
     if (fr.meta.last_revision !== en.meta.last_revision)
       warn(`content/*/${id}.md`, 0, `dates de révision différentes : FR ${fr.meta.last_revision}, EN ${en.meta.last_revision}`);

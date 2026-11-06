@@ -8,8 +8,11 @@ Les espaces HTML (espace, tabulation, retour de ligne) sont fusionnés comme à
 l'affichage dans un navigateur ; les autres caractères sont gardés tels quels.
 """
 import re
+import urllib.parse
 
 from bs4 import Comment, NavigableString, Tag
+
+from mdconv import image_filename, is_red
 
 HTML_WS = re.compile(r"[ \t\n\r\f]+")
 BLOCK = {"p", "div", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6", "table", "tr", "td", "th",
@@ -46,6 +49,8 @@ def lines(root):
         for c in n.children:
             if isinstance(c, Comment):
                 continue
+            if getattr(c, "name", None) in ("style", "script"):
+                continue
             if isinstance(c, NavigableString):
                 if cur["kind"] is None:
                     cur["kind"] = _kind(c)
@@ -67,16 +72,22 @@ def lines(root):
 def formatting(root):
     """Suite des passages mis en forme : (« B+I », texte) – permet de vérifier
     que gras, italique, souligné, exposant, liens sont conservés."""
+    import copy
+    root = copy.copy(root)
+    for br in root.find_all("br"):  # un retour à la ligne sépare toujours deux passages
+        br.replace_with(NavigableString("\u2063"))
     segs = []
     for s in root.find_all(string=True):
-        if isinstance(s, Comment):
+        if isinstance(s, Comment) or s.find_parent(["style", "script"]):
             continue
         kinds = set()
         for a in s.parents:
             if a.name in FORMAT:
                 kinds.add(FORMAT[a.name])
+            if a.name in ("font", "span") and (is_red(a) or "rouge" in (a.get("class") or [])):
+                kinds.add("ROUGE")
             if a.name == "a":
-                kinds.add("A:" + a.get("href", ""))
+                kinds.add("A:" + urllib.parse.unquote(a.get("href", "")).strip())
         key = "+".join(sorted(kinds))
         txt = HTML_WS.sub(" ", str(s))
         block_break = s.find_parent(list(BLOCK))
@@ -86,7 +97,13 @@ def formatting(root):
             segs.append([key, txt, block_break])
     res = []
     for key, txt, _ in segs:
-        t = txt.strip("  ")
-        if key and t:
-            res.append((key, HTML_WS.sub(" ", t)))
+        for part in txt.split("\u2063"):
+            t = part.strip(" \u00a0")
+            if key and t:
+                res.append((key, HTML_WS.sub(" ", t)))
     return res
+
+
+def images(root):
+    """Liste ordonnée des images (nom de fichier normalisé)."""
+    return [image_filename(i.get("src", "")) for i in root.find_all("img")]

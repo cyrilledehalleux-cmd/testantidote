@@ -114,6 +114,7 @@ try {
       const title = await page.textContent('#mono-title');
       const count = await page.locator('details.sec').count();
       const expected = JSON.stringify(m.sections).match(/"level":/g).length;
+      const nImg = (JSON.stringify(m.sections).match(/<img /g) || []).length;
       await page.click('#open-all');
       const txt = await page.textContent('#sections');
       const lastSec = m.sections[m.sections.length - 1];
@@ -164,7 +165,7 @@ try {
   // --- bouton retour ---
   await page.click('.mono-tools .back');
   await page.waitForSelector('#q');
-  check('Bouton « Liste » : retour à la liste des antidotes', (await page.locator('#results a.row').count()) === 3);
+  check(`Bouton « Liste » : retour à la liste des antidotes (${data.fr.order.length})`, (await page.locator('#results a.row').count()) === data.fr.order.length);
 
   // --- centres antipoison ---
   for (const [lang, call] of [['fr', 'Appeler le centre'], ['en', 'Call centre']]) {

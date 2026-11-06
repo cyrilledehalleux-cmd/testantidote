@@ -6,16 +6,180 @@
   },
   "antidotes": [
     {
-      "id": "fomepizole",
-      "en": "/en/antidotes/fomepizole"
+      "id": "acetylcysteine",
+      "en": "/en/antidotes/acetylcysteine"
+    },
+    {
+      "id": "sodium-acetate",
+      "en": "/en/antidotes/sodium-acetate"
+    },
+    {
+      "id": "activated-charcoal",
+      "en": "/en/antidotes/activated-charcoal"
+    },
+    {
+      "id": "atropine",
+      "en": "/en/antidotes/atropine"
+    },
+    {
+      "id": "barbiturates",
+      "en": "/en/antidotes/barbiturates"
+    },
+    {
+      "id": "benzodiazepines",
+      "en": "/en/antidotes/benzodiazepines"
+    },
+    {
+      "id": "bromocriptine",
+      "en": "/en/antidotes/bromocriptine"
+    },
+    {
+      "id": "calcium-chloride",
+      "en": "/en/antidotes/calcium-chloride"
+    },
+    {
+      "id": "calcium-gluconate",
+      "en": "/en/antidotes/calcium-gluconate"
+    },
+    {
+      "id": "chelating-agents-excluding-deferoxamine",
+      "en": "/en/antidotes/chelating-agents-excluding-deferoxamine"
+    },
+    {
+      "id": "cyproheptadine",
+      "en": "/en/antidotes/cyproheptadine"
+    },
+    {
+      "id": "dantrolene",
+      "en": "/en/antidotes/dantrolene"
+    },
+    {
+      "id": "deferoxamine",
+      "en": "/en/antidotes/deferoxamine"
+    },
+    {
+      "id": "dextrose",
+      "en": "/en/antidotes/dextrose"
     },
     {
       "id": "digoxin-specific-antibodies",
       "en": "/en/antidotes/digoxin-specific-antibodies"
     },
     {
+      "id": "diphenhydramine",
+      "en": "/en/antidotes/diphenhydramine"
+    },
+    {
+      "id": "ethanol",
+      "en": "/en/antidotes/ethanol"
+    },
+    {
+      "id": "flumazenil",
+      "en": "/en/antidotes/flumazenil"
+    },
+    {
+      "id": "folic-acid",
+      "en": "/en/antidotes/folic-acid"
+    },
+    {
+      "id": "fomepizole",
+      "en": "/en/antidotes/fomepizole"
+    },
+    {
+      "id": "glucagon",
+      "en": "/en/antidotes/glucagon"
+    },
+    {
+      "id": "hydroxocobalamin",
+      "en": "/en/antidotes/hydroxocobalamin"
+    },
+    {
+      "id": "insulin-regular",
+      "en": "/en/antidotes/insulin-regular"
+    },
+    {
+      "id": "leucovorin-calcium",
+      "en": "/en/antidotes/leucovorin-calcium"
+    },
+    {
+      "id": "levocarnitine",
+      "en": "/en/antidotes/levocarnitine"
+    },
+    {
+      "id": "lipid-emulsion",
+      "en": "/en/antidotes/lipid-emulsion"
+    },
+    {
+      "id": "methylene-blue",
+      "en": "/en/antidotes/methylene-blue"
+    },
+    {
+      "id": "naloxone-extrahospital-administration",
+      "en": "/en/antidotes/naloxone-extrahospital-administration"
+    },
+    {
+      "id": "naloxone-hospital-administration",
+      "en": "/en/antidotes/naloxone-hospital-administration"
+    },
+    {
+      "id": "octreotide",
+      "en": "/en/antidotes/octreotide"
+    },
+    {
+      "id": "oxygen",
+      "en": "/en/antidotes/oxygen"
+    },
+    {
+      "id": "phentolamine",
+      "en": "/en/antidotes/phentolamine"
+    },
+    {
       "id": "physostigmine",
       "en": "/en/antidotes/physostigmine"
+    },
+    {
+      "id": "polyethylene-glycol",
+      "en": "/en/antidotes/polyethylene-glycol"
+    },
+    {
+      "id": "pralidoxime",
+      "en": "/en/antidotes/pralidoxime"
+    },
+    {
+      "id": "protamine",
+      "en": "/en/antidotes/protamine"
+    },
+    {
+      "id": "pyridoxine",
+      "en": "/en/antidotes/pyridoxine"
+    },
+    {
+      "id": "rivastigmine",
+      "en": "/en/antidotes/rivastigmine"
+    },
+    {
+      "id": "sodium-bicarbonate",
+      "en": "/en/antidotes/sodium-bicarbonate"
+    },
+    {
+      "id": "sodium-chloride-3",
+      "en": "/en/antidotes/sodium-chloride-3"
+    },
+    {
+      "id": "sodium-thiosulfate",
+      "en": "/en/antidotes/sodium-thiosulfate"
+    },
+    {
+      "id": "syrup-ipecac",
+      "en": "/en/antidotes/syrup-ipecac"
+    },
+    {
+      "id": "thiamine",
+      "en": "/en/antidotes/thiamine"
+    },
+    {
+      "id": "vitamin-k1",
+      "en": "/en/antidotes/vitamin-k1"
     }
   ],
   "pages": {

@@ -4,26 +4,23 @@
 
 - **Date :** 2026-11-06 · **Navigateur :** Chromium 153.0.8010.12 (Playwright), bureau, fenêtre 1280 × 900
 - **Script :** `tests/offline.e2e.mjs` (`npm run build && npm run test:offline`)
-- **Résultat :** **34 / 34 vérifications réussies** (détail : `reports/offline-test-auto.json`)
+- **Résultat :** **116 / 116 vérifications réussies** (détail : `reports/offline-test-auto.json`)
 
 Méthode : première visite en ligne, puis **arrêt complet du serveur** et navigateur mis hors ligne
 (équivalent de « réseau désactivé » dans les outils de développement). La page est fermée puis rouverte.
 
-| Vérification | Résultat |
+- **Monographies :** les 88 pages (44 antidotes × 2 langues) s'ouvrent hors ligne avec toutes
+  leurs sections : 88 / 88 ✅
+
+| Autres vérifications | Résultat |
 |---|---|
 | Avis au lecteur affiché au premier lancement | ✅ |
-| Pré-cache complet au premier chargement (12 fichiers, sans avoir ouvert les pages) | ✅ |
+| Pré-cache complet au premier chargement (18 fichiers, sans avoir ouvert les pages) | ✅ |
 | Indication « Disponible hors ligne » (onglet Outils) | ✅ |
 | Application rouverte sans réseau (serveur arrêté) | ✅ |
 | Aucune requête n'atteint le serveur hors ligne | ✅ |
 | Avis au lecteur non réaffiché après acceptation | ✅ |
 | Indicateur « Hors ligne – contenu daté du … » – ⚠ Hors ligne – contenu daté du 2026-11-06 | ✅ |
-| [fr] Anticorps spécifique de la digoxine : ouverte hors ligne, 18 sections | ✅ |
-| [fr] Fomépizole : ouverte hors ligne, 18 sections – 18/18 sections, titre « Fomépizole » | ✅ |
-| [fr] Physostigmine : ouverte hors ligne, 18 sections – 18/18 sections, titre « Physostigmine » | ✅ |
-| [en] Digoxin-Specific Antibodies : ouverte hors ligne, 18 sections – 18/18 sections, titre « Digoxin-Specific Antibodies » | ✅ |
-| [en] Fomepizole : ouverte hors ligne, 18 sections – 18/18 sections, titre « Fomepizole » | ✅ |
-| [en] Physostigmine : ouverte hors ligne, 18 sections – 18/18 sections, titre « Physostigmine » | ✅ |
 | Barre du bas : Antidotes / Outils / Centres antipoison – Antidotes | Outils | Centres antipoison | ✅ |
 | Accueil FR : « fomepizole » (sans accent) trouve « Fomépizole » | ✅ |
 | Accueil FR : majuscules (« DIGOXINE ») | ✅ |
@@ -31,7 +28,7 @@ Méthode : première visite en ligne, puis **arrêt complet du serveur** et navi
 | Accueil EN : par synonyme (« antizol » → Fomepizole) | ✅ |
 | Recherche dans la page (sans accents) : surlignage, compteur, résultat suivant – 10 surlignages, 1 / 10 → 2 / 10 | ✅ |
 | Recherche dans la page : effacement | ✅ |
-| Bouton « Liste » : retour à la liste des antidotes | ✅ |
+| Bouton « Liste » : retour à la liste des antidotes (44) | ✅ |
 | Centres antipoison fr hors ligne : 7 centres, 7 numéros – Appeler le centre (18004635060) | ✅ |
 | Centres antipoison en hors ligne : 7 centres, 7 numéros – Call centre (18004635060) | ✅ |
 | Changement FR → EN : même antidote et même section ouverte – #/en/m/digoxin-specific-antibodies/4.2 | ✅ |
@@ -43,7 +40,7 @@ Méthode : première visite en ligne, puis **arrêt complet du serveur** et navi
 | Page fr/advice hors ligne – Avis au lecteur | ✅ |
 | Page en/advice hors ligne – Advice to the reader | ✅ |
 | Nouvelle version téléchargée en arrière-plan : bandeau affiché | ✅ |
-| Après « Actualiser » : nouvelle version active – ad37d0fde01an | ✅ |
+| Après « Actualiser » : nouvelle version active – 39797f210881n | ✅ |
 | Aucune erreur JavaScript | ✅ |
 
 ## 2. Test sur le site publié (GitHub Pages) ✅

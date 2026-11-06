@@ -40,6 +40,27 @@ def french_link(raw_html, base):
     raise RuntimeError("Lien « Français » introuvable")
 
 
+IMAGES = {}
+
+
+def save_images(raw, base, manifest):
+    """Images du contenu des monographies → source/images/ (sans modification)."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from mdconv import image_filename
+    soup = BeautifulSoup(raw, "html.parser")
+    detail = soup.find("div", class_="antidoteDetail")
+    for img in (detail.find_all("img") if detail else []):
+        src = img.get("src", "")
+        url = src if src.startswith("http") else base + src
+        name = image_filename(src)
+        data = fetch(url)
+        out = ROOT / "source" / "images" / name
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(data)
+        IMAGES[name] = {"url": url, "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)}
+        print(f"    image {name}")
+
+
 def save(lang, slug, url, raw, manifest):
     path = SRC / lang / f"{slug}.html"
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -64,10 +85,12 @@ def main():
         en_url = base + a["en"]
         en_raw = fetch(en_url)
         save("en", a["id"], en_url, en_raw, manifest)
+        save_images(en_raw, base, manifest)
         fr_url = french_link(en_raw, base)
         fr_slug = fr_url.rstrip("/").rsplit("/", 1)[-1]
         fr_raw = fetch(fr_url)
         save("fr", fr_slug, fr_url, fr_raw, manifest)
+        save_images(fr_raw, base, manifest)
         manifest[f"fr/{fr_slug}"]["antidote_id"] = a["id"]
         manifest[f"en/{a['id']}"]["antidote_id"] = a["id"]
     for name, urls in cfg.get("pages", {}).items():
@@ -76,7 +99,10 @@ def main():
             save(lang, name, url, fetch(url), manifest)
             manifest[f"{lang}/{name}"]["page"] = name
     (SRC / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("OK – source/html/manifest.json")
+    if IMAGES:
+        (ROOT / "source" / "images" / "manifest.json").write_text(
+            json.dumps(IMAGES, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print("OK – source/html/manifest.json" + (", source/images/manifest.json" if IMAGES else ""))
 
 
 if __name__ == "__main__":
