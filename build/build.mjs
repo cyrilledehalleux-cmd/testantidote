@@ -7,6 +7,9 @@ import crypto from 'node:crypto';
 import { ROOT, LANGS, PAGES, listMonographIds, loadMonograph, loadPage } from './content.mjs';
 
 const APP = path.join(ROOT, 'app');
+// STAGING=1 : version de test (servie sous …/staging/), stockage hors ligne séparé
+const STAGING = process.env.STAGING === '1';
+const CACHE_PREFIX = STAGING ? 'antidotes-staging-' : 'antidotes-';
 const DIST = path.join(ROOT, 'dist');
 
 fs.rmSync(DIST, { recursive: true, force: true });
@@ -20,6 +23,13 @@ for (const entry of fs.readdirSync(APP, { recursive: true, withFileTypes: true }
   const dest = path.join(DIST, rel);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.copyFileSync(path.join(APP, rel), dest);
+}
+
+if (STAGING) {
+  const mf = path.join(DIST, 'manifest.webmanifest');
+  const m = JSON.parse(fs.readFileSync(mf, 'utf8'));
+  m.name = m.name + ' (VERSION DE TEST)'; m.short_name = 'Antidotes TEST';
+  fs.writeFileSync(mf, JSON.stringify(m, null, 2));
 }
 
 // 1b. images du contenu (content/images → dist/images)
@@ -36,7 +46,7 @@ const fixImg = html => html.replace(/(<img[^>]*\ssrc=")\.\.\/images\//g, '$1imag
 const shapeOf = secs => secs.map(s => `${s.level}(${shapeOf(s.children)})`).join(',');
 const strip = secs => secs.map(s => ({ id: s.id, level: s.level, title: s.title, titleHtml: s.titleHtml,
   html: fixImg(s.html), text: s.text, children: strip(s.children) }));
-const data = { generated: new Date().toISOString() };
+const data = { generated: new Date().toISOString(), staging: STAGING, cachePrefix: CACHE_PREFIX };
 let contentDate = '';
 for (const lang of LANGS) {
   const L = { monographs: {}, pages: {}, order: [] };
@@ -83,9 +93,11 @@ fs.writeFileSync(path.join(DIST, 'data', 'content.json'), JSON.stringify(data));
 const assets = ['./', ...files.map(f => './' + f)];
 const sw = fs.readFileSync(path.join(APP, 'sw.template.js'), 'utf8')
   .replace('__VERSION__', version)
+  .replace('__PREFIX__', CACHE_PREFIX)
+  .replace('__STAGING__', String(STAGING))
   .replace('__ASSETS__', JSON.stringify(assets, null, 2));
 fs.writeFileSync(path.join(DIST, 'sw.js'), sw);
 fs.writeFileSync(path.join(DIST, '.nojekyll'), '');
 
 const kb = files.reduce((n, f) => n + fs.statSync(path.join(DIST, f)).size, 0) / 1024;
-console.log(`✓ dist/ construit – version ${version}, ${assets.length} fichiers mis en cache hors ligne (${kb.toFixed(0)} Ko), contenu daté du ${data.contentDate}`);
+console.log(`✓ dist/ construit${STAGING ? ' (VERSION DE TEST)' : ''} – version ${version}, ${assets.length} fichiers mis en cache hors ligne (${kb.toFixed(0)} Ko), contenu daté du ${data.contentDate}`);

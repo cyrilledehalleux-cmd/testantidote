@@ -1,6 +1,9 @@
-# Publication automatique sur GitHub Pages à chaque modification de la branche main.
-# Si « npm run check » trouve une erreur de mise en forme, rien n'est publié
-# (la version précédente reste en ligne) et la croix rouge dans l'onglet « Actions » explique l'erreur.
+# Publication automatique sur GitHub Pages.
+# - Version officielle : branche main  → https://cyrilledehalleux-cmd.github.io/testantidote/
+# - Version de test    : branche staging (si elle existe) → …/testantidote/staging/
+# Si « npm run check » ou les tests échouent sur main, rien n'est publié (la version précédente reste en ligne)
+# et la croix rouge dans l'onglet « Actions » explique l'erreur. Une erreur dans la version de test
+# n'empêche pas la publication de la version officielle (la version de test est alors absente).
 name: Publier la démo
 
 on:
@@ -22,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -29,10 +34,31 @@ jobs:
       - run: npm ci
       - name: Vérifier le contenu (titres, tableaux, sections FR/EN…)
         run: npm run check
-      - name: Tests du calculateur
+      - name: Tests des calculateurs
         run: npm test
-      - name: Construire l'application
+      - name: Construire l'application (version officielle)
         run: npm run build
+
+      - name: Version de test – la branche staging existe-t-elle ?
+        id: staging
+        run: |
+          if git ls-remote --exit-code --heads origin staging >/dev/null; then echo "exists=true" >> "$GITHUB_OUTPUT"; else echo "exists=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.staging.outputs.exists == 'true'
+        with:
+          ref: staging
+          path: staging-src
+      - name: Construire la version de test (…/staging/)
+        if: steps.staging.outputs.exists == 'true'
+        continue-on-error: true
+        working-directory: staging-src
+        run: |
+          npm ci
+          npm run check
+          npm test
+          STAGING=1 npm run build
+          cp -r dist ../dist/staging
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

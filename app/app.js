@@ -791,8 +791,9 @@ async function checkOfflineReady() {
     const v = state.data?.version;
     // service worker actif = pré-cache terminé (l'activation suit la mise en cache complète)
     const reg = await navigator.serviceWorker.getRegistration();
-    state.offlineReady = !!reg?.active && keys.includes(`antidotes-${v}`) &&
-      (await (await caches.open(`antidotes-${v}`)).match('./data/content.json')) != null;
+    const name = `${state.data?.cachePrefix || 'antidotes-'}${v}`;
+    state.offlineReady = !!reg?.active && keys.includes(name) &&
+      (await (await caches.open(name)).match('./data/content.json')) != null;
   } catch { state.offlineReady = false; }
   renderStatus();
 }
@@ -814,6 +815,10 @@ async function init() {
   setTopH();
   if ('ResizeObserver' in window) new ResizeObserver(setTopH).observe($('.topbar'));
   else window.addEventListener('resize', setTopH);
+  if (state.data.staging) {
+    document.body.classList.add('staging');
+    $('.demo-banner').innerHTML = '<strong>VERSION DE TEST – non approuvée</strong> <span aria-hidden="true">/</span> <span lang="en">TEST VERSION – not approved</span> · DÉMO / DEMO';
+  }
   $('#lang-btn').addEventListener('click', switchLang);
   $('#disclaimer-ok').addEventListener('click', () => {
     disclaimerSeen = true;

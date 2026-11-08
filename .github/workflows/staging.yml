@@ -1,0 +1,19 @@
+# Un envoi sur la branche staging (version de test) relance la publication depuis main,
+# qui construit les deux versions (officielle inchangée + version de test sous …/staging/).
+name: Version de test
+
+on:
+  push:
+    branches: [staging]
+
+permissions:
+  actions: write
+
+jobs:
+  relancer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Relancer « Publier la démo » sur main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref main

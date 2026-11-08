@@ -3,7 +3,11 @@
 // puis sert tout depuis le cache : l'application fonctionne sans réseau.
 // Une nouvelle version se télécharge en arrière-plan ; l'application propose « Actualiser ».
 const VERSION = '__VERSION__';
-const CACHE = `antidotes-${VERSION}`;
+const PREFIX = '__PREFIX__';      // 'antidotes-' (officielle) ou 'antidotes-staging-' (test)
+const IS_STAGING = __STAGING__;
+const CACHE = PREFIX + VERSION;
+// caches de CETTE version de l'application seulement (l'officielle et la version de test ne se touchent pas)
+const mine = key => IS_STAGING ? key.startsWith('antidotes-staging-') : /^antidotes-[0-9a-f]+$/.test(key);
 const ASSETS = __ASSETS__;
 
 self.addEventListener('install', event => {
@@ -17,7 +21,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const key of await caches.keys()) {
-      if (key.startsWith('antidotes-') && key !== CACHE) await caches.delete(key);
+      if (mine(key) && key !== CACHE) await caches.delete(key);
     }
     await self.clients.claim();
     for (const c of await self.clients.matchAll({ includeUncontrolled: true })) c.postMessage({ type: 'precached', version: VERSION });
@@ -33,6 +37,8 @@ self.addEventListener('fetch', event => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // liens externes : réseau normal
+  // la version de test (…/staging/) a son propre service worker : l'officielle ne s'en mêle pas
+  if (!IS_STAGING && url.pathname.startsWith(new URL('./staging/', self.registration.scope).pathname)) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     if (req.mode === 'navigate') {

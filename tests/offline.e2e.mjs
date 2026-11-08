@@ -27,6 +27,9 @@ if (!fs.existsSync(path.join(DIST, 'sw.js'))) { console.error('Lancer d\'abord :
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'antidotes-offline-'));
 fs.cpSync(DIST, TMP, { recursive: true });
 const data = JSON.parse(fs.readFileSync(path.join(TMP, 'data/content.json'), 'utf8'));
+const PFX = data.cachePrefix || 'antidotes-';
+// E2E_SUB=staging/ : teste la version de test, servie sous …/testantidote/staging/
+const SUB = process.env.E2E_SUB || '';
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json',
   '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.svg': 'image/svg+xml' };
@@ -36,8 +39,8 @@ function startServer(port = 0) {
     const srv = http.createServer((req, res) => {
       requests++;
       let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-      if (!p.startsWith('/testantidote/')) { res.writeHead(404); res.end(); return; }
-      p = p.slice('/testantidote'.length);
+      if (!p.startsWith('/testantidote/' + SUB)) { res.writeHead(404); res.end(); return; }
+      p = p.slice(('/testantidote/' + SUB).length - 1);
       if (p.endsWith('/')) p += 'index.html';
       const f = path.join(TMP, path.normalize(p));
       if (!f.startsWith(TMP) || !fs.existsSync(f)) { res.writeHead(404); res.end(); return; }
@@ -53,7 +56,7 @@ const check = (name, ok, detail = '') => { results.push({ name, ok: !!ok, detail
 
 let server = await startServer();
 const port = server.address().port;
-const BASE = `http://localhost:${port}/testantidote/`;
+const BASE = `http://localhost:${port}/testantidote/${SUB}`;
 const browser = await chromium.launch();
 const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
 const errors = [];
@@ -73,15 +76,15 @@ try {
     const ready = await page.evaluate(async ([v, n]) => {
       const reg = await navigator.serviceWorker.getRegistration();
       if (!reg?.active || !navigator.serviceWorker.controller) return false;
-      if (!(await caches.keys()).includes(`antidotes-${v}`)) return false;
-      return (await (await caches.open(`antidotes-${v}`)).keys()).length >= n;
-    }, [data.version, nAssets]);
+      if (!(await caches.keys()).includes(v)) return false;
+      return (await (await caches.open(v)).keys()).length >= n;
+    }, [PFX + data.version, nAssets]);
     if (ready) break;
     await page.waitForTimeout(200);
   }
   const swAssets = (fs.readFileSync(path.join(TMP, 'sw.js'), 'utf8').match(/const ASSETS = (\[[\s\S]*?\]);/) || [])[1];
   const assets = JSON.parse(swAssets);
-  const cached = await page.evaluate(async v => (await (await caches.open(`antidotes-${v}`)).keys()).map(r => r.url), data.version);
+  const cached = await page.evaluate(async name => (await (await caches.open(name)).keys()).map(r => r.url), PFX + data.version);
   const missing = assets.map(a => new URL(a, BASE).href).filter(u => !cached.includes(u));
   check(`Pré-cache complet au premier chargement (${assets.length} fichiers, sans avoir ouvert les pages)`, missing.length === 0, missing.join(', '));
   await page.goto(`${BASE}#/fr/tools`);
