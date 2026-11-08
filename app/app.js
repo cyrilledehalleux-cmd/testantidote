@@ -2,9 +2,17 @@
 // Le contenu clinique vient UNIQUEMENT de data/content.json, généré à partir de content/<lang>/*.md.
 // Ce fichier ne contient que l'interface (libellés de boutons, navigation, recherche).
 import { bySerumLevel, byAmountIngested, CONST, LIMITS } from './digifab.js';
+import { renderPhase1, CALCS, CALC_INFO } from './calc/views.js';
 
 const LANGS = ['fr', 'en'];
 const DIGOXIN_ID = 'digoxin-specific-antibodies';
+// calculateurs liés à une monographie (affichés en haut de la monographie)
+const MONO_CALCS = {
+  'digoxin-specific-antibodies': ['digifab'],
+  dextrose: ['dextrose'],
+  ethanol: ['ethanol', 'acidbase', 'kinetics'],
+  fomepizole: ['acidbase'],
+};
 
 const UI = {
   fr: {
@@ -142,6 +150,7 @@ const state = {
   data: null,
   lang: 'fr',
   calc: { mode: 'level', level: '', levelUnit: 'nmol/L', weight: '', weightUnit: 'kg', amount: '', amountUnit: 'mg' },
+  calcStore: {}, // valeurs saisies dans les calculateurs (conservées au changement de langue)
   pendingOpen: null, // sections à rouvrir après changement de langue
   swReg: null,
   offlineReady: false,
@@ -348,7 +357,11 @@ function render() {
   if (r.view === 'home') { renderChrome(r, ''); renderHome(main, r); }
   else if (r.view === 'm' && L.monographs[r.arg]) { renderChrome(r, L.monographs[r.arg].title); renderMonograph(main, r); }
   else if (r.view === 'tools') { renderChrome(r, T.tools); renderTools(main); }
-  else if (r.view === 'calc') { renderChrome(r, T.calc, `#/${state.lang}/tools`); renderCalc(main); }
+  else if (r.view === 'calc' && CALCS.includes(r.arg)) {
+    renderChrome(r, CALC_INFO[r.arg][state.lang][0], `#/${state.lang}/tools`);
+    renderPhase1(r.arg, main, { lang: state.lang, esc, fmt, store: state.calcStore });
+  }
+  else if (r.view === 'calc' && (!r.arg || r.arg === 'digifab')) { renderChrome(r, T.calc, `#/${state.lang}/tools`); renderCalc(main); }
   else if (r.view === 'p' && L.pages[r.arg] && r.arg !== 'centres') { renderChrome(r, L.pages[r.arg].title, `#/${state.lang}/tools`); renderPage(main, r); }
   else if (r.view === 'centres') { renderChrome(r, L.pages.centres?.title || T.tabCentres); renderCentres(main); }
   else { renderChrome(r, ''); renderNotFound(main); }
@@ -445,7 +458,12 @@ function renderMonograph(main, r) {
     <h1 id="mono-title" class="mono-title">${esc(m.title)}</h1>
     <p class="meta"><span>${esc(m.last_revision_label || T.revision)} : <strong>${esc(m.last_revision)}</strong></span>
       <a href="${esc(m.source_url)}" target="_blank" rel="noopener">${esc(T.official)} ↗<span class="sr-only"> ${esc(T.opensNew)}</span></a></p>
-    ${m.id === DIGOXIN_ID ? `<p class="calc-link"><a class="row" href="#/${state.lang}/calc"><span class="row-text"><span class="row-title">${esc(T.calcFor)}</span></span>${ICONS.chevronR}</a></p>` : ''}
+    ${(MONO_CALCS[m.id] || []).map(id => {
+      const href = id === 'digifab' ? `#/${state.lang}/calc` : `#/${state.lang}/calc/${id}`;
+      const title = id === 'digifab' ? T.calcFor : CALC_INFO[id][state.lang][0];
+      return `<p class="calc-link"><a class="row" href="${href}"><span class="row-text"><span class="row-title">${esc(title)}</span>` +
+        `<span class="row-sub">${esc(T.tools)} – ${esc(T.demoTag.toLowerCase())}</span></span>${ICONS.chevronR}</a></p>`;
+    }).join('')}
     <div id="sections"></div>
     ${m.footerHtml ? `<footer class="mono-foot prose">${m.footerHtml}</footer>` : ''}`;
 
@@ -560,7 +578,8 @@ function renderTools(main) {
   main.innerHTML = `
     <h1 class="page-title">${esc(T.tools)}</h1>
     <h2 class="group-title">${esc(state.lang === 'fr' ? 'Calculateurs' : 'Calculators')}</h2>
-    <ul class="rows">${row(`#/${state.lang}/calc`, T.calc, T.calcSub, T.demoTag)}</ul>
+    <ul class="rows">${row(`#/${state.lang}/calc`, T.calc, T.calcSub, T.demoTag)}
+      ${CALCS.map(id => row(`#/${state.lang}/calc/${id}`, CALC_INFO[id][state.lang][0], CALC_INFO[id][state.lang][1], T.demoTag)).join('')}</ul>
     <p class="hint">${esc(C.banner)}</p>
     <h2 class="group-title">${esc(state.lang === 'fr' ? 'Références' : 'References')}</h2>
     <ul class="rows">

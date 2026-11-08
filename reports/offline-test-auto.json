@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-06T16:02:34.693Z",
+  "date": "2026-11-08T23:52:54.397Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "39797f210881",
+  "version": "0aaf830fd57f",
   "passed": 116,
   "failed": 0,
   "results": [
@@ -11,7 +11,7 @@
       "detail": ""
     },
     {
-      "name": "Pré-cache complet au premier chargement (18 fichiers, sans avoir ouvert les pages)",
+      "name": "Pré-cache complet au premier chargement (20 fichiers, sans avoir ouvert les pages)",
       "ok": true,
       "detail": ""
     },
@@ -38,7 +38,7 @@
     {
       "name": "Indicateur « Hors ligne – contenu daté du … »",
       "ok": true,
-      "detail": "⚠ Hors ligne – contenu daté du 2026-11-06"
+      "detail": "⚠ Hors ligne – contenu daté du 2026-11-08"
     },
     {
       "name": "[fr] Acétate de sodium : ouverte hors ligne, 18 sections",
@@ -578,7 +578,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "39797f210881n"
+      "detail": "0aaf830fd57fn"
     },
     {
       "name": "Aucune erreur JavaScript",
