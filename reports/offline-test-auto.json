@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-09T04:10:33.921Z",
+  "date": "2026-11-09T04:45:14.241Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "7d7b69f1a182",
+  "version": "c16a99edea2e",
   "passed": 119,
   "failed": 0,
   "results": [
@@ -11,7 +11,7 @@
       "detail": ""
     },
     {
-      "name": "Pré-cache complet au premier chargement (20 fichiers, sans avoir ouvert les pages)",
+      "name": "Pré-cache complet au premier chargement (21 fichiers, sans avoir ouvert les pages)",
       "ok": true,
       "detail": ""
     },
@@ -593,7 +593,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "7d7b69f1a182n"
+      "detail": "c16a99edea2en"
     },
     {
       "name": "Aucune erreur JavaScript",

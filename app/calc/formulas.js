@@ -115,9 +115,17 @@ export function dextroseBolus({ weightKg, targetGPerKg }) {
   };
 }
 
-/** Débit de glucose (mg/kg/min) = % × débit (mL/h) × 10 / (60 × poids kg). */
-export function glucoseInfusionRate({ percent, rateMlH, weightKg }) {
-  return (percent * rateMlH * 10) / (60 * weightKg);
+export const DEXTROSE_HDI_G_PER_KG_H = 0.5; // perfusion avec insuline à haute dose (monographie Dextrose, Posologie)
+export const DEXTROSE_PERIPHERAL_MAX_G_PER_ML = 0.10; // voie périphérique : 10 % ou moins (monographie)
+
+/** Perfusion continue : g/h = dose (g/kg/h) × poids ; mL/h = g/h / concentration (g/mL) ;
+ *  équivalent en mg/kg/min = g/kg/h × 1000 / 60. */
+export function dextroseInfusion({ weightKg, gPerKgH }) {
+  const gPerH = weightKg * gPerKgH;
+  return {
+    gPerH, mgPerKgMin: (gPerKgH * 1000) / 60,
+    volumes: DEXTROSE_SOLUTIONS.map(s => ({ id: s.id, gPerMl: s.gPerMl, mlPerH: gPerH / s.gPerMl })),
+  };
 }
 
 // ----------------------------------------------------------------- éthanol ---
@@ -229,6 +237,6 @@ export const BOUNDS = Object.freeze({
   na: [90, 200], k: [1, 12], cl: [50, 160], hco3: [1, 60], glucose: [0.5, 150], urea: [0.3, 150],
   ethanol: [0, 200], albumin: [5, 70], measured: [200, 600], ica: [0.2, 3], mg: [0.1, 5],
   lactate: [0, 40], phosphate: [0.1, 8], ph: [6.5, 8], be: [-40, 40],
-  weight: [0.3, 300], dextroseTarget: [0.01, 2], ethanolTarget: [5, 60], ethanolCurrent: [0, 200],
+  weight: [0.3, 300], dextroseTarget: [0.01, 2], dextroseInfusion: [0.01, 2], ethanolTarget: [5, 60], ethanolCurrent: [0, 200],
   percent: [1, 96], ethanolPercent: [1, 100], rateMlH: [0.1, 2000], level: [0, 1e6],
 });

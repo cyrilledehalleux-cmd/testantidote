@@ -62,7 +62,7 @@ Tant qu'une valeur vaut `'TODO'`, le cas est « ignoré », jamais « réussi »
   formule par digoxinémie, la contre-vérification et la règle des 25 % ; Howland MA, *Goldfrank's Toxicologic Emergencies*,
   10e éd. (2014) pour la formule par quantité ingérée ; Lapostolle 2008 et Antman 1990. Ces trois citations proviennent de la
   liste de références de MDCalc : **à confirmer par l'équipe** (le texte de ces ouvrages n'a pas été consulté).
-- **Liens monographie → calculateur** : Anticorps spécifique de la digoxine → DigiFab ; Dextrose → dextrose ; Éthanol → éthanol.
+- **Liens monographie → calculateur** : Anticorps spécifique de la digoxine → DigiFab ; Dextrose → dextrose ; Insuline régulière → dextrose ; Éthanol → éthanol.
   Aucun lien vers le trou anionique / osmolalité ni vers la demi-vie (accessibles par l'onglet Outils).
 
 ## 5. Validation de l'équipe (9 nov. 2026)
@@ -85,3 +85,19 @@ Autres changements demandés le même jour :
   et « * Voie centrale à privilégier » dans le détail (charge et entretien).
 - **Repères** : seule une valeur anormale est mise en évidence (rouge) ; une valeur normale affiche
   « normal – voir détails » sans couleur (trou anionique, trou anionique corrigé, écart osmolaire).
+
+## 6. Dextrose : perfusion et insuline à haute dose (9 nov. 2026)
+
+- Section « débit de glucose en perfusion » retirée ; la perfusion est intégrée au calcul principal.
+- Doses : bolus 0,25 g/kg, bolus 0,5 g/kg, **perfusion 0,5 g/kg/h – insuline haute dose** (encadrée en rouge),
+  bolus autre (g/kg), perfusion autre (g/kg/h).
+- Perfusion : résultat = **débit en mL/h de la solution choisie** (g/h = g/kg/h × poids ; mL/h = g/h ÷ g/mL) ;
+  équivalent en mg/kg/min dans le détail ; badge « voie centrale » si la solution choisie dépasse 10 %.
+- Option 0,5 g/kg/h : badge « insuline haute dose » et, au toucher, l'explication (dose élevée réservée au patient traité
+  par insuline à haute dose pour une cardiotoxicité).
+- **Extraits de la monographie Dextrose** affichés au toucher (indication, dose de maintien pédiatrique et adulte,
+  mise en garde, surveillance aux 30 min, osmolarité maximale en périphérie, glycosurie, sevrage, durée après l'insuline) :
+  ils sont lus dans la monographie elle-même (texte identique au guide, mis à jour avec elle) ;
+  `tests/dextrose-quotes.test.mjs` vérifie qu'ils sont trouvés en français et en anglais.
+- Lien ajouté : monographie **Insuline régulière → Dextrose**.
+- Plafond de 25 g : s'applique aux bolus seulement (pas à la perfusion).

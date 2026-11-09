@@ -3,12 +3,13 @@
 // Présentation : chaque résultat montre seulement la valeur (et son repère normal / élevé) ;
 // un toucher sur le résultat déplie le détail du calcul, sur la même page.
 import * as F from './formulas.js';
+import { DEXTROSE_ID, findQuote, monographLines } from './dextrose-quotes.js';
 
 export const CALCS = ['acidbase', 'dextrose', 'ethanol', 'kinetics'];
 
 export const CALC_INFO = {
   acidbase: { fr: ['Trou anionique, osmolalité, sodium corrigé'], en: ['Anion gap, osmolality, corrected sodium'] },
-  dextrose: { fr: ['Dextrose – bolus'], en: ['Dextrose – bolus'] },
+  dextrose: { fr: ['Dextrose – bolus et perfusion'], en: ['Dextrose – bolus and infusion'] },
   ethanol: { fr: ['Éthanol – charge et entretien'], en: ['Ethanol – loading and maintenance'] },
   kinetics: { fr: ['Demi-vie et temps jusqu\'à la cible'], en: ['Half-life and time to target'] },
 };
@@ -312,82 +313,110 @@ function drawAcidBase(S) {
 }
 
 // ================================================================ dextrose ===
+// Doses : bolus 0,25 / 0,5 g/kg, perfusion 0,5 g/kg/h (insuline haute dose), bolus autre, perfusion autre.
+const DEX_INFUSION = ['hdi', 'freeInf'];
+
 function renderDextrose(main) {
   const S = store('dextrose', { target: '0.25', solution: F.DEXTROSE_DEFAULT_SOLUTION });
+  const opts = [
+    ['0.25', `${tr('Bolus', 'Bolus')} ${dec(0.25, 2)} g/kg`, ''],
+    ['0.5', `${tr('Bolus', 'Bolus')} ${dec(0.5, 1)} g/kg`, ''],
+    ['hdi', `${tr('Perfusion', 'Infusion')} ${dec(F.DEXTROSE_HDI_G_PER_KG_H, 1)} g/kg/h <strong>${tr('insuline haute dose', 'high-dose insulin')}</strong>`, 'hdi'],
+    ['free', `${tr('Bolus – autre dose', 'Bolus – other dose')} (g/kg)`, ''],
+    ['freeInf', `${tr('Perfusion – autre dose', 'Infusion – other dose')} (g/kg/h)`, ''],
+  ];
   main.innerHTML = `
     <h1 class="page-title">${CALC_INFO.dextrose[ctx.lang][0]}</h1>
     ${banner()}
     <form id="calc-form" novalidate>
-      <fieldset><legend>${tr('Bolus', 'Bolus')}</legend>
+      <fieldset><legend>${tr('Patient et dose', 'Patient and dose')}</legend>
         ${numField(S, 'weight', tr('Poids', 'Weight'), U.weight)}
-        <p class="field-label">${tr('Dose cible', 'Target dose')}</p>
-        <div class="radio-row">
-          ${['0.25', '0.5', 'free'].map(x => `<label><input type="radio" name="target" value="${x}"${S.target === x ? ' checked' : ''}> ${x === 'free' ? tr('Autre', 'Other') : dec(Number(x), 2) + ' g/kg'}</label>`).join('')}
+        <p class="field-label">${tr('Dose', 'Dose')}</p>
+        <div class="radio-row stack">
+          ${opts.map(([x, l, cls]) => `<label${cls ? ` class="${cls}"` : ''}><input type="radio" name="target" value="${x}"${S.target === x ? ' checked' : ''}> <span>${l}</span></label>`).join('')}
         </div>
-        <div data-show-if="target=free"${S.target === 'free' ? '' : ' hidden'}>${numField(S, 'free', tr('Dose cible (autre)', 'Target dose (other)'), [{ u: 'g/kg', f: 1 }])}</div>
+        <div data-show-if="target=free"${S.target === 'free' ? '' : ' hidden'}>${numField(S, 'free', tr('Bolus – autre dose', 'Bolus – other dose'), [{ u: 'g/kg', f: 1 }])}</div>
+        <div data-show-if="target=freeInf"${S.target === 'freeInf' ? '' : ' hidden'}>${numField(S, 'freeInf', tr('Perfusion – autre dose', 'Infusion – other dose'), [{ u: 'g/kg/h', f: 1 }], { hint: tr('ex. 0,2 g/kg/h', 'e.g. 0.2 g/kg/h') })}</div>
         <p class="field-label">${tr('Solution', 'Solution')}</p>
         <div class="radio-row">
-          ${F.DEXTROSE_SOLUTIONS.map(x => `<label><input type="radio" name="solution" value="${x.id}"${S.solution === x.id ? ' checked' : ''}> ${x.id.replace('D', 'D')} %${x.id === 'D10' ? ` <span class="muted">(${tr('préférée en pédiatrie', 'preferred in pediatrics')})</span>` : ''}</label>`).join('').replace(/D(\d+) %/g, 'D$1')}
+          ${F.DEXTROSE_SOLUTIONS.map(x => `<label><input type="radio" name="solution" value="${x.id}"${S.solution === x.id ? ' checked' : ''}> ${x.id}${x.id === 'D10' ? ` <span class="muted">(${tr('préférée en pédiatrie', 'preferred in pediatrics')})</span>` : ''}</label>`).join('')}
         </div>
       </fieldset>
-      <details class="sub"${S.girOpen ? ' open' : ''}><summary>${tr('Débit de glucose en perfusion (facultatif)', 'Glucose infusion rate (optional)')}</summary>
-        <div class="grid2">
-          ${numField(S, 'pct', tr('Concentration de dextrose', 'Dextrose concentration'), [{ u: '%', f: 1 }])}
-          ${numField(S, 'rate', tr('Débit', 'Rate'), [{ u: 'mL/h', f: 1 }])}
-        </div>
-        <div id="gir-out" aria-live="polite"></div>
-      </details>
     </form>
     <div id="calc-out" aria-live="polite"></div>
     ${refsHtml('dextrose')}`;
-  $('details.sub', main).addEventListener('toggle', e => { S.girOpen = e.target.open ? '1' : ''; });
   bind(main, S, () => drawDextrose(S));
   window.scrollTo(0, 0);
 }
 
+/** Passage(s) de la monographie Dextrose, cités mot pour mot avec leur section. */
+function monoQuote(key) {
+  const m = ctx.data?.[ctx.lang]?.monographs?.[DEXTROSE_ID];
+  if (!m) return '';
+  const hits = findQuote(monographLines(m), key, ctx.lang);
+  return hits.map(h => `<blockquote class="mono-quote">${ctx.esc(h.text)}<footer><a href="#/${ctx.lang}/m/${DEXTROSE_ID}/${h.sectionId}">${ctx.esc(tr('Monographie Dextrose', 'Dextrose monograph'))} – ${ctx.esc(h.section)}</a></footer></blockquote>`).join('');
+}
+
 function drawDextrose(S) {
-  const out = $('#calc-out'), gir = $('#gir-out');
+  const out = $('#calc-out');
   const w = read(S, 'weight', tr('Poids', 'Weight'), U.weight, 'weight');
-  // débit de glucose
-  const pct = read(S, 'pct', tr('Concentration', 'Concentration'), null, 'percent');
-  const rate = read(S, 'rate', tr('Débit', 'Rate'), null, 'rateMlH');
-  const ge = [w, pct, rate].filter(x => x.error).map(x => x.error);
-  if (ge.length) gir.innerHTML = errorsHtml(ge);
-  else if (w.blank || pct.blank || rate.blank) gir.innerHTML = `<p class="muted">${tr('Entrez le poids, la concentration et le débit.', 'Enter weight, concentration and rate.')}</p>`;
-  else {
-    const g = F.glucoseInfusionRate({ percent: pct.si, rateMlH: rate.si, weightKg: w.si });
-    gir.innerHTML = resItem('gir', tr('Débit de glucose', 'Glucose infusion rate'), `${f2(g)} <small>mg/kg/min</small>`,
-      `<ol class="steps">${step(`GIR = % × ${tr('débit', 'rate')} × 10 / (60 × ${tr('poids', 'weight')}) = ${dec(pct.si, 2)} × ${dec(rate.si, 2)} × 10 / (60 × ${f2(w.si)}) = ${f2(g)}`)}</ol>`);
-  }
-  // bolus
   if (w.error) { out.innerHTML = errorsHtml([w.error]); return; }
+  const infusion = DEX_INFUSION.includes(S.target);
   let free = null;
-  if (S.target === 'free') {
-    free = read(S, 'free', tr('Dose cible', 'Target dose'), [{ u: 'g/kg', f: 1 }], 'dextroseTarget');
-    if (free.error) { out.innerHTML = errorsHtml([free.error]); return; }
+  if (S.target === 'free') free = read(S, 'free', tr('Bolus – autre dose', 'Bolus – other dose'), [{ u: 'g/kg', f: 1 }], 'dextroseTarget');
+  if (S.target === 'freeInf') free = read(S, 'freeInf', tr('Perfusion – autre dose', 'Infusion – other dose'), [{ u: 'g/kg/h', f: 1 }], 'dextroseInfusion');
+  if (free && free.error) { out.innerHTML = errorsHtml([free.error]); return; }
+  if (w.blank || (free && free.blank)) { out.innerHTML = `<div class="result empty">${tr('Entrez le poids (et la dose) pour obtenir le calcul.', 'Enter the weight (and dose) to see the calculation.')}</div>`; return; }
+  const si = F.DEXTROSE_SOLUTIONS.findIndex(x => x.id === S.solution);
+  const solIdx = si < 0 ? 1 : si, sol = F.DEXTROSE_SOLUTIONS[solIdx];
+  const tag = id => id === 'D10' ? ` <span class="tag">${tr('pédiatrie', 'pediatrics')}</span>` : '';
+  const commonNotes = `<p>• ${tr('Recontrôler la glycémie 10–15 min après le bolus.', 'Recheck glucose 10–15 min after the bolus.')}</p>`;
+
+  if (infusion) {
+    const hdi = S.target === 'hdi';
+    const dose = hdi ? F.DEXTROSE_HDI_G_PER_KG_H : free.si;
+    const inf = F.dextroseInfusion({ weightKg: w.si, gPerKgH: dose });
+    const ml = inf.volumes[solIdx].mlPerH;
+    const central = sol.gPerMl > F.DEXTROSE_PERIPHERAL_MAX_G_PER_ML;
+    const rows = inf.volumes.map(v => `<tr${v.id === sol.id ? ' class="hl"' : ''}><th scope="row">${v.id}${tag(v.id)}</th><td>${f1(v.mlPerH)}</td></tr>`).join('');
+    const badges = (hdi ? `<span class="badge high">${tr('insuline haute dose', 'high-dose insulin')}</span>` : '') +
+      (central ? `<span class="badge warn">${tr('voie centrale', 'central line')}</span>` : '');
+    const details = `
+      ${hdi ? `<p class="warnbox"><strong>${tr('Dose élevée de dextrose', 'High dextrose dose')}</strong> : ${tr('à utiliser seulement chez un patient traité par insuline à haute dose pour une cardiotoxicité (bloqueur des canaux calciques ou bêtabloqueur), afin de maintenir l\'euglycémie.', 'use only in a patient treated with high-dose insulin for cardiotoxicity (calcium-channel blocker or beta blocker), to maintain euglycemia.')}</p>
+        ${monoQuote('indicationHdi')}${monoQuote('maintenance')}${monoQuote('warning')}${monoQuote('monitoring')}` : ''}
+      <div class="table-wrap"><table class="calc-table dex"><thead><tr><th>${tr('Solution', 'Solution')}</th><th>mL/h<br><span class="muted">${dec(dose, 3)} g/kg/h = ${f2(inf.gPerH)} g/h</span></th></tr></thead><tbody>${rows}</tbody></table></div>
+      <ol class="steps">${convLine(tr('Poids', 'Weight'), w)}
+        ${step(`g/h = ${dec(dose, 3)} g/kg/h × ${f2(w.si)} kg = ${f2(inf.gPerH)}`)}
+        ${step(`mL/h = ${f2(inf.gPerH)} g/h / ${dec(sol.gPerMl, 2)} g/mL (${sol.id}) = ${f1(ml)}`)}
+        ${step(`${tr('Équivalent', 'Equivalent')} : ${dec(dose, 3)} g/kg/h × 1000 / 60 = ${f2(inf.mgPerKgMin)} mg/kg/min`)}</ol>
+      ${monoQuote('peripheral')}${monoQuote('glycosuria')}${monoQuote('wean')}${hdi ? monoQuote('after24h') : ''}`;
+    out.innerHTML = `<div class="res-list">${resItem('dexinf', `${tr('Débit de perfusion', 'Infusion rate')} <small class="muted">${dec(dose, 3)} g/kg/h</small>`,
+      `${f1(ml)} <small>mL/h ${tr('de', 'of')}</small> ${sol.id}`, details,
+      { extra: `<span class="res-sub">${f2(inf.gPerH)} g/h ${tr('de dextrose', 'of dextrose')}</span>${badges}` })}</div>
+      <p class="hint">${tr('Touchez le résultat pour voir toutes les solutions, le calcul et les extraits de la monographie.', 'Tap the result to see all solutions, the calculation and the monograph excerpts.')}</p>`;
+    return;
   }
-  if (w.blank || (free && free.blank)) { out.innerHTML = `<div class="result empty">${tr('Entrez le poids pour obtenir le calcul.', 'Enter the weight to see the calculation.')}</div>`; return; }
+
+  // bolus
   const col2 = 0.25, col3 = free ? free.si : 0.5;
   const a = F.dextroseBolus({ weightKg: w.si, targetGPerKg: col2 }), b = F.dextroseBolus({ weightKg: w.si, targetGPerKg: col3 });
   const sel = S.target === '0.25' ? 2 : 3;
   const chosen = sel === 2 ? a : b, chosenT = sel === 2 ? col2 : col3;
   const head = (t, d) => `${dec(t, 3)} g/kg<br><span class="muted">${dec(d.doseG, 2)} g${d.capped ? ' (max)' : ''}</span>`;
-  const rows = F.DEXTROSE_SOLUTIONS.map((s, i) => `<tr${s.id === S.solution ? ' class="hl"' : ''}><th scope="row">${s.id}${s.id === 'D10' ? ` <span class="tag">${tr('pédiatrie', 'pediatrics')}</span>` : ''}</th>` +
+  const rows = F.DEXTROSE_SOLUTIONS.map((s, i) => `<tr${s.id === sol.id ? ' class="hl"' : ''}><th scope="row">${s.id}${tag(s.id)}</th>` +
     `<td${sel === 2 ? ' class="sel"' : ''}>${f1(a.volumes[i].ml)}</td><td${sel === 3 ? ' class="sel"' : ''}>${f1(b.volumes[i].ml)}</td></tr>`).join('');
   const capped = [a, b].some(d => d.capped);
-  const si = F.DEXTROSE_SOLUTIONS.findIndex(x => x.id === S.solution);
-  const solIdx = si < 0 ? 1 : si, sol = F.DEXTROSE_SOLUTIONS[solIdx];
   const mainMl = chosen.volumes[solIdx].ml;
   out.innerHTML = `<div class="res-list">${resItem('dex', `${tr('Volume à administrer', 'Volume to give')} <small class="muted">${dec(chosenT, 3)} g/kg</small>`,
     `${f1(mainMl)} <small>mL ${tr('de', 'of')}</small> ${sol.id}`, `
     <div class="table-wrap"><table class="calc-table dex"><thead><tr><th>mL</th><th>${head(col2, a)}</th><th>${head(col3, b)}</th></tr></thead><tbody>${rows}</tbody></table></div>
       <ol class="steps">${convLine(tr('Poids', 'Weight'), w)}${step(`${tr('Dose', 'Dose')} (g) = min(${tr('poids', 'weight')} × ${tr('cible', 'target')}, 25) = min(${f2(w.si)} × ${dec(chosenT, 3)}, 25) = ${dec(chosen.doseG, 3)}`)}
         ${step(`mL = ${tr('dose', 'dose')} (g) / ${tr('concentration', 'concentration')} (g/mL) = ${dec(chosen.doseG, 3)} / ${dec(sol.gPerMl, 2)} = ${f1(mainMl)}`)}</ol>
-      ${capped ? `<p class="warnbox">⚠ ${tr(`Plafond de ${F.DEXTROSE_MAX_G} g appliqué (poids × dose cible > ${F.DEXTROSE_MAX_G} g).`, `${F.DEXTROSE_MAX_G} g cap applied (weight × target > ${F.DEXTROSE_MAX_G} g).`)}</p>` : ''}
+      ${capped ? `<p class="warnbox">⚠ ${tr(`Plafond de ${F.DEXTROSE_MAX_G} g par dose (poids × dose > ${F.DEXTROSE_MAX_G} g) : colonne marquée « max ».`, `${F.DEXTROSE_MAX_G} g cap per dose (weight × dose > ${F.DEXTROSE_MAX_G} g): column marked “max”.`)}</p>` : ''}
       <p>• ${tr('Préférer D10 en périphérie et chez l\'enfant ; D50 est hypertonique et irritant ; nouveau-nés : D10 seulement.', 'Prefer D10 peripherally and in children; D50 is hypertonic and irritant; neonates: D10 only.')}</p>
-      <p>• ${tr('Recontrôler la glycémie 10–15 min après le bolus.', 'Recheck glucose 10–15 min after the bolus.')}</p>
+      ${commonNotes}
       <p class="note-small">${tr('0,2–0,25 g/kg : dose néonatale (Lilien 1980, mini-bolus de 2 mL/kg de D10). D10 vs D50 chez l\'adulte : même délai de récupération, moins de glucose avec D10 (Moore & Woollard 2005). 0,5 g/kg : pratique de réanimation pédiatrique (PALS).', '0.2–0.25 g/kg: neonatal dose (Lilien 1980, 2 mL/kg D10 mini-bolus). D10 vs D50 in adults: same recovery time, less glucose with D10 (Moore & Woollard 2005). 0.5 g/kg: pediatric resuscitation practice (PALS).')}</p>`,
-    { extra: `<span class="res-sub">${dec(chosen.doseG, 2)} g ${tr('de dextrose', 'of dextrose')}</span>${capped ? `<span class="badge warn">${tr(`plafond ${F.DEXTROSE_MAX_G} g`, `${F.DEXTROSE_MAX_G} g cap`)}</span>` : ''}` })}</div>
+    { extra: `<span class="res-sub">${dec(chosen.doseG, 2)} g ${tr('de dextrose', 'of dextrose')}</span>${chosen.capped ? `<span class="badge warn">${tr(`plafond ${F.DEXTROSE_MAX_G} g`, `${F.DEXTROSE_MAX_G} g cap`)}</span>` : ''}` })}</div>
     <p class="hint">${tr('Touchez le résultat pour voir toutes les solutions et le détail du calcul.', 'Tap the result to see all solutions and the calculation.')}</p>`;
 }
 

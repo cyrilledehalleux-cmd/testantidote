@@ -17,6 +17,7 @@ const MONO_CALCS = {
   'digoxin-specific-antibodies': ['digifab'],
   dextrose: ['dextrose'],
   ethanol: ['ethanol'],
+  'insulin-regular': ['dextrose'],
 };
 
 const UI = {
@@ -368,7 +369,7 @@ function render() {
   else if (r.view === 'tools') { renderChrome(r, T.tools); renderTools(main); }
   else if (r.view === 'calc' && CALCS.includes(r.arg)) {
     renderChrome(r, CALC_INFO[r.arg][state.lang][0], `#/${state.lang}/tools`);
-    renderPhase1(r.arg, main, { lang: state.lang, esc, fmt, store: state.calcStore });
+    renderPhase1(r.arg, main, { lang: state.lang, esc, fmt, store: state.calcStore, data: state.data });
   }
   else if (r.view === 'calc' && (!r.arg || r.arg === 'digifab')) { renderChrome(r, T.calc, `#/${state.lang}/tools`); renderCalc(main); }
   else if (r.view === 'p' && L.pages[r.arg] && r.arg !== 'centres') { renderChrome(r, L.pages[r.arg].title, `#/${state.lang}/tools`); renderPage(main, r); }
