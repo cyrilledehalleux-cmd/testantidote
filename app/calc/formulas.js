@@ -45,9 +45,6 @@ export const HILLIER_BASE = 5.6;      // mmol/L
 export const HILLIER_NONLINEAR = 22;  // mmol/L : au-delà, la correction réelle peut être plus grande
 export const ETHANOL_OSM_FACTOR = 1.25; // Purssell 2001 (pente de régression)
 export const OSM_GAP_HIGH = 10;       // mOsm/kg (Lynd 2008)
-// Intervalle résiduel de l'écart osmolaire avec la formule de Purssell (groupe de validation : 0,84 ± 5,65 ;
-// environ 95 % entre −10 et +12) — utilisé pour l'incertitude de l'estimation d'alcool toxique.
-export const OSM_GAP_RESIDUAL = Object.freeze({ low: -10, high: 12 });
 export const STORY_NACL = 38;         // Story 2004
 export const STORY_ALB_NORMAL = 42;   // g/L, Story 2004
 
@@ -74,19 +71,6 @@ export function osmolality({ na, glucose, urea, ethanol = 0, measured = null }) 
   const calc = 2 * na + glucose + urea + ETHANOL_OSM_FACTOR * ethanol;
   const gap = measured == null ? null : measured - calc;
   return { calc, gap, high: gap != null && gap > OSM_GAP_HIGH };
-}
-
-/**
- * Estimation d'alcool toxique à partir de l'écart osmolaire, SI tout l'écart était dû à un seul alcool,
- * en supposant 1 mOsm/kg par mmol/L d'alcool. Plage d'incertitude : écart résiduel de Purssell (−10 à +12).
- * (Hypothèse de calcul ajoutée pour l'application : à valider par l'équipe.)
- */
-export function toxicAlcoholFromGap(gap) {
-  const est = Math.max(0, gap);
-  const low = Math.max(0, gap - OSM_GAP_RESIDUAL.high);
-  const high = Math.max(0, gap - OSM_GAP_RESIDUAL.low);
-  const row = factor => ({ mmol: est, mmolLow: low, mmolHigh: high, mgdl: est * factor, mgdlLow: low * factor, mgdlHigh: high * factor });
-  return { methanol: row(CONV.methanol), ethyleneGlycol: row(CONV.ethyleneGlycol), isopropanol: row(CONV.isopropanol) };
 }
 
 /**
@@ -119,6 +103,7 @@ export const DEXTROSE_SOLUTIONS = Object.freeze([
   { id: 'D50', gPerMl: 0.50 },
 ]);
 export const DEXTROSE_PRESETS = Object.freeze([0.25, 0.5]); // g/kg
+export const DEXTROSE_DEFAULT_SOLUTION = 'D10'; // préférée en pédiatrie
 
 /** Dose (g) = min(poids × cible, 25) ; volume (mL) = dose / concentration (g/mL). */
 export function dextroseBolus({ weightKg, targetGPerKg }) {
@@ -245,5 +230,5 @@ export const BOUNDS = Object.freeze({
   ethanol: [0, 200], albumin: [5, 70], measured: [200, 600], ica: [0.2, 3], mg: [0.1, 5],
   lactate: [0, 40], phosphate: [0.1, 8], ph: [6.5, 8], be: [-40, 40],
   weight: [0.3, 300], dextroseTarget: [0.01, 2], ethanolTarget: [5, 60], ethanolCurrent: [0, 200],
-  percent: [1, 96], rateMlH: [0.1, 2000], level: [0, 1e6],
+  percent: [1, 96], ethanolPercent: [1, 100], rateMlH: [0.1, 2000], level: [0, 1e6],
 });

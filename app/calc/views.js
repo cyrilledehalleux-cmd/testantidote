@@ -110,9 +110,10 @@ const refsHtml = id => `<details class="refs"><summary>${tr('Références', 'Ref
 const errorsHtml = errs => `<div class="result err" role="alert"><ul>${errs.map(e => `<li>${ctx.esc(e)}</li>`).join('')}</ul></div>`;
 const step = s => `<li><code>${ctx.esc(s)}</code></li>`;
 const convLine = (label, r) => r && r.converted ? step(`${label} : ${dec(r.raw, 4)} ${r.unit} → ${dec(r.si, 4)} (SI)`) : '';
-const badge = (high, highText, normalText) => high
+// Seule une valeur anormale est mise en évidence ; une valeur normale reste discrète (« normal – voir détails »).
+const badge = (high, highText) => high
   ? `<span class="badge high">${ctx.esc(highText)}</span>`
-  : `<span class="badge ok">${ctx.esc(normalText)}</span>`;
+  : `<span class="badge plain">${ctx.esc(tr('normal – voir détails', 'normal – see details'))}</span>`;
 
 /**
  * Résultat compact : une ligne (titre + valeur + repère), le détail se déplie au toucher.
@@ -226,7 +227,7 @@ function drawAcidBase(S) {
   const missing = (...ks) => ks.filter(k => v[k].blank).map(k => L[k][0]).join(', ');
   const conv = ks => ks.map(k => convLine(L[k][0], v[k])).join('');
   const hi = F.AG_HIGH, items = [];
-  const highTxt = n => tr(`élevé (> ${n})`, `high (> ${n})`), normTxt = n => tr(`normal (≤ ${n})`, `normal (≤ ${n})`);
+  const highTxt = n => tr(`élevé (> ${n})`, `high (> ${n})`);
 
   // 1. trou anionique
   let ag = null;
@@ -237,7 +238,7 @@ function drawAcidBase(S) {
       <ol class="steps">${conv(['na', 'cl', 'hco3'])}${step(`AG = Na − (Cl + HCO3) = ${f2(v.na.si)} − (${f2(v.cl.si)} + ${f2(v.hco3.si)}) = ${f2(ag.value)}`)}</ol>
       <p class="note-small">${tr('Sans K (Winter 1990, Lolekha 2001). Électrodes sélectives : normal 3–11 (Winter) ou 5–12 mmol/L (Lolekha) ; l\'ancien 12 ± 4 vient de la photométrie de flamme. L\'intervalle de référence dépend de l\'analyseur de votre laboratoire.',
         'Without K (Winter 1990, Lolekha 2001). Ion-selective electrodes: normal 3–11 (Winter) or 5–12 mmol/L (Lolekha); the old 12 ± 4 came from flame photometry. Reference range depends on your laboratory\'s analyzer.')}</p>`,
-      { extra: badge(ag.high, highTxt(hi), normTxt(hi)) }));
+      { extra: badge(ag.high, highTxt(hi)) }));
   } else items.push(pendingItem(tAG, missing('na', 'cl', 'hco3')));
 
   // 2. trou anionique corrigé
@@ -247,7 +248,7 @@ function drawAcidBase(S) {
     items.push(resItem('agc', tAGc, `${f1(c.value)} <small>mmol/L</small>`, `
       <ol class="steps">${conv(['albumin'])}${step(`AGcorr = AG + ${dec(0.25, 2)} × (40 − ${tr('albumine', 'albumin')}) = ${f2(ag.value)} + ${dec(0.25, 2)} × (40 − ${f2(v.albumin.si)}) = ${f2(c.value)}`)}</ol>
       <p class="note-small">${tr('Figge. Albumine normale fixée à 40 g/L (comme MDCalc) ; Figge 1998 utilisait 44 g/L : la correction de l\'application est donc légèrement plus petite que l\'originale.', 'Figge. Normal albumin fixed at 40 g/L; Figge 1998 used 44 g/L, so the app\'s correction is slightly smaller than the original.')}</p>`,
-      { extra: badge(c.high, highTxt(hi), normTxt(hi)) }));
+      { extra: badge(c.high, highTxt(hi)) }));
   } else items.push(pendingItem(tAGc, missing('na', 'cl', 'hco3', 'albumin')));
 
   // 4. sodium corrigé
@@ -272,21 +273,11 @@ function drawAcidBase(S) {
         <p class="note-small">${tr('Purssell 2001 : 1,25 = pente de régression (effet de chaque mmol/L d\'éthanol). Na non corrigé pour le glucose dans cette formule.', 'Purssell 2001: 1.25 = regression slope (effect of each mmol/L of ethanol). Na not corrected for glucose in this formula.')}</p>`;
     items.push(resItem('osm', tOsm, `${f1(o.calc)} <small>mOsm/kg</small>`, osmSteps));
     if (o.gap != null) {
-      let alc = '';
-      if (o.gap > 0) {
-        const t = F.toxicAlcoholFromGap(o.gap);
-        const row = (name, r) => `<tr><th scope="row">${name}</th><td>${f1(r.mmol)} <span class="muted">(${f1(r.mmolLow)}–${f1(r.mmolHigh)})</span></td><td>${f1(r.mgdl)} <span class="muted">(${f1(r.mgdlLow)}–${f1(r.mgdlHigh)})</span></td></tr>`;
-        alc = `<h4>${tr('Estimation d\'alcool toxique d\'après l\'écart', 'Toxic alcohol estimate from the gap')}</h4>
-          <div class="table-wrap"><table class="calc-table"><thead><tr><th></th><th>mmol/L</th><th>mg/dL</th></tr></thead><tbody>
-          ${row(tr('Méthanol', 'Methanol'), t.methanol)}${row(tr('Éthylène glycol', 'Ethylene glycol'), t.ethyleneGlycol)}${row('Isopropanol', t.isopropanol)}</tbody></table></div>
-          <p class="note-small">${tr('Seulement si tout l\'écart était dû à un seul alcool (1 mOsm/kg par mmol/L). Entre parenthèses : plage tenant compte de l\'écart résiduel normal (Purssell : environ −10 à +12). Ne remplace pas un dosage.', 'Only if the whole gap were due to a single alcohol (1 mOsm/kg per mmol/L). In brackets: range allowing for the normal residual gap (Purssell: about −10 to +12). Does not replace a measured level.')}</p>`;
-      }
       items.push(resItem('gap', tGap, `${f1(o.gap)} <small>mOsm/kg</small>`, `
         <ol class="steps">${step(`${tr('Écart', 'Gap')} = ${tr('mesurée', 'measured')} − ${tr('calculée', 'calculated')} = ${f2(v.measured.si)} − ${f2(o.calc)} = ${f2(o.gap)}`)}</ol>
-        ${alc}
         <p class="note-small">${tr('Écart normal avec cette formule : environ −10 à +12 (Purssell) ; seuil > 10 : sensibilité 0,85–1,0 mais spécificité 0,22–0,5 (Lynd 2008). Un écart normal n\'exclut pas un alcool toxique ; les seuils dépendent du laboratoire (dérive de 12 mOsm/kg en 8 ans, Krahn 2006). Osmolalité mesurée par point de congélation seulement (la pression de vapeur manque les alcools volatils).',
           'Normal gap with this formula: about −10 to +12 (Purssell); threshold > 10: sensitivity 0.85–1.0 but specificity 0.22–0.5 (Lynd 2008). A normal gap does not exclude a toxic alcohol; cut-offs depend on the laboratory (12 mOsm/kg drift over 8 years, Krahn 2006). Measured osmolality by freezing point only (vapor pressure misses volatile alcohols).')}</p>`,
-        { extra: badge(o.high, tr(`élevé (> ${F.OSM_GAP_HIGH})`, `elevated (> ${F.OSM_GAP_HIGH})`), normTxt(F.OSM_GAP_HIGH)) }));
+        { extra: badge(o.high, tr(`élevé (> ${F.OSM_GAP_HIGH})`, `elevated (> ${F.OSM_GAP_HIGH})`)) }));
     } else items.push(pendingItem(tGap, L.measured[0]));
   } else {
     items.push(pendingItem(tOsm, missing('na', 'glucose', 'urea')));
@@ -322,7 +313,7 @@ function drawAcidBase(S) {
 
 // ================================================================ dextrose ===
 function renderDextrose(main) {
-  const S = store('dextrose', { target: '0.25' });
+  const S = store('dextrose', { target: '0.25', solution: F.DEXTROSE_DEFAULT_SOLUTION });
   main.innerHTML = `
     <h1 class="page-title">${CALC_INFO.dextrose[ctx.lang][0]}</h1>
     ${banner()}
@@ -334,6 +325,10 @@ function renderDextrose(main) {
           ${['0.25', '0.5', 'free'].map(x => `<label><input type="radio" name="target" value="${x}"${S.target === x ? ' checked' : ''}> ${x === 'free' ? tr('Autre', 'Other') : dec(Number(x), 2) + ' g/kg'}</label>`).join('')}
         </div>
         <div data-show-if="target=free"${S.target === 'free' ? '' : ' hidden'}>${numField(S, 'free', tr('Dose cible (autre)', 'Target dose (other)'), [{ u: 'g/kg', f: 1 }])}</div>
+        <p class="field-label">${tr('Solution', 'Solution')}</p>
+        <div class="radio-row">
+          ${F.DEXTROSE_SOLUTIONS.map(x => `<label><input type="radio" name="solution" value="${x.id}"${S.solution === x.id ? ' checked' : ''}> ${x.id.replace('D', 'D')} %${x.id === 'D10' ? ` <span class="muted">(${tr('préférée en pédiatrie', 'preferred in pediatrics')})</span>` : ''}</label>`).join('').replace(/D(\d+) %/g, 'D$1')}
+        </div>
       </fieldset>
       <details class="sub"${S.girOpen ? ' open' : ''}><summary>${tr('Débit de glucose en perfusion (facultatif)', 'Glucose infusion rate (optional)')}</summary>
         <div class="grid2">
@@ -377,20 +372,23 @@ function drawDextrose(S) {
   const sel = S.target === '0.25' ? 2 : 3;
   const chosen = sel === 2 ? a : b, chosenT = sel === 2 ? col2 : col3;
   const head = (t, d) => `${dec(t, 3)} g/kg<br><span class="muted">${dec(d.doseG, 2)} g${d.capped ? ' (max)' : ''}</span>`;
-  const rows = F.DEXTROSE_SOLUTIONS.map((s, i) => `<tr${s.id === 'D10' ? ' class="hl"' : ''}><th scope="row">${s.id}${s.id === 'D10' ? ` <span class="tag">${tr('pédiatrie', 'pediatrics')}</span>` : ''}</th>` +
+  const rows = F.DEXTROSE_SOLUTIONS.map((s, i) => `<tr${s.id === S.solution ? ' class="hl"' : ''}><th scope="row">${s.id}${s.id === 'D10' ? ` <span class="tag">${tr('pédiatrie', 'pediatrics')}</span>` : ''}</th>` +
     `<td${sel === 2 ? ' class="sel"' : ''}>${f1(a.volumes[i].ml)}</td><td${sel === 3 ? ' class="sel"' : ''}>${f1(b.volumes[i].ml)}</td></tr>`).join('');
   const capped = [a, b].some(d => d.capped);
-  out.innerHTML = `<div class="result ok">
-    <div class="res-head">${tr('Dose', 'Dose')} : <strong>${dec(chosen.doseG, 2)} g</strong>${capped ? ` <span class="badge warn">${tr(`plafond ${F.DEXTROSE_MAX_G} g`, `${F.DEXTROSE_MAX_G} g cap`)}</span>` : ''}</div>
+  const si = F.DEXTROSE_SOLUTIONS.findIndex(x => x.id === S.solution);
+  const solIdx = si < 0 ? 1 : si, sol = F.DEXTROSE_SOLUTIONS[solIdx];
+  const mainMl = chosen.volumes[solIdx].ml;
+  out.innerHTML = `<div class="res-list">${resItem('dex', `${tr('Volume à administrer', 'Volume to give')} <small class="muted">${dec(chosenT, 3)} g/kg</small>`,
+    `${f1(mainMl)} <small>mL ${tr('de', 'of')}</small> ${sol.id}`, `
     <div class="table-wrap"><table class="calc-table dex"><thead><tr><th>mL</th><th>${head(col2, a)}</th><th>${head(col3, b)}</th></tr></thead><tbody>${rows}</tbody></table></div>
-    ${resItem('dexd', tr('Détail du calcul', 'Calculation details'), '', `
       <ol class="steps">${convLine(tr('Poids', 'Weight'), w)}${step(`${tr('Dose', 'Dose')} (g) = min(${tr('poids', 'weight')} × ${tr('cible', 'target')}, 25) = min(${f2(w.si)} × ${dec(chosenT, 3)}, 25) = ${dec(chosen.doseG, 3)}`)}
-        ${step(`mL = ${tr('dose', 'dose')} (g) / ${tr('concentration', 'concentration')} (g/mL) : D5 0,05 · D10 0,10 · D25 0,25 · D50 0,50`.replace(/0,05|0,10|0,25|0,50/g, m => ctx.lang === 'fr' ? m : m.replace(',', '.')))}</ol>
+        ${step(`mL = ${tr('dose', 'dose')} (g) / ${tr('concentration', 'concentration')} (g/mL) = ${dec(chosen.doseG, 3)} / ${dec(sol.gPerMl, 2)} = ${f1(mainMl)}`)}</ol>
       ${capped ? `<p class="warnbox">⚠ ${tr(`Plafond de ${F.DEXTROSE_MAX_G} g appliqué (poids × dose cible > ${F.DEXTROSE_MAX_G} g).`, `${F.DEXTROSE_MAX_G} g cap applied (weight × target > ${F.DEXTROSE_MAX_G} g).`)}</p>` : ''}
       <p>• ${tr('Préférer D10 en périphérie et chez l\'enfant ; D50 est hypertonique et irritant ; nouveau-nés : D10 seulement.', 'Prefer D10 peripherally and in children; D50 is hypertonic and irritant; neonates: D10 only.')}</p>
       <p>• ${tr('Recontrôler la glycémie 10–15 min après le bolus.', 'Recheck glucose 10–15 min after the bolus.')}</p>
-      <p class="note-small">${tr('0,2–0,25 g/kg : dose néonatale (Lilien 1980, mini-bolus de 2 mL/kg de D10). D10 vs D50 chez l\'adulte : même délai de récupération, moins de glucose avec D10 (Moore & Woollard 2005). 0,5 g/kg : pratique de réanimation pédiatrique (PALS).', '0.2–0.25 g/kg: neonatal dose (Lilien 1980, 2 mL/kg D10 mini-bolus). D10 vs D50 in adults: same recovery time, less glucose with D10 (Moore & Woollard 2005). 0.5 g/kg: pediatric resuscitation practice (PALS).')}</p>`)}
-    </div>`;
+      <p class="note-small">${tr('0,2–0,25 g/kg : dose néonatale (Lilien 1980, mini-bolus de 2 mL/kg de D10). D10 vs D50 chez l\'adulte : même délai de récupération, moins de glucose avec D10 (Moore & Woollard 2005). 0,5 g/kg : pratique de réanimation pédiatrique (PALS).', '0.2–0.25 g/kg: neonatal dose (Lilien 1980, 2 mL/kg D10 mini-bolus). D10 vs D50 in adults: same recovery time, less glucose with D10 (Moore & Woollard 2005). 0.5 g/kg: pediatric resuscitation practice (PALS).')}</p>`,
+    { extra: `<span class="res-sub">${dec(chosen.doseG, 2)} g ${tr('de dextrose', 'of dextrose')}</span>${capped ? `<span class="badge warn">${tr(`plafond ${F.DEXTROSE_MAX_G} g`, `${F.DEXTROSE_MAX_G} g cap`)}</span>` : ''}` })}</div>
+    <p class="hint">${tr('Touchez le résultat pour voir toutes les solutions et le détail du calcul.', 'Tap the result to see all solutions and the calculation.')}</p>`;
 }
 
 // ================================================================= éthanol ===
@@ -399,7 +397,8 @@ const DRINK_NAME = {
   wine: n => tr(n > 1 ? 'verres de vin' : 'verre de vin', n > 1 ? 'glasses of wine' : 'glass of wine'),
   shot: n => tr(n > 1 ? 'shots' : 'shot', n > 1 ? 'shots' : 'shot'),
 };
-const STRENGTH_LABEL = { 5: () => tr('bière', 'beer'), 10: () => tr('vin', 'wine'), 40: () => tr('spiritueux', 'spirits') };
+// libellés des teneurs dans le formulaire (le résultat ne nomme pas de breuvage)
+const STRENGTH_LABEL = { 5: () => tr('bière', 'beer'), 10: () => tr('vin ou IV', 'wine or IV'), 40: () => tr('spiritueux', 'spirits') };
 
 function drinksText(ml, percent, perHour = false) {
   const d = F.drinkEquivalent(ml, percent);
@@ -442,7 +441,7 @@ function drawEthanol(S) {
   const w = read(S, 'weight', tr('Poids', 'Weight'), U.weight, 'weight');
   const tg = read(S, 'target', tr('Éthanolémie cible', 'Target ethanol level'), U.ethanol, 'ethanolTarget');
   const cu = S.current === '' ? { si: 0, blank: false } : read(S, 'current', tr('Éthanolémie actuelle', 'Current ethanol level'), U.ethanol, 'ethanolCurrent');
-  const pct = S.strength === 'free' ? read(S, 'pct', tr('Teneur', 'Strength'), null, 'percent') : { si: Number(S.strength) };
+  const pct = S.strength === 'free' ? read(S, 'pct', tr('Teneur', 'Strength'), null, 'ethanolPercent') : { si: Number(S.strength) };
   const errs = [w, tg, cu, pct].filter(x => x.error).map(x => x.error);
   if (errs.length) { out.innerHTML = errorsHtml(errs); return; }
   if (w.blank || tg.blank || pct.blank) { out.innerHTML = `<div class="result empty">${tr('Entrez le poids et la cible pour obtenir le calcul.', 'Enter weight and target to see the calculation.')}</div>`; return; }
@@ -456,22 +455,26 @@ function drawEthanol(S) {
   if (route === 'IV' && p > F.ETHANOL.IV_MAX_PERCENT) warns.push(tr(`IV à plus de ${F.ETHANOL.IV_MAX_PERCENT} % : solution hyperosmolaire (le 10 % nécessite souvent une voie centrale).`, `IV above ${F.ETHANOL.IV_MAX_PERCENT}%: hyperosmolar (10% often needs a central line).`));
   if (tg.si < F.ETHANOL.TARGET_LOW || tg.si > F.ETHANOL.TARGET_HIGH) warns.push(tr('Cible hors de l\'intervalle AACT (22–33 mmol/L).', 'Target outside the AACT range (22–33 mmol/L).'));
   const bioStep = route === 'PO' ? ` / ${dec(F.ETHANOL.ORAL_BIOAVAILABILITY, 1)} (${tr('biodisponibilité orale 90 %', 'oral bioavailability 90%')})` : '';
-  const prod = `${dec(p, 2)} %${STRENGTH_LABEL[p] ? ` ${STRENGTH_LABEL[p]()}` : ''} ${route}`;
+  const prod = `${dec(p, 2)} % ${route}`;
+  const ivNote = route === 'IV' ? `<p class="warnbox">* ${tr('Voie centrale à privilégier.', 'Central line preferred.')}</p>` : '';
 
   const loadValue = L.alreadyAtTarget ? '0 <small>mL</small>' : `${f1(L.ml)} <small>mL</small>`;
-  const loadDrinks = L.alreadyAtTarget ? '' : drinksText(L.ml, p);
+  // consommations équivalentes : seulement par voie orale
+  const loadDrinks = L.alreadyAtTarget || route === 'IV' ? '' : drinksText(L.ml, p);
+  const maintDrinks = route === 'IV' ? '' : drinksText(M.mlPerH, p, true);
   const loadDetails = `${L.alreadyAtTarget ? `<p>${tr('Éthanolémie actuelle ≥ cible : pas de dose de charge.', 'Current level ≥ target: no loading dose.')}</p>` : `<p>${f2(L.g)} g ${tr('d\'éthanol', 'of ethanol')} · ${dec(L.mgPerKg, 0)} mg/kg · ${f2(L.ml / kg)} mL/kg</p>`}
     <ol class="steps">${convLine(tr('Poids', 'Weight'), w)}${convLine(tr('Cible', 'Target'), tg)}${convLine(tr('Actuelle', 'Current'), cu)}
       ${step(`g = (${tr('cible', 'target')} − ${tr('actuelle', 'current')}) × ${dec(0.046, 3)} × ${dec(0.6, 1)} × ${tr('poids', 'weight')}${bioStep} = (${f2(tg.si)} − ${f2(cu.si)}) × ${dec(0.046, 3)} × ${dec(0.6, 1)} × ${f2(kg)}${route === 'PO' ? ` / ${dec(0.9, 1)}` : ''} = ${f2(L.g)}`)}
       ${step(`g/mL = (${dec(p, 2)} / 100) × ${dec(0.79, 2)} = ${dec(L.gPerMl, 4)}`)}
       ${step(`mL = ${f2(L.g)} / ${dec(L.gPerMl, 4)} = ${f1(L.ml)}`)}</ol>
+    ${ivNote}
     <p class="note-small">${tr('La dose de charge ne dépend pas de la consommation habituelle ; elle est réduite si de l\'éthanol est déjà présent (AACT). Voie orale : dose × 1/0,9 (biodisponibilité 90 %).', 'The loading dose does not depend on drinking history; it is reduced if ethanol is already present (AACT). Oral route: dose × 1/0.9 (90% bioavailability).')}</p>`;
 
   const range = HIST.map(([id, name]) => {
     const m = F.ethanolMaintenance({ weightKg: kg, mgPerKgH: F.ETHANOL.MAINTENANCE[id], percent: p, route });
     return `<tr${id === S.history ? ' class="hl"' : ''}><th scope="row">${name}</th><td>${F.ETHANOL.MAINTENANCE[id]}</td><td>${f1(m.mlPerH)}</td></tr>`;
   }).join('');
-  const maintDetails = `<p>${tr('Débit recommandé selon la consommation habituelle', 'Recommended rate by drinking history')} (${prod}) :</p>
+  const maintDetails = `${ivNote}<p>${tr('Débit recommandé selon la consommation habituelle', 'Recommended rate by drinking history')} (${prod}) :</p>
     <div class="table-wrap"><table class="calc-table"><thead><tr><th></th><th>mg/kg/h</th><th>mL/h</th></tr></thead><tbody>${range}</tbody></table></div>
     <p>${f2(M.gPerH)} g/h · ${f2(M.mlPerKgH)} mL/kg/h</p>
     <ol class="steps">${step(`mL/h = mg/kg/h × ${tr('poids', 'weight')} / 1000${route === 'PO' ? ` / ${dec(0.9, 1)}` : ''} / (g/mL) = ${mgkgh} × ${f2(kg)} / 1000${route === 'PO' ? ` / ${dec(0.9, 1)}` : ''} / ${dec(M.gPerMl, 4)} = ${f1(M.mlPerH)}`)}</ol>
@@ -484,7 +487,7 @@ function drawEthanol(S) {
   out.innerHTML = `${warns.map(x => `<p class="warnbox">⚠ ${ctx.esc(x)}</p>`).join('')}
     <div class="res-list">
       ${resItem('load', `${tr('Dose de charge', 'Loading dose')} <small class="muted">${ctx.esc(prod)}</small>`, loadValue, loadDetails, { extra: loadDrinks ? `<span class="res-sub">${loadDrinks}</span>` : '' })}
-      ${resItem('maint', `${tr('Entretien', 'Maintenance')} <small class="muted">${ctx.esc(histName)}</small>`, `${f1(M.mlPerH)} <small>mL/h</small>`, maintDetails, { extra: drinksText(M.mlPerH, p, true) ? `<span class="res-sub">${drinksText(M.mlPerH, p, true)}</span>` : '' })}
+      ${resItem('maint', `${tr('Entretien', 'Maintenance')} <small class="muted">${ctx.esc(histName)}</small>`, `${f1(M.mlPerH)} <small>mL/h</small>`, maintDetails, { extra: maintDrinks ? `<span class="res-sub">${maintDrinks}</span>` : '' })}
     </div>
     <p class="hint">${tr('Touchez un résultat pour voir le détail du calcul.', 'Tap a result to see the calculation.')}</p>`;
 }
@@ -594,7 +597,7 @@ function drawKinetics(S) {
       ? `t = ln(C2 / ${tr('cible', 'target')}) / k = ln(${dec(c2.si, 4)} / ${dec(tg.si, 4)}) / ${dec(r.k, 4)} = ${f2(r.hoursToTarget)} h`
       : `t = (C2 − ${tr('cible', 'target')}) / ${tr('vitesse', 'rate')} = (${dec(c2.si, 4)} − ${dec(tg.si, 4)}) / ${dec(r.rate, 4)} = ${f2(r.hoursToTarget)} h`));
   }
-  if (S.order === 'first' && S.substance === 'ethanol') w.push(tr('Éthanol : utiliser l\'ordre zéro (élimination saturée).', 'Ethanol: use zero order (saturated elimination).'));
+  if (S.order === 'first' && S.substance === 'ethanol') w.push(tr('Premier ordre sélectionné. Éthanol : utiliser l\'ordre zéro (élimination saturée).', 'First order selected. Ethanol: use zero order (saturated elimination).'));
   if (r.warnings.includes('thirdInvalid')) w.push(tr('3e concentration ignorée : elle doit être > 0, plus basse que la 2e et prise après elle.', '3rd level ignored: it must be > 0, lower than the 2nd and drawn after it.'));
   let lin = '';
   if (r.linearityDiff != null) {

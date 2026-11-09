@@ -389,6 +389,7 @@ details.sub summary { cursor: pointer; font-weight: 700; min-height: var(--tap);
 .badge { display: inline-block; font-size: .78rem; font-weight: 700; border-radius: 999px; padding: .12rem .55rem; }
 .badge.high { color: #fff; background: #c4141c; }
 .badge.ok { color: #10613a; background: #dff3e8; }
+.badge.plain { color: var(--muted); background: transparent; border: 1px solid var(--border); font-weight: 600; }
 .badge.warn { color: #7a3d00; background: #ffe9c7; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .badge.ok { color: #9fe3bd; background: #143826; } :root:not([data-theme="light"]) .badge.warn { color: #ffd59a; background: #3d2a0c; } }
 .res-head { margin-bottom: .2rem; }

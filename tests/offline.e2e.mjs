@@ -207,9 +207,9 @@ try {
   // --- calculateurs de la phase 1, hors ligne ---
   await page.goto(`${BASE}#/fr/calc/dextrose`);
   await page.fill('#weight', '20');
-  await page.waitForSelector('table.dex tr.hl');
-  const d10 = (await page.textContent('table.dex tr.hl')).replace(/\s+/g, ' ');
-  check('Dextrose hors ligne (20 kg : D10 50 et 100 mL)', /50.*100/.test(d10), d10.trim());
+  await page.waitForSelector('.res-item[data-key=dex] .res-value');
+  const d10 = (await page.textContent('.res-item[data-key=dex] .res-value')).replace(/\s+/g, ' ');
+  check('Dextrose hors ligne (20 kg, 0,25 g/kg : 50 mL de D10)', /^50 mL de D10$/.test(d10.trim()), d10.trim());
   await page.goto(`${BASE}#/fr/calc/acidbase`);
   for (const [k, v] of [['na', '140'], ['cl', '100'], ['hco3', '10']]) await page.fill('#' + k, v);
   await page.waitForFunction(() => /30/.test(document.querySelector('.res-item[data-key=ag] .res-value')?.textContent || ''));

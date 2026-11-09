@@ -58,9 +58,30 @@ Tant qu'une valeur vaut `'TODO'`, le cas est « ignoré », jamais « réussi »
 - **Résultats compacts** : valeur et repère (normal / élevé) seulement ; détail du calcul au toucher.
 - **Stewart** : SIG, SIDa et SIDe affichés ensemble.
 - **Demi-vie** : saisie par jour (avant-hier à demain) + heure ; graphique (concentrations, courbe, cible, point prévu).
-- **DigiFab** : MDCalc n'est plus cité dans l'application. Références affichées : Guide canadien des antidotes (Posologie) pour la
+- **DigiFab** (référence exacte à confirmer – PDF à venir, voir section 5) : MDCalc n'est plus cité dans l'application. Références affichées : Guide canadien des antidotes (Posologie) pour la
   formule par digoxinémie, la contre-vérification et la règle des 25 % ; Howland MA, *Goldfrank's Toxicologic Emergencies*,
   10e éd. (2014) pour la formule par quantité ingérée ; Lapostolle 2008 et Antman 1990. Ces trois citations proviennent de la
   liste de références de MDCalc : **à confirmer par l'équipe** (le texte de ces ouvrages n'a pas été consulté).
 - **Liens monographie → calculateur** : Anticorps spécifique de la digoxine → DigiFab ; Dextrose → dextrose ; Éthanol → éthanol.
   Aucun lien vers le trou anionique / osmolalité ni vers la demi-vie (accessibles par l'onglet Outils).
+
+## 5. Validation de l'équipe (9 nov. 2026)
+
+| Point | Décision |
+|---|---|
+| Estimation d'alcool toxique d'après l'écart osmolaire | **Retirée** du calculateur pour l'instant |
+| Bornes de saisie | Validées ; teneur en éthanol acceptée **jusqu'à 100 %** |
+| Arrondi à l'affichage | Validé |
+| Poids | kg par défaut, lb conservé |
+| Textes français | Validés |
+| Écran de demi-vie | Validé ; avertissement si éthanol + premier ordre : « Premier ordre sélectionné. Éthanol : utiliser l'ordre zéro » |
+| Références DigiFab | Validées pour l'instant. **En attente : PDF de la référence exacte à fournir par Cyrille** |
+
+Autres changements demandés le même jour :
+
+- **Dextrose** : choix de la solution (D5, **D10 – préférée en pédiatrie, par défaut**, D25, D50) ; le résultat est le
+  **volume (mL) de la solution choisie** ; au toucher : tableau des 4 solutions (0,25 g/kg et 0,5 g/kg ou dose choisie).
+- **Éthanol** : 10 % libellé « vin ou IV » ; en IV, pas de consommations équivalentes ni de nom de breuvage dans le résultat,
+  et « * Voie centrale à privilégier » dans le détail (charge et entretien).
+- **Repères** : seule une valeur anormale est mise en évidence (rouge) ; une valeur normale affiche
+  « normal – voir détails » sans couleur (trou anionique, trou anionique corrigé, écart osmolaire).

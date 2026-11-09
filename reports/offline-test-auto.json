@@ -1,7 +1,7 @@
 {
-  "date": "2026-11-09T03:07:04.546Z",
+  "date": "2026-11-09T04:10:33.921Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "91dfcd41e423",
+  "version": "7d7b69f1a182",
   "passed": 119,
   "failed": 0,
   "results": [
@@ -551,9 +551,9 @@
       "detail": ""
     },
     {
-      "name": "Dextrose hors ligne (20 kg : D10 50 et 100 mL)",
+      "name": "Dextrose hors ligne (20 kg, 0,25 g/kg : 50 mL de D10)",
       "ok": true,
-      "detail": "D10 pédiatrie50100"
+      "detail": "50 mL de D10"
     },
     {
       "name": "Trou anionique hors ligne (140 − 110 = 30, « élevé »)",
@@ -593,7 +593,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "91dfcd41e423n"
+      "detail": "7d7b69f1a182n"
     },
     {
       "name": "Aucune erreur JavaScript",
