@@ -79,11 +79,12 @@ Le dossier `dist/` peut aussi être déposé tel quel sur n'importe quel héberg
 (serveur de l'établissement, Netlify, Cloudflare Pages…). Il doit être servi en **HTTPS**
 (obligatoire pour le mode hors ligne).
 
-## Version de test
+## Version de test (facultative)
 
-- Branche `staging` → https://cyrilledehalleux-cmd.github.io/testantidote/staging/ (bandeau violet « VERSION DE TEST »).
-- La version officielle (branche `main`) n'est pas modifiée. Stockage hors ligne séparé.
-- **Approuver** = fusionner `staging` dans `main` (pull request sur GitHub) : la version officielle est alors mise à jour.
+Pendant la phase de test, les modifications sont publiées directement sur le lien officiel (branche `main`).
+Pour une démonstration, on peut préparer les changements sur la branche `staging` : ils sont alors publiés sous
+https://cyrilledehalleux-cmd.github.io/testantidote/staging/ (bandeau violet « VERSION DE TEST »), sans toucher à la
+version officielle ; on les fusionne dans `main` une fois approuvés.
 
 ## Calculateurs de la phase 1 (démonstration)
 

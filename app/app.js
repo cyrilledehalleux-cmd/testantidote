@@ -6,12 +6,17 @@ import { renderPhase1, CALCS, CALC_INFO } from './calc/views.js';
 
 const LANGS = ['fr', 'en'];
 const DIGOXIN_ID = 'digoxin-specific-antibodies';
+// Références d'origine du calculateur DigiFab (citations exactes ; le calcul a été vérifié avec MDCalc)
+const DIGIFAB_REFS = {
+  howland: 'Howland MA. Digoxin-Specific Antibody Fragments. In: Hoffman R, Howland MA, Lewin N et al. Goldfrank\'s Toxicologic Emergencies, Tenth Edition. McGraw-Hill Education / Medical; 2014.',
+  lapostolle: 'Lapostolle F, Borron SW, Verdier C, Taboulet P, Guerrier G, Adnet F, Clemessy JL, Bismuth C, Baud FJ. Digoxin-specific Fab fragments as single first-line therapy in digitalis poisoning. Crit Care Med. 2008 Nov;36(11):3014-8. doi: 10.1097/CCM.0b013e31818b341c.',
+  antman: 'Antman EM, Wenger TL, Butler VP Jr, Haber E, Smith TW. Treatment of 150 cases of Life-Threatening Digitalis Intoxication With Digoxin-Specific Fab Antibody Fragments: Final Report of a Multicenter Study. Circulation. 1990;81:1744-52.',
+};
 // calculateurs liés à une monographie (affichés en haut de la monographie)
 const MONO_CALCS = {
   'digoxin-specific-antibodies': ['digifab'],
   dextrose: ['dextrose'],
-  ethanol: ['ethanol', 'acidbase', 'kinetics'],
-  fomepizole: ['acidbase'],
+  ethanol: ['ethanol'],
 };
 
 const UI = {
@@ -98,18 +103,20 @@ const CALC_UI = {
     crossDiff: 'Attention : l\'arrondi de la formule officielle diffère. Vérifiez le calcul.',
     crossSame: 'Même nombre de fioles avec la formule officielle.',
     partial: 'Sans atteinte hémodynamique – 25 % du nombre théorique (guide officiel)',
+    partialShort: 'Sans atteinte hémodynamique (25 %)', tapHint: 'Touchez le résultat pour voir le détail du calcul.',
     partialLine: (t, f, r, v) => `${t} × ${f} = ${r} → ${v}`,
     seeMono: 'Indications, dose empirique (arrêt cardiaque), administration : voir la monographie, section Posologie.',
-    sources: 'Sources', srcMd: 'Formule : MDCalc, « DigiFab Dosing for Digoxin Poisoning » (consulté le 2026-11-06).',
-    srcOff: 'Contre-vérification et règle des 25 % : Guide canadien des antidotes, « Anticorps spécifique de la digoxine », section Posologie.',
+    sources: 'Références',
+    srcLevel: 'Formule par digoxinémie, contre-vérification (× 0,00781) et règle des 25 % : Guide canadien des antidotes, « Anticorps spécifique de la digoxine », section Posologie.',
+    srcAmount: 'Formule par quantité ingérée (0,5 mg de digoxine neutralisés par fiole ; biodisponibilité 80 %) :',
     errs: {
       nan: f => `${f} : entrez un nombre (ex. 3,6).`, unit: f => `${f} : unité non reconnue.`,
       min: (f, d) => `${f} : ${d} est trop bas pour ce calculateur.`,
-      max: (f, d) => `${f} : ${d} dépasse les bornes du calculateur (bornes MDCalc). Aucun résultat affiché.`,
+      max: (f, d) => `${f} : ${d} dépasse les bornes du calculateur Aucun résultat affiché.`,
     },
     warn: (f, d) => `${f} : ${d} est une valeur inhabituelle. Vérifiez la saisie.`,
     fields: { level: 'Digoxinémie', weight: 'Poids', amount: 'Quantité ingérée' },
-    limits: 'Bornes acceptées (MDCalc)',
+    limits: 'Bornes acceptées',
   },
   en: {
     title: 'DigiFab calculator (digoxin-specific antibodies)',
@@ -130,18 +137,20 @@ const CALC_UI = {
     crossDiff: 'Warning: the official formula rounds to a different number. Check the calculation.',
     crossSame: 'Same number of vials with the official formula.',
     partial: 'Without hemodynamic compromise – 25% of the theoretical dose (official guide)',
+    partialShort: 'Without hemodynamic compromise (25%)', tapHint: 'Tap the result to see the calculation.',
     partialLine: (t, f, r, v) => `${t} × ${f} = ${r} → ${v}`,
     seeMono: 'Indications, empiric dose (cardiac arrest), administration: see the monograph, Dosage section.',
-    sources: 'Sources', srcMd: 'Formula: MDCalc, “DigiFab Dosing for Digoxin Poisoning” (accessed 2026-11-06).',
-    srcOff: 'Cross-check and 25% rule: Canadian antidote guide, “Digoxin-Specific Antibodies”, Dosage section.',
+    sources: 'References',
+    srcLevel: 'Formula by serum level, cross-check (× 0.00781) and 25% rule: Canadian antidote guide, “Digoxin-Specific Antibodies”, Dosage section.',
+    srcAmount: 'Formula by amount ingested (0.5 mg of digoxin bound per vial; 80% bioavailability):',
     errs: {
       nan: f => `${f}: enter a number (e.g. 3.6).`, unit: f => `${f}: unknown unit.`,
       min: (f, d) => `${f}: ${d} is too low for this calculator.`,
-      max: (f, d) => `${f}: ${d} is outside the calculator limits (MDCalc limits). No result shown.`,
+      max: (f, d) => `${f}: ${d} is outside the calculator limits No result shown.`,
     },
     warn: (f, d) => `${f}: ${d} is an unusual value. Check the entry.`,
     fields: { level: 'Digoxin level', weight: 'Weight', amount: 'Amount ingested' },
-    limits: 'Accepted limits (MDCalc)',
+    limits: 'Accepted limits',
   },
 };
 
@@ -572,20 +581,17 @@ function renderTools(main) {
   const T = t();
   const C = CALC_UI[state.lang];
   const P = state.data[state.lang].pages;
-  const row = (href, title, sub, tag = '') => `<li><a class="row" href="${href}"><span class="row-text">` +
-    `<span class="row-title">${esc(title)}${tag ? ` <span class="tag">${esc(tag)}</span>` : ''}</span>` +
-    (sub ? `<span class="row-sub">${esc(sub)}</span>` : '') + `</span>${ICONS.chevronR}</a></li>`;
+  const row = (href, title) => `<li><a class="row" href="${href}"><span class="row-text"><span class="row-title">${esc(title)}</span></span>${ICONS.chevronR}</a></li>`;
   main.innerHTML = `
     <h1 class="page-title">${esc(T.tools)}</h1>
     <h2 class="group-title">${esc(state.lang === 'fr' ? 'Calculateurs' : 'Calculators')}</h2>
-    <ul class="rows">${row(`#/${state.lang}/calc`, T.calc, T.calcSub, T.demoTag)}
-      ${CALCS.map(id => row(`#/${state.lang}/calc/${id}`, CALC_INFO[id][state.lang][0], CALC_INFO[id][state.lang][1], T.demoTag)).join('')}</ul>
-    <p class="hint">${esc(C.banner)}</p>
+    <ul class="rows">${row(`#/${state.lang}/calc`, T.calc)}
+      ${CALCS.map(id => row(`#/${state.lang}/calc/${id}`, CALC_INFO[id][state.lang][0])).join('')}</ul>
     <h2 class="group-title">${esc(state.lang === 'fr' ? 'Références' : 'References')}</h2>
     <ul class="rows">
-      ${row(`#/${state.lang}/p/abbreviations`, P.abbreviations.title, T.abbrSub)}
-      ${row(`#/${state.lang}/p/advice`, P.advice.title, T.adviceSub)}
-      ${row(`#/${state.lang}/p/about`, P.about.title, T.aboutSub)}
+      ${row(`#/${state.lang}/p/abbreviations`, P.abbreviations.title)}
+      ${row(`#/${state.lang}/p/advice`, P.advice.title)}
+      ${row(`#/${state.lang}/p/about`, P.about.title)}
     </ul>
     <h2 class="group-title">${esc(T.appInfo)}</h2>
     <p class="card info" id="app-info">${esc(appInfoText())}</p>`;
@@ -670,11 +676,13 @@ function renderCalc(main) {
         </div>
       </fieldset>
     </form>
-    <div class="formula" id="formula"></div>
     <div id="calc-out" aria-live="polite"></div>
     <p class="src">${esc(C.seeMono)} <a href="#/${state.lang}/m/${DIGOXIN_ID}/4">→</a></p>
-    <p class="src"><strong>${esc(C.sources)}</strong><br>${esc(C.srcMd)}
-      <a href="https://www.mdcalc.com/calc/4036/digifab-dosing-digoxin-poisoning" target="_blank" rel="noopener">MDCalc ↗</a><br>${esc(C.srcOff)}</p>`;
+    <details class="refs"><summary>${esc(C.sources)}</summary><ol>
+      <li>${esc(C.srcLevel)}</li>
+      <li>${esc(C.srcAmount)} ${esc(DIGIFAB_REFS.howland)}</li>
+      <li>${esc(DIGIFAB_REFS.lapostolle)}</li>
+      <li>${esc(DIGIFAB_REFS.antman)}</li></ol></details>`;
 
   const form = $('#calc-form');
   const update = () => {
@@ -705,7 +713,7 @@ function drawCalc() {
   const C = CALC_UI[state.lang];
   const s = state.calc;
   const level = s.mode === 'level';
-  $('#formula').innerHTML = `<strong>${esc(C.formula)} (MDCalc)</strong><br><code>` + (level
+  const formulaHtml = `<strong>${esc(C.formula)}</strong><br><code>` + (level
     ? (state.lang === 'fr' ? 'Fioles = [digoxinémie (ng/mL) × poids (kg)] ÷ 100' : 'Vials = [digoxin level (ng/mL) × weight (kg)] ÷ 100')
       + `</code><br><code>1 ng/mL = ${fmt(CONST.NG_PER_ML_TO_NMOL_PER_L)} nmol/L ; 1 lb = ${fmt(CONST.LB_TO_KG, 6)} kg</code>`
     : (state.lang === 'fr' ? 'Fioles = [quantité ingérée (mg) ÷ 0,5 mg/fiole] × 80 %' : 'Vials = [amount ingested (mg) ÷ 0.5 mg/vial] × 80%') + '</code>')
@@ -748,14 +756,14 @@ function drawCalc() {
       ${cc.agrees ? `<p>✓ ${esc(C.crossSame)}</p>` : `<p class="warnbox">⚠ ${esc(C.crossDiff)}</p>`}
       <h3>${esc(C.partial)}</h3><p><code>${esc(C.partialLine(fmt(r.theoretical), fmt(p.fraction, 2), fmt(p.theoretical), C.vials(p.vials)))}</code></p>`;
   }
-  out.innerHTML = `<div class="result ok">
-      <div>${esc(C.result)} (MDCalc)</div>
-      <div class="big">${esc(C.vials(r.vials))}</div>
-      ${warns}
-      <p class="src">${esc(C.entered)} : ${esc(entered)}</p>
-      <h3>${esc(C.steps)}</h3><ol class="steps">${stepHtml}</ol>
-      ${extra}
-    </div>`;
+  const crossWarn = level && !r.crossCheck.agrees ? `<p class="warnbox">⚠ ${esc(C.crossDiff)}</p>` : '';
+  out.innerHTML = `${warns}${crossWarn}<div class="res-list">
+      <details class="res-item"><summary><span class="res-title">${esc(C.result)}</span><span class="res-value">${esc(C.vials(r.vials))}</span><span class="chev" aria-hidden="true">⌄</span></summary>
+        <div class="res-details"><p class="src">${esc(C.entered)} : ${esc(entered)}</p>
+          <h3>${esc(C.steps)}</h3><ol class="steps">${stepHtml}</ol>
+          <div class="formula">${formulaHtml}</div>${extra}</div></details>
+      ${level ? `<div class="res-item static"><span class="res-title">${esc(C.partialShort)}</span><span class="res-value">${esc(C.vials(r.partial.vials))}</span></div>` : ''}
+    </div><p class="hint">${esc(C.tapHint)}</p>`;
 }
 
 // -------------------------------------------------------- avis au lecteur ---

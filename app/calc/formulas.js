@@ -144,6 +144,9 @@ export const ETHANOL = Object.freeze({
   TARGET_LOW: 22, TARGET_HIGH: 33, // AACT : 22–33 mmol/L (100–150 mg/dL)
   IV_MAX_PERCENT: 10,     // au-delà : hyperosmolaire (souvent voie centrale dès 10 %)
   STRENGTHS: [5, 10, 20, 40],
+  ORAL_BIOAVAILABILITY: 0.9, // décision de l'équipe (9 nov. 2026) : PO = dose × 1 / 0,9 (≈ 1,111) pour la même éthanolémie
+  // consommations de référence (décision de l'équipe) : teneur → volume d'une consommation
+  DRINKS: { 5: { id: 'beer', ml: 341 }, 10: { id: 'wine', ml: 142 }, 40: { id: 'shot', ml: 43 } },
   // mg/kg/h : AACT tableau 3 (adapté de McCoy 1979) ; 110 = « dose d'entretien moyenne » (texte AACT)
   MAINTENANCE: { nonDrinker: 66, average: 110, heavy: 154 },
 });
@@ -151,19 +154,39 @@ export const ETHANOL = Object.freeze({
 /** g d'éthanol par mL pour une teneur (% v/v) : (% / 100) × 0,79 */
 export const ethanolGPerMl = percent => (percent / 100) * ETHANOL.DENSITY;
 
-/** Dose de charge : (cible − actuelle) × 0,046 × 0,6 × poids (g) ; volume = g / g par mL. */
-export function ethanolLoading({ weightKg, targetMmol, currentMmol = 0, percent }) {
+/** Biodisponibilité selon la voie : IV = 1 ; PO = 0,9. */
+export const ethanolBioavailability = route => (route === 'PO' ? ETHANOL.ORAL_BIOAVAILABILITY : 1);
+
+/** Dose de charge : (cible − actuelle) × 0,046 × 0,6 × poids (g absorbés) ; dose à donner = g / biodisponibilité ;
+ *  volume = g à donner / g par mL. */
+export function ethanolLoading({ weightKg, targetMmol, currentMmol = 0, percent, route = 'IV' }) {
   const delta = targetMmol - currentMmol;
-  const g = Math.max(0, delta) * ETHANOL.MMOL_TO_G_PER_L * ETHANOL.VD * weightKg;
+  const bio = ethanolBioavailability(route);
+  const gAbsorbed = Math.max(0, delta) * ETHANOL.MMOL_TO_G_PER_L * ETHANOL.VD * weightKg;
+  const g = gAbsorbed / bio;
   const gPerMl = ethanolGPerMl(percent);
-  return { delta, g, gPerMl, ml: g / gPerMl, mgPerKg: (g * 1000) / weightKg, alreadyAtTarget: delta <= 0 };
+  return { delta, bio, gAbsorbed, g, gPerMl, ml: g / gPerMl, mgPerKg: (g * 1000) / weightKg, alreadyAtTarget: delta <= 0 };
 }
 
-/** Entretien : débit (mL/h) = mg/kg/h × poids / (1000 × g par mL). */
-export function ethanolMaintenance({ weightKg, mgPerKgH, percent }) {
+/** Entretien : g/h = mg/kg/h × poids / 1000 / biodisponibilité ; débit (mL/h) = g/h / g par mL. */
+export function ethanolMaintenance({ weightKg, mgPerKgH, percent, route = 'IV' }) {
+  const bio = ethanolBioavailability(route);
   const gPerMl = ethanolGPerMl(percent);
-  const gPerH = (mgPerKgH * weightKg) / 1000;
-  return { gPerH, gPerMl, mlPerH: gPerH / gPerMl, mlPerKgH: mgPerKgH / (1000 * gPerMl) };
+  const gPerH = (mgPerKgH * weightKg) / 1000 / bio;
+  return { bio, gPerH, gPerMl, mlPerH: gPerH / gPerMl, mlPerKgH: mgPerKgH / (1000 * gPerMl * bio) };
+}
+
+/** Nombre approximatif de consommations : volume / volume d'une consommation, arrondi au plus proche
+ *  de 0, ¼, ⅓, ½, ⅔, ¾ ou 1. Retourne null si la teneur n'a pas de consommation de référence. */
+const FRACTIONS = [[0, ''], [1 / 4, '¼'], [1 / 3, '⅓'], [1 / 2, '½'], [2 / 3, '⅔'], [3 / 4, '¾'], [1, '']];
+export function drinkEquivalent(ml, percent) {
+  const d = ETHANOL.DRINKS[percent];
+  if (!d) return null;
+  const n = ml / d.ml;
+  let whole = Math.floor(n), best = FRACTIONS[0];
+  for (const f of FRACTIONS) if (Math.abs(n - whole - f[0]) < Math.abs(n - whole - best[0])) best = f;
+  if (best[0] === 1) { whole += 1; best = FRACTIONS[0]; }
+  return { id: d.id, servingMl: d.ml, exact: n, whole, frac: best[1], value: whole + best[0] };
 }
 
 // ------------------------------------------------- demi-vie, temps jusqu'à la cible ---

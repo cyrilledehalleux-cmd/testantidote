@@ -4,7 +4,7 @@ Source des formules : *Phase 1 toxicology equations: spec for the app* (8 nov. 2
 Code : `app/calc/formulas.js` (formules et constantes, sources en commentaire) et `app/calc/views.js` (affichage).
 Tests : `tests/phase1.test.mjs` (`npm test`).
 
-Les calculateurs sont dans la **version de test** (`…/testantidote/staging/`), pas dans la version officielle.
+En ligne sur le lien officiel depuis le 9 nov. 2026 (décision de l'équipe : phase de test, publication directe).
 
 ## 1. Écarts entre la formule et les valeurs publiées (formule conservée telle quelle)
 
@@ -47,3 +47,20 @@ demi-vie 400 → 200 en 6 h = 6 h.
 
 `tests/phase1.test.mjs`, section « cas de l'équipe » : 12 cas (un ou plusieurs par calculateur), valeurs attendues `'TODO'`.
 Tant qu'une valeur vaut `'TODO'`, le cas est « ignoré », jamais « réussi ».
+
+## 4. Décisions de l'équipe du 9 nov. 2026 (appliquées)
+
+- **Éthanol PO : biodisponibilité 90 %** (remplace « biodisponibilité 1 » de la spec) : dose de charge et entretien
+  × 1/0,9 (≈ 1,111) par voie orale. L'avertissement « éthanolémie probablement plus basse par voie orale » est retiré.
+- **Teneurs** : 5 % (bière), 10 % (vin), 20 %, 40 % (spiritueux). **Consommations équivalentes** affichées sous les volumes :
+  bière 341 mL, verre de vin 142 mL, shot 43 mL ; arrondi au plus proche de ¼, ⅓, ½, ⅔, ¾ (aucune pour 20 % et « autre »).
+- **Entretien** : débit pour la consommation choisie ; au toucher, débits pour non-buveur, moyenne et buveur chronique.
+- **Résultats compacts** : valeur et repère (normal / élevé) seulement ; détail du calcul au toucher.
+- **Stewart** : SIG, SIDa et SIDe affichés ensemble.
+- **Demi-vie** : saisie par jour (avant-hier à demain) + heure ; graphique (concentrations, courbe, cible, point prévu).
+- **DigiFab** : MDCalc n'est plus cité dans l'application. Références affichées : Guide canadien des antidotes (Posologie) pour la
+  formule par digoxinémie, la contre-vérification et la règle des 25 % ; Howland MA, *Goldfrank's Toxicologic Emergencies*,
+  10e éd. (2014) pour la formule par quantité ingérée ; Lapostolle 2008 et Antman 1990. Ces trois citations proviennent de la
+  liste de références de MDCalc : **à confirmer par l'équipe** (le texte de ces ouvrages n'a pas été consulté).
+- **Liens monographie → calculateur** : Anticorps spécifique de la digoxine → DigiFab ; Dextrose → dextrose ; Éthanol → éthanol.
+  Aucun lien vers le trou anionique / osmolalité ni vers la demi-vie (accessibles par l'onglet Outils).

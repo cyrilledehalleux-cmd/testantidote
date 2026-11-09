@@ -194,15 +194,30 @@ try {
   await page.fill('#weight', '65');
   await page.selectOption('#levelUnit', 'ng/mL');
   await page.fill('#level', '2,8');
-  await page.waitForSelector('.result.ok .big');
-  const big = await page.textContent('.result.ok .big');
+  await page.waitForSelector('#calc-out .res-item .res-value');
+  const big = await page.textContent('#calc-out .res-item .res-value');
   check('Calculateur hors ligne (exemple MDCalc : 2,8 ng/mL, 65 kg → 2 fioles)', big.trim() === '2 fioles', big);
   await page.fill('#level', '50');
   await page.waitForSelector('.result.err');
-  check('Calculateur : saisie hors bornes → aucun résultat', (await page.locator('.result.ok').count()) === 0);
+  check('Calculateur : saisie hors bornes → aucun résultat', (await page.locator('#calc-out .res-item').count()) === 0);
   await page.click('#lang-btn');
   await page.waitForSelector('#calc-out');
   check('Calculateur : valeurs conservées au changement de langue', (await page.inputValue('#weight')) === '65');
+
+  // --- calculateurs de la phase 1, hors ligne ---
+  await page.goto(`${BASE}#/fr/calc/dextrose`);
+  await page.fill('#weight', '20');
+  await page.waitForSelector('table.dex tr.hl');
+  const d10 = (await page.textContent('table.dex tr.hl')).replace(/\s+/g, ' ');
+  check('Dextrose hors ligne (20 kg : D10 50 et 100 mL)', /50.*100/.test(d10), d10.trim());
+  await page.goto(`${BASE}#/fr/calc/acidbase`);
+  for (const [k, v] of [['na', '140'], ['cl', '100'], ['hco3', '10']]) await page.fill('#' + k, v);
+  await page.waitForFunction(() => /30/.test(document.querySelector('.res-item[data-key=ag] .res-value')?.textContent || ''));
+  check('Trou anionique hors ligne (140 − 110 = 30, « élevé »)', (await page.textContent('.res-item[data-key=ag]')).includes('élevé'));
+  await page.goto(`${BASE}#/fr/calc/ethanol`);
+  await page.fill('#weight', '70');
+  await page.waitForSelector('.res-item[data-key=load] .res-value');
+  check('Éthanol hors ligne (charge 10 % IV, 70 kg)', (await page.textContent('.res-item[data-key=load] .res-value')).includes('538'));
 
   // --- autres pages ---
   for (const [lang, name] of [['fr', 'abbreviations'], ['en', 'abbreviations'], ['fr', 'advice'], ['en', 'advice']]) {

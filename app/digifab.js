@@ -1,8 +1,8 @@
 // Calculateur DigiFab – OUTIL DE DÉMONSTRATION, VÉRIFIER LE CALCUL.
 //
-// Formule retenue (choix de l'équipe) : MDCalc, « DigiFab® (Digoxin Immune Fab-Ovine)
-// Dosing for Digoxin Poisoning » – https://www.mdcalc.com/calc/4036/digifab-dosing-digoxin-poisoning
-// (page enregistrée dans source/mdcalc/) :
+// Références affichées : Guide canadien des antidotes (Posologie) ; Howland MA, Goldfrank's Toxicologic
+// Emergencies, 10e éd. (fragments Fab) ; Lapostolle 2008 ; Antman 1990.
+// Calcul vérifié avec MDCalc « DigiFab Dosing for Digoxin Poisoning » (page enregistrée dans source/mdcalc/) :
 //   Nombre de fioles = [digoxinémie (ng/mL) × poids (kg)] ÷ 100
 //   OU Nombre de fioles = [quantité ingérée (mg) ÷ 0,5 mg/fiole] × 80 % (biodisponibilité)
 //   Toujours arrondir au nombre entier supérieur.

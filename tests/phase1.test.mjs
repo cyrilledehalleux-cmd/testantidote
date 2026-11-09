@@ -116,3 +116,19 @@ for (const c of TEAM) {
   test(`Cas équipe n° ${c.n} : ${c.name}`, { skip: c.expected === 'TODO' ? 'valeur attendue à calculer à la main par l\'équipe (TODO)' : false },
     () => near(c.fn(), c.expected, 0.05));
 }
+
+// ------------------------------------------- décisions du 9 nov. 2026 (équipe) ---
+test('Éthanol PO : biodisponibilité 90 % → dose × 1/0,9 (charge et entretien)', () => {
+  const iv = F.ethanolLoading({ weightKg: 70, targetMmol: 22, percent: 40, route: 'IV' });
+  const po = F.ethanolLoading({ weightKg: 70, targetMmol: 22, percent: 40, route: 'PO' });
+  near(po.g / iv.g, 1 / 0.9, 1e-12); near(po.ml / iv.ml, 1 / 0.9, 1e-12);
+  const miv = F.ethanolMaintenance({ weightKg: 70, mgPerKgH: 110, percent: 40, route: 'IV' });
+  const mpo = F.ethanolMaintenance({ weightKg: 70, mgPerKgH: 110, percent: 40, route: 'PO' });
+  near(mpo.mlPerH / miv.mlPerH, 1 / 0.9, 1e-12);
+});
+test('Consommations équivalentes : bière 341 mL, vin 142 mL, shot 43 mL, arrondi à ¼ ⅓ ½ ⅔ ¾', () => {
+  assert.equal(F.drinkEquivalent(341, 5).value, 1);
+  assert.equal(F.drinkEquivalent(142 * 2.5, 10).frac, '½');
+  assert.equal(F.drinkEquivalent(43 * 3.3, 40).frac, '⅓');
+  assert.equal(F.drinkEquivalent(100, 20), null); // 20 % : pas de consommation de référence
+});

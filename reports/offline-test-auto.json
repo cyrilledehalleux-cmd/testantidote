@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-08T23:52:54.397Z",
+  "date": "2026-11-09T03:07:04.546Z",
   "browser": "Chromium 153.0.8010.12 (Playwright), bureau",
-  "version": "0aaf830fd57f",
-  "passed": 116,
+  "version": "91dfcd41e423",
+  "passed": 119,
   "failed": 0,
   "results": [
     {
@@ -38,7 +38,7 @@
     {
       "name": "Indicateur « Hors ligne – contenu daté du … »",
       "ok": true,
-      "detail": "⚠ Hors ligne – contenu daté du 2026-11-08"
+      "detail": "⚠ Hors ligne – contenu daté du 2026-11-09"
     },
     {
       "name": "[fr] Acétate de sodium : ouverte hors ligne, 18 sections",
@@ -551,6 +551,21 @@
       "detail": ""
     },
     {
+      "name": "Dextrose hors ligne (20 kg : D10 50 et 100 mL)",
+      "ok": true,
+      "detail": "D10 pédiatrie50100"
+    },
+    {
+      "name": "Trou anionique hors ligne (140 − 110 = 30, « élevé »)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Éthanol hors ligne (charge 10 % IV, 70 kg)",
+      "ok": true,
+      "detail": ""
+    },
+    {
       "name": "Page fr/abbreviations hors ligne",
       "ok": true,
       "detail": "Abréviations et acronymes"
@@ -578,7 +593,7 @@
     {
       "name": "Après « Actualiser » : nouvelle version active",
       "ok": true,
-      "detail": "0aaf830fd57fn"
+      "detail": "91dfcd41e423n"
     },
     {
       "name": "Aucune erreur JavaScript",
